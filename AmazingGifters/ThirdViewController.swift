@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  ThirdViewController.swift
 //  AmazingGifters
 //
 //  Created by 陆恺 on 6/18/16.
@@ -8,20 +8,18 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
-    @IBOutlet weak var table: UITableView!
-
+class ThirdViewController: UIViewController {
+    
     override func viewDidLoad() {
-           super.viewDidLoad()
- 
+        super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-  
+    
+    
 }
 
