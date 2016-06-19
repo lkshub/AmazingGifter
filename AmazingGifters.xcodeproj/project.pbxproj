@@ -13,6 +13,11 @@
 		2141ACFC1D15C09200B6F5BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2141ACFA1D15C09200B6F5BF /* Main.storyboard */; };
 		2141ACFE1D15C09200B6F5BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2141ACFD1D15C09200B6F5BF /* Assets.xcassets */; };
 		2141AD011D15C09200B6F5BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2141ACFF1D15C09200B6F5BF /* LaunchScreen.storyboard */; };
+		2141AD191D171D4F00B6F5BF /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2141AD161D171D4F00B6F5BF /* FBSDKCoreKit.framework */; };
+		2141AD1A1D171D4F00B6F5BF /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2141AD171D171D4F00B6F5BF /* FBSDKLoginKit.framework */; };
+		2141AD1B1D171D4F00B6F5BF /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2141AD181D171D4F00B6F5BF /* FBSDKShareKit.framework */; };
+		2141AD1E1D17228B00B6F5BF /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2141AD1D1D17228B00B6F5BF /* Bolts.framework */; };
+		2141AD201D17234D00B6F5BF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2141AD1F1D17234D00B6F5BF /* LoginViewController.swift */; };
 		3C8DE5EB1D15C90200A4DD85 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8DE5EA1D15C90200A4DD85 /* ThirdViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +30,11 @@
 		2141ACFD1D15C09200B6F5BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2141AD001D15C09200B6F5BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2141AD021D15C09200B6F5BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2141AD161D171D4F00B6F5BF /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../Documents/FacebookSDKs-iOS-4.13.1/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
+		2141AD171D171D4F00B6F5BF /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../Documents/FacebookSDKs-iOS-4.13.1/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		2141AD181D171D4F00B6F5BF /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../Documents/FacebookSDKs-iOS-4.13.1/FBSDKShareKit.framework"; sourceTree = "<group>"; };
+		2141AD1D1D17228B00B6F5BF /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../Documents/FacebookSDKs-iOS-4.13.1/Bolts.framework"; sourceTree = "<group>"; };
+		2141AD1F1D17234D00B6F5BF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3C8DE5EA1D15C90200A4DD85 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -33,6 +43,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2141AD1A1D171D4F00B6F5BF /* FBSDKLoginKit.framework in Frameworks */,
+				2141AD191D171D4F00B6F5BF /* FBSDKCoreKit.framework in Frameworks */,
+				2141AD1B1D171D4F00B6F5BF /* FBSDKShareKit.framework in Frameworks */,
+				2141AD1E1D17228B00B6F5BF /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,7 +72,9 @@
 		2141ACF31D15C09200B6F5BF /* AmazingGifters */ = {
 			isa = PBXGroup;
 			children = (
+				2141AD0F1D171C8200B6F5BF /* Frameworks */,
 				2141ACF41D15C09200B6F5BF /* AppDelegate.swift */,
+				2141AD1F1D17234D00B6F5BF /* LoginViewController.swift */,
 				2141ACF61D15C09200B6F5BF /* FirstViewController.swift */,
 				2141ACF81D15C09200B6F5BF /* SecondViewController.swift */,
 				3C8DE5EA1D15C90200A4DD85 /* ThirdViewController.swift */,
@@ -68,6 +84,17 @@
 				2141AD021D15C09200B6F5BF /* Info.plist */,
 			);
 			path = AmazingGifters;
+			sourceTree = "<group>";
+		};
+		2141AD0F1D171C8200B6F5BF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2141AD1D1D17228B00B6F5BF /* Bolts.framework */,
+				2141AD161D171D4F00B6F5BF /* FBSDKCoreKit.framework */,
+				2141AD171D171D4F00B6F5BF /* FBSDKLoginKit.framework */,
+				2141AD181D171D4F00B6F5BF /* FBSDKShareKit.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -144,6 +171,7 @@
 				2141ACF91D15C09200B6F5BF /* SecondViewController.swift in Sources */,
 				2141ACF51D15C09200B6F5BF /* AppDelegate.swift in Sources */,
 				3C8DE5EB1D15C90200A4DD85 /* ThirdViewController.swift in Sources */,
+				2141AD201D17234D00B6F5BF /* LoginViewController.swift in Sources */,
 				2141ACF71D15C09200B6F5BF /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,10 +287,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = "~/Documents/FacebookSDKs-iOS-4.13.1";
 				INFOPLIST_FILE = AmazingGifters/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gatech.klu65.AmazingGifters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Debug;
 		};
@@ -270,10 +301,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = "~/Documents/FacebookSDKs-iOS-4.13.1";
 				INFOPLIST_FILE = AmazingGifters/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gatech.klu65.AmazingGifters;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_INSTALL_OBJC_HEADER = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 			};
 			name = Release;
 		};
