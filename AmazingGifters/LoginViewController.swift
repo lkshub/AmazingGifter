@@ -8,13 +8,38 @@
 
 import UIKit
 import FBSDKLoginKit
+import FBSDKCoreKit
 
 class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     
     
     
     // Facebook Delegate Methods
+    @IBOutlet var btnFacebook: FBSDKLoginButton!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view, typically from a nib.
+        
+        if (FBSDKAccessToken.currentAccessToken() != nil)
+        {
+            // User is already logged in, do work such as go to next view controller.
+            print("allready logged in")
+            print("asking for data")
+            returnUserProfile()
+            print("jump to my gifts")
+            jumpToMyGifts()
+        }
+        else
+        {
+            btnFacebook =  FBSDKLoginButton()
+            self.view.addSubview(btnFacebook)
+            btnFacebook.center = self.view.center
+            btnFacebook.readPermissions = ["public_profile", "email", "user_friends"]
+            btnFacebook.delegate = self
+        }
+        
+    }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         print("User Logged In")
@@ -32,8 +57,9 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             if result.grantedPermissions.contains("email")
             {
                 // Do work
-                returnUserData()
-                viewDidLoad()
+                print("asking for data")
+                returnUserProfile()
+                jumpToMyGifts()
             }
         }
     }
@@ -43,7 +69,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     }
     
     
-    func returnUserData()
+    func returnUserProfile()
     {
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"first_name, last_name, email, picture.type(large)"])
         graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
@@ -67,32 +93,17 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     }
     
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        
-        if (FBSDKAccessToken.currentAccessToken() != nil)
-        {
-            // User is already logged in, do work such as go to next view controller.
-            let FirstViewControllerObj = self.storyboard?.instantiateViewControllerWithIdentifier("MyGifts") as? FirstViewController
-            self.navigationController?.pushViewController(FirstViewControllerObj!, animated: true)
-            
-        }
-        else
-        {
-            let loginView : FBSDKLoginButton = FBSDKLoginButton()
-            self.view.addSubview(loginView)
-            loginView.center = self.view.center
-            //loginView.frame = CGRectMake(200, 600, 100, 30)
-            loginView.readPermissions = ["public_profile", "email", "user_friends"]
-            loginView.delegate = self
-        }
-        
-    }
-    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func jumpToMyGifts()  {
+        print("jumping...")
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("Content") as UITabBarController
+        //self.performSegueWithIdentifier("testJump", sender: self)
     }
     
 }

@@ -9,7 +9,7 @@
         <!--My Gifts-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController storyboardIdentifier="MyGifts" title="My Gifts" id="9pv-A4-QxB" customClass="FirstViewController" customModule="AmazingGifters" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyGifts" title="My Gifts" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9pv-A4-QxB" customClass="FirstViewController" customModule="AmazingGifters" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -22,7 +22,11 @@
                                 <rect key="frame" x="0.0" y="28" width="600" height="44"/>
                                 <items>
                                     <navigationItem title="Amazing Gifter" id="MEf-ny-agl">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="QbA-w8-Dhs"/>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="QbA-w8-Dhs">
+                                            <connections>
+                                                <segue destination="Kf9-M5-wVn" kind="show" id="bee-mP-0so"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -235,7 +239,7 @@
                                     <navigationItem title="Amazing Gifter" id="bHF-0j-bBE"/>
                                 </items>
                             </navigationBar>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fTV-5C-1ed">
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fTV-5C-1ed">
                                 <rect key="frame" x="51" y="80" width="498" height="29"/>
                                 <segments>
                                     <segment title="Contacts"/>
@@ -245,8 +249,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="fTV-5C-1ed" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="31" id="7LW-1r-NrC"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4dB-hD-175" secondAttribute="trailing" constant="-20" id="8iB-UL-LP9"/>
                             <constraint firstItem="4dB-hD-175" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-20" id="blk-Ss-25u"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="fTV-5C-1ed" secondAttribute="trailing" constant="31" id="hdJ-x8-tA6"/>
                             <constraint firstItem="4dB-hD-175" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="8" id="z3x-Si-6Ht"/>
                         </constraints>
                     </view>
@@ -254,7 +260,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="360"/>
+            <point key="canvasLocation" x="750" y="382"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="yOQ-94-DVx">
@@ -269,15 +275,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="show" identifier="testJump" id="Fez-pa-0iT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8lz-Q7-XTh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-154" y="-583"/>
+            <point key="canvasLocation" x="-162" y="-547"/>
         </scene>
         <!--Content-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController title="Content" id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="Content" title="Content" useStoryboardIdentifierAsRestorationIdentifier="YES" id="49e-Tb-3d3" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="JNX-OH-DbT"/>
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
@@ -300,4 +310,7 @@
         <image name="My Gifts" width="36" height="36"/>
         <image name="ic_people_48pt" width="48" height="48"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="Fez-pa-0iT"/>
+    </inferredMetricsTieBreakers>
 </document>
