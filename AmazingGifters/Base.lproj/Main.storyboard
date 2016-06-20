@@ -9,7 +9,7 @@
         <!--My Gifts-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController title="My Gifts" id="9pv-A4-QxB" customClass="FirstViewController" customModule="AmazingGifters" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyGifts" title="My Gifts" id="9pv-A4-QxB" customClass="FirstViewController" customModule="AmazingGifters" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -117,14 +117,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="giftDetails" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gal-dI-yFu">
-                                <rect key="frame" x="204" y="220" width="78" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZvE-e6-Yat">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Gift Details" id="Rx9-5h-ne4"/>
+                                </items>
+                            </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2lf-r2-umB">
+                                <rect key="frame" x="180" y="108" width="240" height="128"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uZM-45-Pq5">
+                                <rect key="frame" x="252" y="254" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="For " borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FZB-k0-Pnr">
+                                <rect key="frame" x="125" y="300" width="350" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZvE-e6-Yat" firstAttribute="leading" secondItem="uu3-IQ-9AQ" secondAttribute="leadingMargin" constant="-20" id="2lV-jW-uD3"/>
+                            <constraint firstItem="ZvE-e6-Yat" firstAttribute="top" secondItem="2bI-Ym-ln5" secondAttribute="bottom" constant="8" id="Shn-dJ-JDt"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ZvE-e6-Yat" secondAttribute="trailing" constant="-20" id="tse-lf-qMC"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="46v-1C-k81" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -168,7 +186,30 @@
                     <view key="view" contentMode="scaleToFill" id="zBo-OA-OC8">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F8k-Q3-Zp0">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Amazing Gifter" id="QPv-X5-7fz">
+                                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="1g8-Oz-NCi"/>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3uK-ka-sMe">
+                                <rect key="frame" x="44" y="113" width="115" height="115"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mii-Yu-Vw2">
+                                <rect key="frame" x="228" y="113" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="F8k-Q3-Zp0" firstAttribute="top" secondItem="kYL-ix-1sR" secondAttribute="bottom" constant="8" id="CSV-am-rKm"/>
+                            <constraint firstItem="F8k-Q3-Zp0" firstAttribute="leading" secondItem="zBo-OA-OC8" secondAttribute="leadingMargin" constant="-20" id="TF1-76-I8J"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="F8k-Q3-Zp0" secondAttribute="trailing" constant="-20" id="spG-he-rm5"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Me" image="Me" id="A8l-Uw-3Nb"/>
                 </viewController>
@@ -188,26 +229,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="Second View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
-                                <rect key="frame" x="195" y="279" width="210" height="42"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loaded by SecondViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
-                                <rect key="frame" x="192" y="329" width="216" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4dB-hD-175">
+                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <items>
+                                    <navigationItem title="Amazing Gifter" id="bHF-0j-bBE"/>
+                                </items>
+                            </navigationBar>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="fTV-5C-1ed">
+                                <rect key="frame" x="51" y="80" width="498" height="29"/>
+                                <segments>
+                                    <segment title="Contacts"/>
+                                    <segment title="Progress"/>
+                                </segments>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" constant="8" symbolic="YES" id="Day-4N-Vmt"/>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="JgO-Fn-dHn"/>
-                            <constraint firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="qqM-NS-xev"/>
-                            <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4dB-hD-175" secondAttribute="trailing" constant="-20" id="8iB-UL-LP9"/>
+                            <constraint firstItem="4dB-hD-175" firstAttribute="leading" secondItem="QS5-Rx-YEW" secondAttribute="leadingMargin" constant="-20" id="blk-Ss-25u"/>
+                            <constraint firstItem="4dB-hD-175" firstAttribute="top" secondItem="L7p-HK-0SC" secondAttribute="bottom" constant="8" id="z3x-Si-6Ht"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Friends" image="ic_people_48pt" id="cPa-gy-q4n"/>

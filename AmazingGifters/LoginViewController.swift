@@ -12,7 +12,9 @@ import FBSDKLoginKit
 class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     
     
+    
     // Facebook Delegate Methods
+    
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
         print("User Logged In")
@@ -30,6 +32,8 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             if result.grantedPermissions.contains("email")
             {
                 // Do work
+                returnUserData()
+                viewDidLoad()
             }
         }
     }
@@ -41,7 +45,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     
     func returnUserData()
     {
-        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: nil)
+        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"first_name, last_name, email, picture.type(large)"])
         graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
             
             if ((error) != nil)
@@ -52,8 +56,10 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             else
             {
                 print("fetched user: \(result)")
-                let userName : NSString = result.valueForKey("name") as! NSString
-                print("User Name is: \(userName)")
+                let userFirstName : NSString = result.valueForKey("first_name") as! NSString
+                let userLastName : NSString = result.valueForKey("last_name") as! NSString
+                print("User First Name is: \(userFirstName)")
+                print("User last Name is: \(userLastName)")
                 let userEmail : NSString = result.valueForKey("email") as! NSString
                 print("User Email is: \(userEmail)")
             }
@@ -68,12 +74,16 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
         if (FBSDKAccessToken.currentAccessToken() != nil)
         {
             // User is already logged in, do work such as go to next view controller.
+            let FirstViewControllerObj = self.storyboard?.instantiateViewControllerWithIdentifier("MyGifts") as? FirstViewController
+            self.navigationController?.pushViewController(FirstViewControllerObj!, animated: true)
+            
         }
         else
         {
             let loginView : FBSDKLoginButton = FBSDKLoginButton()
             self.view.addSubview(loginView)
             loginView.center = self.view.center
+            //loginView.frame = CGRectMake(200, 600, 100, 30)
             loginView.readPermissions = ["public_profile", "email", "user_friends"]
             loginView.delegate = self
         }
