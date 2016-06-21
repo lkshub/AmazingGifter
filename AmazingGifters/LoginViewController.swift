@@ -27,18 +27,25 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             print("allready logged in")
             print("asking for data")
             returnUserProfile()
-            print("jump to my gifts")
-            jumpToMyGifts()
+            //print("jump to my gifts")
+            //jumpToMyGifts()
         }
         else
         {
             btnFacebook =  FBSDKLoginButton()
             self.view.addSubview(btnFacebook)
-            btnFacebook.center = self.view.center
+            btnFacebook.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height*0.8)
             btnFacebook.readPermissions = ["public_profile", "email", "user_friends"]
             btnFacebook.delegate = self
         }
         
+    }
+    override func viewDidAppear(animated: Bool) {
+        //btnFacebook.center = CGPointMake(0, 0)
+        if(FBSDKAccessToken.currentAccessToken() != nil){
+            print("jump to my gifts")
+            jumpToMyGifts()
+        }
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
@@ -57,8 +64,8 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             if result.grantedPermissions.contains("email")
             {
                 // Do work
-                print("asking for data")
-                returnUserProfile()
+                //print("asking for data")
+                //returnUserProfile()
                 jumpToMyGifts()
             }
         }
@@ -88,6 +95,10 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
                 print("User last Name is: \(userLastName)")
                 let userEmail : NSString = result.valueForKey("email") as! NSString
                 print("User Email is: \(userEmail)")
+                let strPictureURL: String = (result.objectForKey("picture")?.objectForKey("data")?.objectForKey("url") as? String)!
+                print("User pic is: \(strPictureURL)")
+                //self.userImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strPictureURL)!)!)
+                
             }
         })
     }
@@ -102,7 +113,8 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
         print("jumping...")
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         
-        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("Content") as UITabBarController
+        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("Content")
+        self.presentViewController(nextViewController, animated: false, completion: nil)
         //self.performSegueWithIdentifier("testJump", sender: self)
     }
     

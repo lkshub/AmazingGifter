@@ -19,7 +19,7 @@ class ThirdViewController: UIViewController,FBSDKLoginButtonDelegate {
         // Do any additional setup after loading the view, typically from a nib.
         btnFacebook =  FBSDKLoginButton()
         self.view.addSubview(btnFacebook)
-        btnFacebook.center = self.view.center
+        btnFacebook.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height*0.8)
         btnFacebook.delegate = self
     }
     
