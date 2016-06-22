@@ -8,8 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
-    @IBOutlet weak var table: UITableView!
+class FirstViewController: UITableViewController {
 
     override func viewDidLoad() {
            super.viewDidLoad()

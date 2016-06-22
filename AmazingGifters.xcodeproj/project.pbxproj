@@ -18,6 +18,7 @@
 		2141AD1B1D171D4F00B6F5BF /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2141AD181D171D4F00B6F5BF /* FBSDKShareKit.framework */; };
 		2141AD1E1D17228B00B6F5BF /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2141AD1D1D17228B00B6F5BF /* Bolts.framework */; };
 		2141AD201D17234D00B6F5BF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2141AD1F1D17234D00B6F5BF /* LoginViewController.swift */; };
+		3C1F8E0D1D1A47E0003F29EB /* AddGiftUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1F8E0C1D1A47E0003F29EB /* AddGiftUIViewController.swift */; };
 		3C8DE5EB1D15C90200A4DD85 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8DE5EA1D15C90200A4DD85 /* ThirdViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		2141AD181D171D4F00B6F5BF /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../Documents/FacebookSDKs-iOS-4.13.1/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		2141AD1D1D17228B00B6F5BF /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../Documents/FacebookSDKs-iOS-4.13.1/Bolts.framework"; sourceTree = "<group>"; };
 		2141AD1F1D17234D00B6F5BF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		3C1F8E0C1D1A47E0003F29EB /* AddGiftUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGiftUIViewController.swift; sourceTree = "<group>"; };
 		3C8DE5EA1D15C90200A4DD85 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +81,7 @@
 				2141ACF81D15C09200B6F5BF /* SecondViewController.swift */,
 				3C8DE5EA1D15C90200A4DD85 /* ThirdViewController.swift */,
 				2141ACFA1D15C09200B6F5BF /* Main.storyboard */,
+				3C1F8E0C1D1A47E0003F29EB /* AddGiftUIViewController.swift */,
 				2141ACFD1D15C09200B6F5BF /* Assets.xcassets */,
 				2141ACFF1D15C09200B6F5BF /* LaunchScreen.storyboard */,
 				2141AD021D15C09200B6F5BF /* Info.plist */,
@@ -172,6 +175,7 @@
 				2141ACF51D15C09200B6F5BF /* AppDelegate.swift in Sources */,
 				3C8DE5EB1D15C90200A4DD85 /* ThirdViewController.swift in Sources */,
 				2141AD201D17234D00B6F5BF /* LoginViewController.swift in Sources */,
+				3C1F8E0D1D1A47E0003F29EB /* AddGiftUIViewController.swift in Sources */,
 				2141ACF71D15C09200B6F5BF /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
