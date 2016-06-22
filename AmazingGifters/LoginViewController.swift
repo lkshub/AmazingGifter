@@ -63,7 +63,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             {
                 // Do work
                 //print("asking for data")
-                //returnUserProfile()
+                returnUserProfile()
                 jumpToMyGifts()
             }
         }
@@ -76,7 +76,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     
     func returnUserProfile()
     {
-        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"first_name, last_name, email,friends, picture.type(large)"])
+        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"first_name, last_name, email,picture.type(large),friends"])
         graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
             
             if ((error) != nil)
