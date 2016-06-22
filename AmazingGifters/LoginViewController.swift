@@ -27,8 +27,6 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             print("allready logged in")
             print("asking for data")
             returnUserProfile()
-            //print("jump to my gifts")
-            //jumpToMyGifts()
         }
         else
         {
@@ -112,15 +110,10 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     func jumpToMyGifts()  {
         print("jumping...")
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-<<<<<<< Updated upstream
         let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("Content")
         self.presentViewController(nextViewController, animated: true, completion: nil)
         //self.performSegueWithIdentifier("testJump", sender: self)
-=======
-        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("Content") as UIViewController
-        self.performSegueWithIdentifier("testJump", sender: self)
->>>>>>> Stashed changes
+
     }
     
 }
