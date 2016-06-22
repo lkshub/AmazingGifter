@@ -57,7 +57,7 @@ class ThirdViewController: UIViewController,FBSDKLoginButtonDelegate {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         
         let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("Login")
-        self.presentViewController(nextViewController, animated: false, completion: nil)
+        self.presentViewController(nextViewController, animated: true, completion: nil)
         //self.performSegueWithIdentifier("testJump", sender: self)
     }
 

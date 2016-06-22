@@ -78,7 +78,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     
     func returnUserProfile()
     {
-        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"first_name, last_name, email, picture.type(large)"])
+        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"first_name, last_name, email,friends, picture.type(large)"])
         graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
             
             if ((error) != nil)
@@ -115,7 +115,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
         
 <<<<<<< Updated upstream
         let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("Content")
-        self.presentViewController(nextViewController, animated: false, completion: nil)
+        self.presentViewController(nextViewController, animated: true, completion: nil)
         //self.performSegueWithIdentifier("testJump", sender: self)
 =======
         let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("Content") as UIViewController
