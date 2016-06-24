@@ -20,6 +20,7 @@
 		2141AD201D17234D00B6F5BF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2141AD1F1D17234D00B6F5BF /* LoginViewController.swift */; };
 		3C1F8E0D1D1A47E0003F29EB /* AddGiftUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1F8E0C1D1A47E0003F29EB /* AddGiftUIViewController.swift */; };
 		3C8DE5EB1D15C90200A4DD85 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8DE5EA1D15C90200A4DD85 /* ThirdViewController.swift */; };
+		DE34EF8E822E7EC48545EADA /* Pods_AmazingGifters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DE75D10E5B3C95C5487D6E /* Pods_AmazingGifters.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,9 @@
 		2141AD1F1D17234D00B6F5BF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		3C1F8E0C1D1A47E0003F29EB /* AddGiftUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGiftUIViewController.swift; sourceTree = "<group>"; };
 		3C8DE5EA1D15C90200A4DD85 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
+		9F62E7B3A7BDB1DED271BB45 /* Pods-AmazingGifters.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmazingGifters.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmazingGifters/Pods-AmazingGifters.debug.xcconfig"; sourceTree = "<group>"; };
+		C516711EECF33BE71B4D9018 /* Pods-AmazingGifters.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmazingGifters.release.xcconfig"; path = "Pods/Target Support Files/Pods-AmazingGifters/Pods-AmazingGifters.release.xcconfig"; sourceTree = "<group>"; };
+		F3DE75D10E5B3C95C5487D6E /* Pods_AmazingGifters.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmazingGifters.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,6 +53,7 @@
 				2141AD191D171D4F00B6F5BF /* FBSDKCoreKit.framework in Frameworks */,
 				2141AD1B1D171D4F00B6F5BF /* FBSDKShareKit.framework in Frameworks */,
 				2141AD1E1D17228B00B6F5BF /* Bolts.framework in Frameworks */,
+				DE34EF8E822E7EC48545EADA /* Pods_AmazingGifters.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,6 +65,8 @@
 			children = (
 				2141ACF31D15C09200B6F5BF /* AmazingGifters */,
 				2141ACF21D15C09200B6F5BF /* Products */,
+				697F3B8C88A43165E547AD0B /* Pods */,
+				A87227FF21F336C20C766280 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -100,6 +107,23 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		697F3B8C88A43165E547AD0B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9F62E7B3A7BDB1DED271BB45 /* Pods-AmazingGifters.debug.xcconfig */,
+				C516711EECF33BE71B4D9018 /* Pods-AmazingGifters.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A87227FF21F336C20C766280 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3DE75D10E5B3C95C5487D6E /* Pods_AmazingGifters.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -107,9 +131,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2141AD051D15C09200B6F5BF /* Build configuration list for PBXNativeTarget "AmazingGifters" */;
 			buildPhases = (
+				5AC9385103D34EEC32EEFD4E /* [CP] Check Pods Manifest.lock */,
 				2141ACED1D15C09200B6F5BF /* Sources */,
 				2141ACEE1D15C09200B6F5BF /* Frameworks */,
 				2141ACEF1D15C09200B6F5BF /* Resources */,
+				C64A8738DD0FFCF66016DC61 /* [CP] Embed Pods Frameworks */,
+				905D145F648080EA3CF4321A /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -165,6 +192,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5AC9385103D34EEC32EEFD4E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		905D145F648080EA3CF4321A /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AmazingGifters/Pods-AmazingGifters-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C64A8738DD0FFCF66016DC61 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AmazingGifters/Pods-AmazingGifters-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		2141ACED1D15C09200B6F5BF /* Sources */ = {
@@ -225,6 +300,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -271,6 +347,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -289,9 +366,13 @@
 		};
 		2141AD061D15C09200B6F5BF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9F62E7B3A7BDB1DED271BB45 /* Pods-AmazingGifters.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = "~/Documents/FacebookSDKs-iOS-4.13.1";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"~/Documents/FacebookSDKs-iOS-4.13.1",
+				);
 				INFOPLIST_FILE = AmazingGifters/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gatech.klu65.AmazingGifters;
@@ -303,9 +384,13 @@
 		};
 		2141AD071D15C09200B6F5BF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C516711EECF33BE71B4D9018 /* Pods-AmazingGifters.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				FRAMEWORK_SEARCH_PATHS = "~/Documents/FacebookSDKs-iOS-4.13.1";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"~/Documents/FacebookSDKs-iOS-4.13.1",
+				);
 				INFOPLIST_FILE = AmazingGifters/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.gatech.klu65.AmazingGifters;
