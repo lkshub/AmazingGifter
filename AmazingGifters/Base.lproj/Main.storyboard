@@ -178,26 +178,35 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3uK-ka-sMe">
-                                <rect key="frame" x="44" y="113" width="100" height="101"/>
-                            </imageView>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mii-Yu-Vw2">
-                                <rect key="frame" x="197" y="113" width="97" height="30"/>
+                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rRy-AB-o9n" customClass="FBSDKProfilePictureView">
+                                <rect key="frame" x="230" y="106" width="140" height="131"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" text="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mii-Yu-Vw2">
+                                <rect key="frame" x="252" y="258" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9a6-VD-jL0" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="277" y="445" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="F8k-Q3-Zp0" firstAttribute="top" secondItem="kYL-ix-1sR" secondAttribute="bottom" id="CSV-am-rKm"/>
-                            <constraint firstItem="3uK-ka-sMe" firstAttribute="leading" secondItem="zBo-OA-OC8" secondAttribute="leadingMargin" constant="24" id="Qsd-y6-Mhd"/>
                             <constraint firstItem="F8k-Q3-Zp0" firstAttribute="leading" secondItem="zBo-OA-OC8" secondAttribute="leadingMargin" constant="-20" id="TF1-76-I8J"/>
-                            <constraint firstItem="Mii-Yu-Vw2" firstAttribute="leading" secondItem="3uK-ka-sMe" secondAttribute="trailing" constant="84" id="gko-d8-9IT"/>
-                            <constraint firstItem="3uK-ka-sMe" firstAttribute="top" secondItem="kYL-ix-1sR" secondAttribute="bottom" constant="93" id="rXK-gd-9QT"/>
+                            <constraint firstItem="rRy-AB-o9n" firstAttribute="centerX" secondItem="zBo-OA-OC8" secondAttribute="centerX" id="Uvp-ov-uzO"/>
                             <constraint firstAttribute="trailingMargin" secondItem="F8k-Q3-Zp0" secondAttribute="trailing" constant="-20" id="spG-he-rm5"/>
+                            <constraint firstItem="Mii-Yu-Vw2" firstAttribute="top" secondItem="rRy-AB-o9n" secondAttribute="bottom" constant="21" id="tiH-Nf-dOX"/>
+                            <constraint firstItem="Mii-Yu-Vw2" firstAttribute="centerX" secondItem="zBo-OA-OC8" secondAttribute="centerX" id="zjw-D7-gc0"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Me" image="Me" id="A8l-Uw-3Nb"/>
+                    <connections>
+                        <outlet property="btnFacebook" destination="9a6-VD-jL0" id="nPg-Nq-0fe"/>
+                        <outlet property="userProfilePicture" destination="rRy-AB-o9n" id="iFp-U7-fhT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DFC-pX-9YH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -467,8 +476,20 @@
                     <view key="view" contentMode="scaleToFill" id="tgX-RS-gta">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6uJ-s3-za7" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="277" y="451" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="6uJ-s3-za7" firstAttribute="centerX" secondItem="tgX-RS-gta" secondAttribute="centerX" id="gFl-nS-N4a"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="btnFacebook" destination="6uJ-s3-za7" id="QdT-nx-2UO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8lz-Q7-XTh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

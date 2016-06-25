@@ -13,14 +13,19 @@ import FBSDKCoreKit
 class ThirdViewController: UIViewController,FBSDKLoginButtonDelegate {
     
     @IBOutlet var btnFacebook: FBSDKLoginButton!
+    @IBOutlet weak var userProfilePicture: FBSDKProfilePictureView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        btnFacebook =  FBSDKLoginButton()
-        self.view.addSubview(btnFacebook)
-        btnFacebook.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height*0.8)
+        //btnFacebook =  FBSDKLoginButton()
+        //self.view.addSubview(btnFacebook)
+        //btnFacebook.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height*0.8)
         btnFacebook.delegate = self
+        userProfilePicture.profileID = "me"
+        userProfilePicture.layer.cornerRadius = userProfilePicture.frame.size.height / 3;
+        userProfilePicture.clipsToBounds = true;
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {

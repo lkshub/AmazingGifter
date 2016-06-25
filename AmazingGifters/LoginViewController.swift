@@ -15,7 +15,9 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     
     
     // Facebook Delegate Methods
-    @IBOutlet var btnFacebook: FBSDKLoginButton!
+    //@IBOutlet var bbtnFacebook: FBSDKLoginButton!
+    
+    @IBOutlet weak var btnFacebook: FBSDKLoginButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,9 +32,9 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
         }
         else
         {
-            btnFacebook =  FBSDKLoginButton()
-            self.view.addSubview(btnFacebook)
-            btnFacebook.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height*0.8)
+            //btnFacebook =  FBSDKLoginButton()
+            //self.view.addSubview(btnFacebook)
+            //btnFacebook.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height*0.8)
             btnFacebook.readPermissions = ["public_profile", "email", "user_friends"]
             btnFacebook.delegate = self
         }
