@@ -24,8 +24,8 @@ class ThirdViewController: UIViewController,FBSDKLoginButtonDelegate {
         //btnFacebook.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height*0.8)
         btnFacebook.delegate = self
         userProfilePicture.profileID = "me"
-        userProfilePicture.layer.cornerRadius = userProfilePicture.frame.size.height / 3;
-        userProfilePicture.clipsToBounds = true;
+        //userProfilePicture.layer.cornerRadius = userProfilePicture.frame.size.height/2;
+        //userProfilePicture.clipsToBounds = true;
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
