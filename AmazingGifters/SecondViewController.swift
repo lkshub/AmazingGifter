@@ -10,6 +10,24 @@ import UIKit
 
 class SecondViewController: UIViewController {
 
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    @IBOutlet weak var contactsView: UIView!
+    
+    @IBOutlet weak var progressView: UIView!
+    
+    @IBAction func indexChanged(sender: UISegmentedControl) {
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            contactsView.hidden = false
+            progressView.hidden = true
+        case 1:
+            contactsView.hidden = true
+            progressView.hidden = false
+        default:
+            break
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.

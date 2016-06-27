@@ -20,6 +20,7 @@
 		2141AD201D17234D00B6F5BF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2141AD1F1D17234D00B6F5BF /* LoginViewController.swift */; };
 		216DEDE01D1EBB6F00DAD99F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 216DEDDF1D1EBB6F00DAD99F /* GoogleService-Info.plist */; };
 		2179A59D1D215BE0004C6448 /* GiftDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2179A59C1D215BE0004C6448 /* GiftDetailViewController.swift */; };
+		2179A59F1D21AB8B004C6448 /* EditMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2179A59E1D21AB8B004C6448 /* EditMeViewController.swift */; };
 		3C1F8E0D1D1A47E0003F29EB /* AddGiftUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1F8E0C1D1A47E0003F29EB /* AddGiftUIViewController.swift */; };
 		3C8DE5EB1D15C90200A4DD85 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8DE5EA1D15C90200A4DD85 /* ThirdViewController.swift */; };
 		DE34EF8E822E7EC48545EADA /* Pods_AmazingGifters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DE75D10E5B3C95C5487D6E /* Pods_AmazingGifters.framework */; };
@@ -41,6 +42,7 @@
 		2141AD1F1D17234D00B6F5BF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		216DEDDF1D1EBB6F00DAD99F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2179A59C1D215BE0004C6448 /* GiftDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftDetailViewController.swift; sourceTree = "<group>"; };
+		2179A59E1D21AB8B004C6448 /* EditMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMeViewController.swift; sourceTree = "<group>"; };
 		3C1F8E0C1D1A47E0003F29EB /* AddGiftUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGiftUIViewController.swift; sourceTree = "<group>"; };
 		3C8DE5EA1D15C90200A4DD85 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		9F62E7B3A7BDB1DED271BB45 /* Pods-AmazingGifters.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmazingGifters.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmazingGifters/Pods-AmazingGifters.debug.xcconfig"; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				2141ACF81D15C09200B6F5BF /* SecondViewController.swift */,
 				3C8DE5EA1D15C90200A4DD85 /* ThirdViewController.swift */,
 				2179A59C1D215BE0004C6448 /* GiftDetailViewController.swift */,
+				2179A59E1D21AB8B004C6448 /* EditMeViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				2141ACF51D15C09200B6F5BF /* AppDelegate.swift in Sources */,
 				2179A59D1D215BE0004C6448 /* GiftDetailViewController.swift in Sources */,
 				3C8DE5EB1D15C90200A4DD85 /* ThirdViewController.swift in Sources */,
+				2179A59F1D21AB8B004C6448 /* EditMeViewController.swift in Sources */,
 				2141AD201D17234D00B6F5BF /* LoginViewController.swift in Sources */,
 				3C1F8E0D1D1A47E0003F29EB /* AddGiftUIViewController.swift in Sources */,
 				2141ACF71D15C09200B6F5BF /* FirstViewController.swift in Sources */,
