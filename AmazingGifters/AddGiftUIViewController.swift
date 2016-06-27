@@ -23,6 +23,10 @@ class AddGiftUIViewController: UIViewController {
         datePickerChanged()
     }
     
+    @IBOutlet weak var reasonTextField: UITextField!
+    @IBOutlet weak var pickUpFromAmazonButton: UIButton!
+    @IBOutlet weak var reasonLabel: UILabel!
+    @IBOutlet weak var giftLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -53,11 +57,12 @@ class AddGiftUIViewController: UIViewController {
         
         datePickerHidden = !datePickerHidden
         datePickerChanged()
-        if datePickerHidden {
-            datePicker.hidden = true
-        }else{
-            datePicker.hidden = false;
-        }
+
+        datePicker.hidden = datePickerHidden
+        reasonLabel.hidden = !datePickerHidden
+        reasonTextField.hidden = !datePickerHidden
+        pickUpFromAmazonButton.hidden = !datePickerHidden
+        giftLabel.hidden = !datePickerHidden
     }
     
     
