@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:GiftSearchUIViewController.swift">
+   </FileRef>
+   <FileRef
       location = "group:AmazingGifters.xcodeproj">
    </FileRef>
    <FileRef
