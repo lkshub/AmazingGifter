@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="KSH-Xe-5BI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="KSH-Xe-5BI">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -9,7 +9,7 @@
         <!--AmazonSearch-->
         <scene sceneID="fM8-4C-meY">
             <objects>
-                <viewController title="AmazonSearch" id="8XG-Nx-r4m" sceneMemberID="viewController">
+                <viewController title="AmazonSearch" id="8XG-Nx-r4m" customClass="GiftSearchUIViewController" customModule="AmazingGifters" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="OXH-KX-DEi"/>
                         <viewControllerLayoutGuide type="bottom" id="57i-QO-t9p"/>
@@ -624,6 +624,10 @@
         <scene sceneID="8kd-oa-rru">
             <objects>
                 <viewController id="biq-Ml-PXh" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="mNk-7Y-G0B"/>
+                        <viewControllerLayoutGuide type="bottom" id="gDe-uF-nQW"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="UF4-dt-vc6">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="294"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

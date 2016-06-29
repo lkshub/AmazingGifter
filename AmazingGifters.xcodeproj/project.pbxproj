@@ -18,6 +18,7 @@
 		2141AD1B1D171D4F00B6F5BF /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2141AD181D171D4F00B6F5BF /* FBSDKShareKit.framework */; };
 		2141AD1E1D17228B00B6F5BF /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2141AD1D1D17228B00B6F5BF /* Bolts.framework */; };
 		2141AD201D17234D00B6F5BF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2141AD1F1D17234D00B6F5BF /* LoginViewController.swift */; };
+		215B24BE1D246C53002A7C84 /* GiftSearchUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215B24BD1D246C53002A7C84 /* GiftSearchUIViewController.swift */; };
 		216DEDE01D1EBB6F00DAD99F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 216DEDDF1D1EBB6F00DAD99F /* GoogleService-Info.plist */; };
 		2179A59D1D215BE0004C6448 /* GiftDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2179A59C1D215BE0004C6448 /* GiftDetailViewController.swift */; };
 		2179A59F1D21AB8B004C6448 /* EditMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2179A59E1D21AB8B004C6448 /* EditMeViewController.swift */; };
@@ -40,6 +41,7 @@
 		2141AD181D171D4F00B6F5BF /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../Documents/FacebookSDKs-iOS-4.13.1/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		2141AD1D1D17228B00B6F5BF /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../Documents/FacebookSDKs-iOS-4.13.1/Bolts.framework"; sourceTree = "<group>"; };
 		2141AD1F1D17234D00B6F5BF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		215B24BD1D246C53002A7C84 /* GiftSearchUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftSearchUIViewController.swift; sourceTree = "<group>"; };
 		216DEDDF1D1EBB6F00DAD99F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2179A59C1D215BE0004C6448 /* GiftDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftDetailViewController.swift; sourceTree = "<group>"; };
 		2179A59E1D21AB8B004C6448 /* EditMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMeViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +116,7 @@
 		2179A59B1D215BB5004C6448 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				215B24BD1D246C53002A7C84 /* GiftSearchUIViewController.swift */,
 				2141AD1F1D17234D00B6F5BF /* LoginViewController.swift */,
 				2141ACF61D15C09200B6F5BF /* FirstViewController.swift */,
 				2141ACF81D15C09200B6F5BF /* SecondViewController.swift */,
@@ -272,6 +275,7 @@
 				2179A59F1D21AB8B004C6448 /* EditMeViewController.swift in Sources */,
 				2141AD201D17234D00B6F5BF /* LoginViewController.swift in Sources */,
 				3C1F8E0D1D1A47E0003F29EB /* AddGiftUIViewController.swift in Sources */,
+				215B24BE1D246C53002A7C84 /* GiftSearchUIViewController.swift in Sources */,
 				2141ACF71D15C09200B6F5BF /* FirstViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
