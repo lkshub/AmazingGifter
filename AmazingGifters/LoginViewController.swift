@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 import FBSDKCoreKit
+import Firebase
 
 class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     
@@ -27,6 +28,11 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
         {
             // User is already logged in, do work such as go to next view controller.
             print("allready logged in")
+            //btnFacebook.hidden = true
+            let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
+            FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
+                // ...
+            }
             print("asking for data")
             returnUserProfile()
         }
@@ -43,6 +49,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     override func viewDidAppear(animated: Bool) {
         //btnFacebook.center = CGPointMake(0, 0)
         if(FBSDKAccessToken.currentAccessToken() != nil){
+            btnFacebook.hidden = true
             print("jump to my gifts")
             jumpToMyGifts()
         }
@@ -54,6 +61,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
         if ((error) != nil)
         {
             // Process error
+            print(error.localizedDescription)
         }
         else if result.isCancelled {
             // Handle cancellations
@@ -64,13 +72,18 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             if result.grantedPermissions.contains("email")
             {
                 // Do work
-                //print("asking for data")
+                let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
+                FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
+                    // ...
+                }
+
                 returnUserProfile()
                 jumpToMyGifts()
             }
         }
     }
-    
+
+        
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         print("User Logged Out")
     }

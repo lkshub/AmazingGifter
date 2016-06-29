@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>906058136337-qai8tlv3ffacqugegoefloa1a0mptr5a.apps.googleusercontent.com</string>
+	<string>464662077415-rgtdmeeucd9pf3p2gv4mdh6cph05711t.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.906058136337-qai8tlv3ffacqugegoefloa1a0mptr5a</string>
+	<string>com.googleusercontent.apps.464662077415-rgtdmeeucd9pf3p2gv4mdh6cph05711t</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCOWKy6CF08jyc7laPmlNyvVIVT6dkCFDM</string>
+	<string>AIzaSyDswkLMDHDSUaYk915_-Gqb3I6TqjoY1Xs</string>
 	<key>GCM_SENDER_ID</key>
-	<string>906058136337</string>
+	<string>464662077415</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.gatech.klu65.AmazingGifters</string>
+	<string>edu.gatech.AmazingGifter</string>
 	<key>PROJECT_ID</key>
-	<string>amazing-gifters-test</string>
+	<string>amazinggifter-prealpha</string>
 	<key>STORAGE_BUCKET</key>
-	<string>amazing-gifters-test.appspot.com</string>
+	<string>amazinggifter-prealpha.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:906058136337:ios:4994ac36b9a2e9e2</string>
+	<string>1:464662077415:ios:10235b299fefc4f8</string>
 	<key>DATABASE_URL</key>
-	<string>https://amazing-gifters-test.firebaseio.com</string>
+	<string>https://amazinggifter-prealpha.firebaseio.com</string>
 </dict>
 </plist>
