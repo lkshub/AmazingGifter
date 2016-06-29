@@ -9,6 +9,7 @@
 import UIKit
 import FBSDKLoginKit
 import FBSDKCoreKit
+import Firebase
 
 class ThirdViewController: UIViewController,FBSDKLoginButtonDelegate {
     
@@ -53,6 +54,7 @@ class ThirdViewController: UIViewController,FBSDKLoginButtonDelegate {
     }
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        try! FIRAuth.auth()!.signOut()
         print("User Logged Out")
         jumpToLogin()
         

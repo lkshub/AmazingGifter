@@ -28,7 +28,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
         {
             // User is already logged in, do work such as go to next view controller.
             print("allready logged in")
-            //btnFacebook.hidden = true
+            btnFacebook.hidden = true;
             let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
             FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
                 // ...
@@ -41,7 +41,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             //btnFacebook =  FBSDKLoginButton()
             //self.view.addSubview(btnFacebook)
             //btnFacebook.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height*0.8)
-            btnFacebook.readPermissions = ["public_profile", "email", "user_friends"]
+            btnFacebook.readPermissions = ["public_profile", "email", "user_friends","user_birthday"]
             btnFacebook.delegate = self
         }
         
@@ -76,7 +76,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
                 FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
                     // ...
                 }
-
+                btnFacebook.hidden = true
                 returnUserProfile()
                 jumpToMyGifts()
             }
@@ -85,13 +85,14 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
 
         
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+        try! FIRAuth.auth()!.signOut()
         print("User Logged Out")
     }
     
     
     func returnUserProfile()
     {
-        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"first_name, last_name, email,picture.type(large),friends"])
+        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"first_name, last_name, email, picture.type(large), friends, birthday"])
         graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
             
             if ((error) != nil)
@@ -102,16 +103,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             else
             {
                 print("fetched user: \(result)")
-                let userFirstName : NSString = result.valueForKey("first_name") as! NSString
-                let userLastName : NSString = result.valueForKey("last_name") as! NSString
-                print("User First Name is: \(userFirstName)")
-                print("User last Name is: \(userLastName)")
-                let userEmail : NSString = result.valueForKey("email") as! NSString
-                print("User Email is: \(userEmail)")
-                let strPictureURL: String = (result.objectForKey("picture")?.objectForKey("data")?.objectForKey("url") as? String)!
-                print("User pic is: \(strPictureURL)")
-                //self.userImage.image = UIImage(data: NSData(contentsOfURL: NSURL(string: strPictureURL)!)!)
-                
+
             }
         })
     }
