@@ -14,7 +14,8 @@ class FirstViewController: UITableViewController {
     
     override func viewDidLoad() {
            super.viewDidLoad()
- 
+           let databrain1 = dataBrain.sharedDataBrain
+        
         // Do any additional setup after loading the view, typically from a nib.
     }
 

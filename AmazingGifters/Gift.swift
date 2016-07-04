@@ -7,14 +7,26 @@
 //
 
 import Foundation
-import FirebaseDatabase
+import Firebase
 
 class Gift{
-    private var giftID:String?
-    init(id:String?){
+    /*
+    private var giftID:String
+    init(id:String){
         self.giftID = id
-        if let ID = self.giftID{
-            
-        }
+    }
+    
+    init(newID,dueDate,name,url,pictureUrl,postTime,price,reason,initiatorID,receiverID:String){
+        giftID = newID
+        let post = [
+        
+    }
+     */
+    var name: String?
+    static let sharedInstance = Gift()
+    private init() {
+    }
+    func changeName (newName:String){
+        self.name = newName
     }
 }

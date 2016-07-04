@@ -66,6 +66,16 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        let test1 = Gift.sharedInstance
+        print ("testing")
+        print (test1.name)
+        test1.changeName("aaa")
+        print ("test1 name")
+        print (test1.name)
+        let test2 = Gift.sharedInstance
+        print("test2 name")
+        print(test2.name)
+        
         
         if (FBSDKAccessToken.currentAccessToken() != nil)
         {
@@ -175,8 +185,11 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
                     "zipcode":""
                 ]
                 if let uid = self.facebookID{
-                    self.brain = dataBrain(id: uid)
-                    self.brain.login(profile)
+                    let databrain1 = dataBrain.sharedDataBrain
+                    databrain1.setUid(uid)
+                    databrain1.login(profile)
+                    //  self.brain = dataBrain(id: uid)
+                  //  self.brain.login(profile)
                 }
                 self.jumpToContent()
             }

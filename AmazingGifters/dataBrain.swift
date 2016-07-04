@@ -10,9 +10,16 @@ import Foundation
 import Firebase
 
 class dataBrain{
+    static let sharedDataBrain = dataBrain()
+    private init(){
+        self.ref = FIRDatabase.database().reference()
+    }
+    func setUid(uid:String){
+        self.uid = uid
+    }
     private var ref : FIRDatabaseReference!
     private var uid:String!
-    init(id:String!){
+    private init(id:String!){
         self.uid  = id
         self.ref = FIRDatabase.database().reference()
     }
