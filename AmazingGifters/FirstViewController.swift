@@ -9,6 +9,9 @@
 import UIKit
 
 class FirstViewController: UITableViewController {
+    
+    var facebookID:String?
+    
     override func viewDidLoad() {
            super.viewDidLoad()
  

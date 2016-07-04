@@ -38,5 +38,17 @@ class dataBrain{
         
         
     }
-
+    
+    //func getGifts()->[Gift]{
+    //    return getGiftsAccordingToFBID()
+    //}
+    
+    func getProgress() {
+        
+    }
+    
+    //private func getGiftsAccordingToFBID()->[Gift]{
+    //    return
+    //}
+ 
 }

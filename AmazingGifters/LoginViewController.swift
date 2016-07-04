@@ -53,7 +53,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
                         me.facebookID = self.facebookID
                     }
                     if let myGift = myGiftVC{
-                        
+                        myGift.facebookID = self.facebookID
                     }
                     
                 default:
