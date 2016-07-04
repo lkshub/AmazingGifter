@@ -86,7 +86,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
                 
             }
-            print("asking for data")
+            //print("asking for data")
         }
         else
         {
@@ -176,7 +176,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
                     "country":"",
                     "email":result.valueForKey("email") as? String ?? "",
                     "gift_for_friend": "",
-                    "my_gift":"",
+                    "my_gift":["from_friends":"","wish_list":""],
                     "name":self.myName ?? "",
                     "payment":"",
                     "phone":"",
@@ -184,6 +184,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
                     "state":"",
                     "zipcode":""
                 ]
+                
                 if let uid = self.facebookID{
                     let databrain1 = dataBrain.sharedDataBrain
                     databrain1.setUid(uid)
@@ -192,6 +193,14 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
                   //  self.brain.login(profile)
                 }
                 self.jumpToContent()
+                if (FIRAuth.auth()?.currentUser) != nil {
+                    print("user authed")
+                    //
+                } else {
+                    print("user not authed")
+                }
+                
+                
             }
         })
     }

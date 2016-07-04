@@ -11,11 +11,11 @@ import UIKit
 class FirstViewController: UITableViewController {
     
     var facebookID:String?
+    let brain = dataBrain.sharedDataBrain
     
     override func viewDidLoad() {
            super.viewDidLoad()
-           let databrain1 = dataBrain.sharedDataBrain
-        
+            print(brain.user.profile["name"]!)
         // Do any additional setup after loading the view, typically from a nib.
     }
 
