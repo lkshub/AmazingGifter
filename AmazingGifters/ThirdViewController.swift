@@ -11,29 +11,53 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 import Firebase
 
+
 class ThirdViewController: UIViewController,FBSDKLoginButtonDelegate {
     
-    @IBOutlet var btnFacebook: FBSDKLoginButton!
-    @IBOutlet weak var userProfilePicture: FBSDKProfilePictureView!
-    
+    var facebookID:String?
+    var myName : String?
+    var coverURL : String?
+    var pictureURL : String?
+    @IBOutlet private weak var btnFacebook: FBSDKLoginButton!
+    @IBOutlet private weak var userProfilePicture: UIImageView!
+    @IBOutlet private weak var coverPhoto: UIImageView!
+    @IBOutlet weak var nameLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        //btnFacebook =  FBSDKLoginButton()
-        //self.view.addSubview(btnFacebook)
-        //btnFacebook.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height*0.8)
+        
+        if let url = pictureURL{
+            print("get picture url!")
+            let thisURL = NSURL(string: url)
+            let data = NSData(contentsOfURL: thisURL!)
+            userProfilePicture.image = UIImage(data:data!)
+        }
+        userProfilePicture.layer.cornerRadius = 8.0
+        userProfilePicture.clipsToBounds = true
+        userProfilePicture.layer.zPosition = 1;
+        userProfilePicture.layer.borderColor = UIColor.whiteColor().CGColor
+        userProfilePicture.layer.borderWidth = 2
+        
+        if let name = myName {
+            nameLabel.text  = name
+            print("get name!")
+        }
+        if let url = coverURL{
+            print("get cover url!")
+            let thisURL = NSURL(string: url)
+            let data = NSData(contentsOfURL: thisURL!)
+            coverPhoto.image = UIImage(data:data!)
+        }
+        
+        
         btnFacebook.delegate = self
-        userProfilePicture.profileID = "me"
-        //userProfilePicture.layer.cornerRadius = userProfilePicture.frame.size.height/2;
-        //userProfilePicture.clipsToBounds = true;
     }
     
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
-        //print("User Logged In")
+        print("User Logged In")
         if ((error) != nil)
         {
-            // Process error
+            print(error.localizedDescription)
         }
         else if result.isCancelled {
             // Handle cancellations
@@ -41,10 +65,6 @@ class ThirdViewController: UIViewController,FBSDKLoginButtonDelegate {
         else {
             // If you ask for multiple permissions at once, you
             // should check if specific permissions missing
-            if result.grantedPermissions.contains("email")
-            {
-                // Do work
-            }
         }
     }
     
@@ -59,13 +79,9 @@ class ThirdViewController: UIViewController,FBSDKLoginButtonDelegate {
         jumpToLogin()
         
     }
-    func jumpToLogin()  {
-        print("jumping to login")
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("Login")
-        self.presentViewController(nextViewController, animated: true, completion: nil)
-        //self.performSegueWithIdentifier("testJump", sender: self)
+    private func jumpToLogin()  {
+        print("back to login")
+        self.performSegueWithIdentifier("backToLogin", sender: self)
     }
 
 

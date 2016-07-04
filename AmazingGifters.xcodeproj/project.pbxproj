@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		213783191D29EE3700551A3A /* dataBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213783181D29EE3700551A3A /* dataBrain.swift */; };
 		2141ACF51D15C09200B6F5BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2141ACF41D15C09200B6F5BF /* AppDelegate.swift */; };
 		2141ACF71D15C09200B6F5BF /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2141ACF61D15C09200B6F5BF /* FirstViewController.swift */; };
 		2141ACF91D15C09200B6F5BF /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2141ACF81D15C09200B6F5BF /* SecondViewController.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		213783181D29EE3700551A3A /* dataBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dataBrain.swift; sourceTree = "<group>"; };
 		2141ACF11D15C09200B6F5BF /* AmazingGifters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmazingGifters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2141ACF41D15C09200B6F5BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2141ACF61D15C09200B6F5BF /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -97,10 +99,10 @@
 				3C78D9251D29105100E713BC /* Models */,
 				2179A59B1D215BB5004C6448 /* Views */,
 				2141ACFA1D15C09200B6F5BF /* Main.storyboard */,
-				3C1F8E0C1D1A47E0003F29EB /* AddGiftUIViewController.swift */,
 				2141ACFD1D15C09200B6F5BF /* Assets.xcassets */,
 				2141ACFF1D15C09200B6F5BF /* LaunchScreen.storyboard */,
 				2141AD021D15C09200B6F5BF /* Info.plist */,
+				213783181D29EE3700551A3A /* dataBrain.swift */,
 			);
 			path = AmazingGifters;
 			sourceTree = "<group>";
@@ -119,9 +121,10 @@
 		2179A59B1D215BB5004C6448 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				215B24BD1D246C53002A7C84 /* GiftSearchUIViewController.swift */,
 				2141AD1F1D17234D00B6F5BF /* LoginViewController.swift */,
 				2141ACF61D15C09200B6F5BF /* FirstViewController.swift */,
+				3C1F8E0C1D1A47E0003F29EB /* AddGiftUIViewController.swift */,
+				215B24BD1D246C53002A7C84 /* GiftSearchUIViewController.swift */,
 				2141ACF81D15C09200B6F5BF /* SecondViewController.swift */,
 				3C8DE5EA1D15C90200A4DD85 /* ThirdViewController.swift */,
 				2179A59C1D215BE0004C6448 /* GiftDetailViewController.swift */,
@@ -279,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				213783191D29EE3700551A3A /* dataBrain.swift in Sources */,
 				2141ACF91D15C09200B6F5BF /* SecondViewController.swift in Sources */,
 				2141ACF51D15C09200B6F5BF /* AppDelegate.swift in Sources */,
 				2179A59D1D215BE0004C6448 /* GiftDetailViewController.swift in Sources */,

@@ -9,5 +9,6 @@ target 'AmazingGifters' do
   # Pods for AmazingGifters
   pod 'Firebase'
   pod 'Firebase/Auth'
+  pod 'Firebase/Database'
   
 end

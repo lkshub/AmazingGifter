@@ -9,6 +9,10 @@
 import UIKit
 
 class SecondViewController: UIViewController {
+    
+    var contactsList:[Dictionary<String,String>?] = []
+    
+    var facebookID:String?
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
@@ -28,9 +32,18 @@ class SecondViewController: UIViewController {
             break
         }
     }
+    
+    private func populateContacts(){
+        
+    }
+    private func populateProgress(){
+        
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        populateContacts();
+        populateProgress();
     }
 
     override func didReceiveMemoryWarning() {

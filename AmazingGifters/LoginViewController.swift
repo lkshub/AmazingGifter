@@ -11,14 +11,57 @@ import FBSDKLoginKit
 import FBSDKCoreKit
 import Firebase
 
+
 class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     
     
     
     // Facebook Delegate Methods
-    //@IBOutlet var bbtnFacebook: FBSDKLoginButton!
+    private var facebookID: String?
+    private var contactsList: [Dictionary<String,String>?] = []
+    private var coverURL: String?
+    private var pictureURL: String?
+    private var myName: String?
+    private var brain:dataBrain!
+    
+    //private var ref : FIRDatabaseReference!
     
     @IBOutlet weak var btnFacebook: FBSDKLoginButton!
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destinationVC = segue.destinationViewController
+        print("calling the prepareForSegue")
+        //print(myName)
+        if let contentVC = destinationVC as? UITabBarController{
+            let myGiftNav = contentVC.viewControllers![0] as? UINavigationController
+            let myGiftVC = myGiftNav?.viewControllers[0] as? FirstViewController
+            let friendsVC = contentVC.viewControllers![1] as? SecondViewController
+            let meNav = contentVC.viewControllers![2] as? UINavigationController
+            let meVC = meNav?.viewControllers[0] as? ThirdViewController
+            
+            if let identifier = segue.identifier{
+                switch identifier {
+                case "showContent":
+                    if let friends = friendsVC{
+                        friends.facebookID = self.facebookID
+                        friends.contactsList = self.contactsList
+                    }
+                    if let me = meVC{
+                        me.coverURL = self.coverURL
+                        me.pictureURL = self.pictureURL
+                        me.myName = self.myName
+                        me.facebookID = self.facebookID
+                    }
+                    if let myGift = myGiftVC{
+                        
+                    }
+                    
+                default:
+                    break
+                }
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,27 +74,22 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             btnFacebook.hidden = true;
             let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
             FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
-                // ...
+                
             }
             print("asking for data")
-            returnUserProfile()
         }
         else
         {
-            //btnFacebook =  FBSDKLoginButton()
-            //self.view.addSubview(btnFacebook)
-            //btnFacebook.center = CGPointMake(self.view.frame.size.width/2, self.view.frame.size.height*0.8)
+
             btnFacebook.readPermissions = ["public_profile", "email", "user_friends","user_birthday"]
             btnFacebook.delegate = self
         }
         
     }
     override func viewDidAppear(animated: Bool) {
-        //btnFacebook.center = CGPointMake(0, 0)
-        if(FBSDKAccessToken.currentAccessToken() != nil){
+            if(FBSDKAccessToken.currentAccessToken() != nil){
+            returnUserProfileAndJump()
             btnFacebook.hidden = true
-            print("jump to my gifts")
-            jumpToMyGifts()
         }
     }
     
@@ -71,14 +109,12 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             // should check if specific permissions missing
             if result.grantedPermissions.contains("email")
             {
-                // Do work
                 let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
                 FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
-                    // ...
+                    
                 }
                 btnFacebook.hidden = true
-                returnUserProfile()
-                jumpToMyGifts()
+                returnUserProfileAndJump()
             }
         }
     }
@@ -90,9 +126,9 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     }
     
     
-    func returnUserProfile()
+    private func returnUserProfileAndJump()
     {
-        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"first_name, last_name, email, picture.type(large), friends, birthday"])
+        let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"name, email, picture.type(large), friends, birthday,cover"])
         graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
             
             if ((error) != nil)
@@ -103,7 +139,46 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             else
             {
                 print("fetched user: \(result)")
-
+                self.facebookID  = result.valueForKey("id") as? String
+                //print(self.facebookID)
+                if let cover = result.valueForKey("cover"){
+                    self.coverURL = cover.valueForKey("source") as? String
+                }
+                if let picture = result.valueForKey("picture"){
+                    if let data = picture.valueForKey("data"){
+                        self.pictureURL = data.valueForKey("url") as? String
+                    }
+                }
+                self.myName = result.valueForKey("name") as? String
+                if let friends = result.valueForKey("friends"){
+                    if let data = friends.valueForKey("data") as? [NSDictionary]{
+                        for map in data{
+                            self.contactsList.append(map as? Dictionary<String,String>)
+                        }
+                    }
+                }
+                
+                let profile = [
+                    "address_first":"",
+                    "address_second":"",
+                    "birthday":result.valueForKey("birthday") as? String ?? "",
+                    "city":"",
+                    "country":"",
+                    "email":result.valueForKey("email") as? String ?? "",
+                    "gift_for_friend": "",
+                    "my_gift":"",
+                    "name":self.myName ?? "",
+                    "payment":"",
+                    "phone":"",
+                    "picture_url":self.pictureURL ?? "",
+                    "state":"",
+                    "zipcode":""
+                ]
+                if let uid = self.facebookID{
+                    self.brain = dataBrain(id: uid)
+                    self.brain.login(profile)
+                }
+                self.jumpToContent()
             }
         })
     }
@@ -114,12 +189,10 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
         // Dispose of any resources that can be recreated.
     }
     
-    func jumpToMyGifts()  {
+    
+    private func jumpToContent()  {
         print("jumping...")
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let nextViewController = storyBoard.instantiateViewControllerWithIdentifier("Content")
-        self.presentViewController(nextViewController, animated: true, completion: nil)
-        //self.performSegueWithIdentifier("testJump", sender: self)
+        self.performSegueWithIdentifier("showContent", sender: self)
 
     }
     
