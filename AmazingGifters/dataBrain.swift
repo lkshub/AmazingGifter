@@ -13,7 +13,8 @@ class dataBrain{
     static let sharedDataBrain = dataBrain()
     var user:User!
     private var ref : FIRDatabaseReference!
-    private var uid:String!
+    var uid:String!
+    
     
     private init(){
         self.ref = FIRDatabase.database().reference()

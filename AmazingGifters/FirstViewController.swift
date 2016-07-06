@@ -10,7 +10,7 @@ import UIKit
 
 class FirstViewController: UITableViewController {
     
-    var facebookID:String?
+
     let brain = dataBrain.sharedDataBrain
     
     override func viewDidLoad() {

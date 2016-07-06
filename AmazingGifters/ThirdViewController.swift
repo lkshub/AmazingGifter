@@ -14,10 +14,8 @@ import Firebase
 
 class ThirdViewController: UIViewController,FBSDKLoginButtonDelegate {
     
-    var facebookID:String?
-    var myName : String?
-    var coverURL : String?
-    var pictureURL : String?
+    private let brain = dataBrain.sharedDataBrain
+    
     @IBOutlet private weak var btnFacebook: FBSDKLoginButton!
     @IBOutlet private weak var userProfilePicture: UIImageView!
     @IBOutlet private weak var coverPhoto: UIImageView!
@@ -26,9 +24,9 @@ class ThirdViewController: UIViewController,FBSDKLoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let url = pictureURL{
+        if let url = brain.user.profile["picture_url"] {
             print("get picture url!")
-            let thisURL = NSURL(string: url)
+            let thisURL = NSURL(string: url as! String)
             let data = NSData(contentsOfURL: thisURL!)
             userProfilePicture.image = UIImage(data:data!)
         }
@@ -38,17 +36,14 @@ class ThirdViewController: UIViewController,FBSDKLoginButtonDelegate {
         userProfilePicture.layer.borderColor = UIColor.whiteColor().CGColor
         userProfilePicture.layer.borderWidth = 2
         
-        if let name = myName {
-            nameLabel.text  = name
-            print("get name!")
-        }
-        if let url = coverURL{
+        nameLabel.text  = (brain.user.profile["name"] as! String)
+
+        if let url = brain.user.coverUrl{
             print("get cover url!")
             let thisURL = NSURL(string: url)
             let data = NSData(contentsOfURL: thisURL!)
             coverPhoto.image = UIImage(data:data!)
         }
-        
         
         btnFacebook.delegate = self
     }

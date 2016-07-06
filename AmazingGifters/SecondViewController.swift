@@ -10,9 +10,8 @@ import UIKit
 
 class SecondViewController: UIViewController {
     
-    var contactsList:[Dictionary<String,String>?] = []
     
-    var facebookID:String?
+    let brain = dataBrain.sharedDataBrain
 
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
