@@ -195,7 +195,18 @@ class GiftSearchUIViewController: UIViewController,NSXMLParserDelegate,UITableVi
 
         dataTask.resume()
     }
-
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "ShowItemDetailSegue"
+        {
+            if let destinationVC = segue.destinationViewController as? SearchItemDetailViewController {
+                if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPathForCell(cell) {
+                    destinationVC.itemDic = posts[indexPath.row] as! NSMutableDictionary
+                  
+                }
+            }
+        }
+    }
+    
 }
 
 

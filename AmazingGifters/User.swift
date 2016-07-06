@@ -33,7 +33,7 @@ class User {
                 ref.child("user").child(self.uid).child("email").setValue(self.profile["email"])
                 ref.child("user").child(self.uid).child("picture_url").setValue(self.profile["picture_url"])
                 self.profile = snapshot.value as! NSDictionary
-                print(self.profile["my_gift"]!["from_friends"] as! [Int])
+                print(self.profile["my_gift"]!["from_friends"] as? [Int])
             }else{
                 ref.child("user").child(self.uid).setValue(self.profile)
             }
