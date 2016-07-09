@@ -16,19 +16,50 @@ class ProgressTableView: UIViewController,UITableViewDelegate,UITableViewDataSou
     let brain = dataBrain.sharedDataBrain
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var gifts:[Gift]=[]{
         didSet{
             tableView.reloadData()
         }
     }
+    var allGifts:[Gift]=[]
     var user:User!
+    private var searchText:String?{
+        didSet{
+            //contacts.removeAll()
+            searchForGifts()
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         user = brain.user
         fetchGifts()
+        
         // Do any additional setup after loading the view, typically from a nib.
+    }
+    private func searchForGifts(){
+        var filtered = [Gift]()
+        if let text = searchText where !text.isEmpty{
+            for gift in self.allGifts{
+                if let name = gift.name{
+                    if name.rangeOfString(text) != nil{
+                        filtered.append(gift)
+                    }
+                }else{
+                    if let receiverName = gift.receiverName{
+                        if receiverName.rangeOfString(text) != nil{
+                            filtered.append(gift)
+                        }
+                    }
+                }
+            }
+            self.gifts = filtered
+        }else{
+            self.gifts = self.allGifts
+        }
     }
     
     func fetchGifts(){
@@ -37,6 +68,7 @@ class ProgressTableView: UIViewController,UITableViewDelegate,UITableViewDataSou
                 
                 while let rest = enumerator.nextObject() as? FIRDataSnapshot {
                     self.gifts = []
+                    self.allGifts = []
                     let element = rest.key
                     self.brain.ref.child("gift").child(element).observeEventType(.Value, withBlock: { (snapshot) in
                         let gift : Gift = Gift(
@@ -56,6 +88,7 @@ class ProgressTableView: UIViewController,UITableViewDelegate,UITableViewDataSou
                             let name = snapshot.value as? String
                             gift.receiverName = name
                             self.gifts.append(gift)
+                            self.allGifts.append(gift)
                             })
                         //self.tableView.reloadData()
                     })
@@ -100,5 +133,13 @@ class ProgressTableView: UIViewController,UITableViewDelegate,UITableViewDataSou
         return gifts.count
     }
     
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        self.gifts = self.allGifts
+        
+    }
+    
+    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+        self.searchText = searchText
+    }
 }
 

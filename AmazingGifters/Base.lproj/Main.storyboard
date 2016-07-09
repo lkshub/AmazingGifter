@@ -1127,7 +1127,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
-                                    <outlet property="delegate" destination="8rJ-Kc-sve" id="HcQ-0f-JQC"/>
+                                    <outlet property="delegate" destination="PgB-4j-VKH" id="zfJ-IF-Ndh"/>
                                 </connections>
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="110" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="T6I-fV-NgM">
@@ -1239,6 +1239,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="searchBar" destination="c4l-sH-v4V" id="2Wn-xS-z5j"/>
                         <outlet property="tableView" destination="T6I-fV-NgM" id="zKP-Cw-MlQ"/>
                     </connections>
                 </viewController>

@@ -26,7 +26,17 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     //private var ref : FIRDatabaseReference!
     
     @IBOutlet weak var btnFacebook: FBSDKLoginButton!
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if (FBSDKAccessToken.currentAccessToken() != nil)
+        {
+            btnFacebook.hidden = true
+        }else{
+            btnFacebook.readPermissions = ["public_profile", "email", "user_friends","user_birthday"]
+            btnFacebook.delegate = self
 
+        }
+    }
     override func viewDidAppear(animated:Bool) {
         super.viewDidAppear(true)
         // Do any additional setup after loading the view, typically from a nib.
@@ -34,16 +44,12 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
         if (FBSDKAccessToken.currentAccessToken() != nil)
         {
             // User is already logged in, do work such as go to next view controller.
-            btnFacebook.hidden = true
             let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
             FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
                 self.returnUserProfileAndJump()
             }
         }
-        else
-        {
-            btnFacebook.readPermissions = ["public_profile", "email", "user_friends","user_birthday"]
-            btnFacebook.delegate = self
+        else{
         }
         
     }
