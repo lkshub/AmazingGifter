@@ -47,11 +47,11 @@ class ProgressTableView: UIViewController,UITableViewDelegate,UITableViewDataSou
                 if let name = gift.name{
                     if name.rangeOfString(text) != nil{
                         filtered.append(gift)
-                    }
-                }else{
-                    if let receiverName = gift.receiverName{
-                        if receiverName.rangeOfString(text) != nil{
-                            filtered.append(gift)
+                    }else{
+                        if let receiverName = gift.receiverName{
+                            if receiverName.rangeOfString(text) != nil{
+                                filtered.append(gift)
+                            }
                         }
                     }
                 }
