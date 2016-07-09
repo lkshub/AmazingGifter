@@ -11,6 +11,8 @@ import UIKit
 class SearchItemDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var itemImage: UIImageView!
 
+    @IBAction func pickThisAction(sender: AnyObject) {
+    }
     @IBAction func openURLAction(sender: UIButton) {
         UIApplication.sharedApplication().openURL(NSURL(string: itemDic["viewItemURL"] as! String)!)
     }
@@ -22,8 +24,7 @@ class SearchItemDetailViewController: UIViewController, UITableViewDelegate, UIT
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("asdfew")
-        print(itemDic["title"])
+       
         let url = NSURL(string: itemDic["galleryURL"] as! NSString as String)
         let data = NSData(contentsOfURL: url!)
         itemImage.contentMode = .ScaleAspectFit
@@ -89,4 +90,19 @@ class SearchItemDetailViewController: UIViewController, UITableViewDelegate, UIT
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
+    
+    
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "pickThisSegue"
+        {
+            if let destinationVC = segue.destinationViewController as? AddGiftTableViewContonller {
+                
+                destinationVC.searchItem = itemDic
+                destinationVC.picked = true
+                
+            }
+        }
+    }
+    
 }

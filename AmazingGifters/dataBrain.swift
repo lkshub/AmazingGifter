@@ -12,7 +12,7 @@ import Firebase
 class dataBrain{
     static let sharedDataBrain = dataBrain()
     var user:User!
-    private var ref : FIRDatabaseReference!
+    var ref : FIRDatabaseReference!
     var uid:String!
     
     
@@ -31,7 +31,84 @@ class dataBrain{
     //func getGifts()->[Gift]{
     //    return getGiftsAccordingToFBID()
     //}
+    func addNewGift(newGift: Gift){
+        //add gift to gift list
+        let giftRef = ref.child("gift")
+        let newGiftDic = ["itemID": newGift.itemID! as String,
+                       "itemURL":newGift.itemURL! as String,
+                       "dueDate": newGift.dueDate! as String,
+                       "initiatorID": newGift.initiatorID! as String,
+                       "name": newGift.name! as String,
+                       "pictureURL": newGift.pictureURL! as String,
+                       "postTime": newGift.postTime! as String,
+                       "price":newGift.price! as Double,
+                       "reason":newGift.reason! as String,
+                       "receiverID":newGift.receiverID! as String,
+                       "progress": 0.0]
+        let gift1Ref = giftRef.childByAutoId()
+        let autoId = gift1Ref.key
+        gift1Ref.setValue(newGiftDic)
+        
+        //add gift to user's my_wish_list
+        ref.child("user").child(uid).child("my_gift").child("wish_list").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+          
+            let giftListItem = [autoId: true]
+            self.ref.child("user").child(self.uid).child("my_gift").child("wish_list").updateChildValues(giftListItem)
+            
+        })
+    }
+    func setTimeout(delay:NSTimeInterval, block:()->Void) -> NSTimer {
+        return NSTimer.scheduledTimerWithTimeInterval(delay, target: NSBlockOperation(block: block), selector: #selector(NSOperation.main), userInfo: nil, repeats: false)
+    }
+    func getMyWishList() -> [String] {
+        
+        var wishList:[String] = []
+     
+        ref.child("user").child(uid).child("my_gift").child("wish_list").observeEventType(.Value, withBlock: { (snapshot) in
+            let enumerator = snapshot.children
+            while let rest = enumerator.nextObject() as? FIRDataSnapshot {
+                print("keys")
+                print(rest.key)
+                wishList.append(rest.key)
+                print(wishList.count)
+
+            }
+        })
+           return wishList
+ 
+
+    }
+
+    func getMyWishListDetail(wishList:[String]) ->[Gift]{
+
+        var gifts:[Gift] = []
+        for element in wishList{
     
+            self.ref.child("gift").child(element).observeEventType(.Value, withBlock: { (snapshot) in
+                let gift : Gift = Gift(
+                    itemID: (snapshot.value!["itemID"] as? String)!,
+                    itemURL: (snapshot.value!["itemURL"] as? String)!,
+                    dueDate: (snapshot.value!["dueDate"] as? String)!,
+                    initiatorID: (snapshot.value!["initiatorID"] as? String)!,
+                    name: (snapshot.value!["name"] as? String)!,
+                    pictureURL: (snapshot.value!["pictureURL"] as? String)!,
+                    postTime: (snapshot.value!["postTime"] as? String)!,
+                    price: (snapshot.value!["price"] as? Double)!,
+                    reason: (snapshot.value!["reason"] as? String)!,
+                    receiverID: (snapshot.value!["receiverID"] as? String)!,
+                    progress: (snapshot.value!["progress"] as? Double)!
+                )
+                gifts.append(gift)
+                print("==first==")
+                print(gifts.count)
+            })
+        }
+    
+        return gifts
+    }
+    
+    
+ 
     func getProgress() {
         
     }
