@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Firebase
 
-class ProgressTableView: UIViewController {
+class ProgressTableView: UIViewController,UITableViewDelegate,UITableViewDataSource,UISearchBarDelegate {
     
 
     let brain = dataBrain.sharedDataBrain
@@ -52,8 +52,12 @@ class ProgressTableView: UIViewController {
                             receiverID: (snapshot.value!["receiverID"] as? String)!,
                             progress: (snapshot.value!["progress"] as? Double)!
                         )
-                        self.gifts.append(gift)
-                        self.tableView.reloadData()
+                        self.brain.ref.child("user").child(gift.receiverID!).child("name").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                            let name = snapshot.value as? String
+                            gift.receiverName = name
+                            self.gifts.append(gift)
+                            })
+                        //self.tableView.reloadData()
                     })
                 }
             })
@@ -67,7 +71,7 @@ class ProgressTableView: UIViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! GiftTableViewCell
         cell.giftNameLabel?.text = self.gifts[indexPath.row].name
         cell.giftDueDateLabel?.text = self.gifts[indexPath.row].dueDate
-        cell.giftReasonCell?.text = "For " + self.gifts[indexPath.row].reason!
+        cell.giftReasonCell?.text = "For "+self.gifts[indexPath.row].receiverName!+"'s "+self.gifts[indexPath.row].reason!
         let url = NSURL(string: self.gifts[indexPath.row].pictureURL! as NSString as String)
         let data = NSData(contentsOfURL: url!)
         cell.giftImageView.contentMode = .ScaleAspectFit

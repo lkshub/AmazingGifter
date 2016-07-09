@@ -26,9 +26,9 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     //private var ref : FIRDatabaseReference!
     
     @IBOutlet weak var btnFacebook: FBSDKLoginButton!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
+
+    override func viewDidAppear(animated:Bool) {
+        super.viewDidAppear(true)
         // Do any additional setup after loading the view, typically from a nib.
         
         if (FBSDKAccessToken.currentAccessToken() != nil)
@@ -42,7 +42,6 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
         }
         else
         {
-
             btnFacebook.readPermissions = ["public_profile", "email", "user_friends","user_birthday"]
             btnFacebook.delegate = self
         }
@@ -128,7 +127,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
                 
                 if let uid = result.valueForKey("id") as? String {
                     let brain = dataBrain.sharedDataBrain
-                    //brain.setUid(uid)
+                    print(uid)
                     brain.login(uid,profile: profile)
                     if let cover = result.valueForKey("cover"){
                         brain.user.setCover(cover.valueForKey("source") as? String)
@@ -139,7 +138,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             }
         })
     }
-    
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

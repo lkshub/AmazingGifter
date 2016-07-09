@@ -33,6 +33,7 @@ class Gift{
     var reason: String?
     var receiverID: String?
     var progress: Double?
+    var receiverName : String?
     
     init(dic: NSDictionary){
        

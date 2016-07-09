@@ -74,6 +74,8 @@ class ThirdViewController: UIViewController,FBSDKLoginButtonDelegate{
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
         try! FIRAuth.auth()!.signOut()
         print("User Logged Out")
+        let loginManager: FBSDKLoginManager = FBSDKLoginManager()
+        loginManager.logOut()
         jumpToLogin()
         
     }
