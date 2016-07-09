@@ -16,6 +16,7 @@ class FirstViewController: UITableViewController {
     var section1 :[String] = []
     let brain = dataBrain.sharedDataBrain
     var gifts:[Gift] = []
+
     
     func setTimeout(delay:NSTimeInterval, block:()->Void) -> NSTimer {
         return NSTimer.scheduledTimerWithTimeInterval(delay, target: NSBlockOperation(block: block), selector: #selector(NSOperation.main), userInfo: nil, repeats: false)

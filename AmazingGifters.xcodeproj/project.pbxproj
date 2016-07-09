@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		213783191D29EE3700551A3A /* dataBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213783181D29EE3700551A3A /* dataBrain.swift */; };
 		2137831B1D2AFD0800551A3A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137831A1D2AFD0800551A3A /* User.swift */; };
+		213783211D2EFEAE00551A3A /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213783201D2EFEAE00551A3A /* ContactsTableViewCell.swift */; };
+		213783231D2F2FEC00551A3A /* ContactsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213783221D2F2FEB00551A3A /* ContactsViewController.swift */; };
+		213783251D2F6DA400551A3A /* MeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213783241D2F6DA300551A3A /* MeTableViewController.swift */; };
 		2141ACF51D15C09200B6F5BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2141ACF41D15C09200B6F5BF /* AppDelegate.swift */; };
 		2141ACF71D15C09200B6F5BF /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2141ACF61D15C09200B6F5BF /* FirstViewController.swift */; };
 		2141ACF91D15C09200B6F5BF /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2141ACF81D15C09200B6F5BF /* SecondViewController.swift */; };
@@ -23,7 +26,6 @@
 		215B24BE1D246C53002A7C84 /* GiftSearchUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215B24BD1D246C53002A7C84 /* GiftSearchUIViewController.swift */; };
 		216DEDE01D1EBB6F00DAD99F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 216DEDDF1D1EBB6F00DAD99F /* GoogleService-Info.plist */; };
 		2179A59D1D215BE0004C6448 /* GiftDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2179A59C1D215BE0004C6448 /* GiftDetailViewController.swift */; };
-		2179A59F1D21AB8B004C6448 /* EditMeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2179A59E1D21AB8B004C6448 /* EditMeViewController.swift */; };
 		3C1F8E0D1D1A47E0003F29EB /* AddGiftUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1F8E0C1D1A47E0003F29EB /* AddGiftUIViewController.swift */; };
 		3C42E7E01D2AEADE00EC306B /* Gift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42E7DF1D2AEADE00EC306B /* Gift.swift */; };
 		3C42E7E21D2B6E3E00EC306B /* SearchItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42E7E11D2B6E3E00EC306B /* SearchItemDetailViewController.swift */; };
@@ -39,6 +41,9 @@
 /* Begin PBXFileReference section */
 		213783181D29EE3700551A3A /* dataBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dataBrain.swift; sourceTree = "<group>"; };
 		2137831A1D2AFD0800551A3A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		213783201D2EFEAE00551A3A /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
+		213783221D2F2FEB00551A3A /* ContactsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsViewController.swift; sourceTree = "<group>"; };
+		213783241D2F6DA300551A3A /* MeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeTableViewController.swift; sourceTree = "<group>"; };
 		2141ACF11D15C09200B6F5BF /* AmazingGifters.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AmazingGifters.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2141ACF41D15C09200B6F5BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2141ACF61D15C09200B6F5BF /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
@@ -55,7 +60,6 @@
 		215B24BD1D246C53002A7C84 /* GiftSearchUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftSearchUIViewController.swift; sourceTree = "<group>"; };
 		216DEDDF1D1EBB6F00DAD99F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2179A59C1D215BE0004C6448 /* GiftDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftDetailViewController.swift; sourceTree = "<group>"; };
-		2179A59E1D21AB8B004C6448 /* EditMeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditMeViewController.swift; sourceTree = "<group>"; };
 		3C1F8E0C1D1A47E0003F29EB /* AddGiftUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGiftUIViewController.swift; sourceTree = "<group>"; };
 		3C42E7DF1D2AEADE00EC306B /* Gift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gift.swift; sourceTree = "<group>"; };
 		3C42E7E11D2B6E3E00EC306B /* SearchItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchItemDetailViewController.swift; sourceTree = "<group>"; };
@@ -139,10 +143,12 @@
 				2141ACF61D15C09200B6F5BF /* FirstViewController.swift */,
 				3C1F8E0C1D1A47E0003F29EB /* AddGiftUIViewController.swift */,
 				215B24BD1D246C53002A7C84 /* GiftSearchUIViewController.swift */,
-				2141ACF81D15C09200B6F5BF /* SecondViewController.swift */,
-				3C8DE5EA1D15C90200A4DD85 /* ThirdViewController.swift */,
 				2179A59C1D215BE0004C6448 /* GiftDetailViewController.swift */,
-				2179A59E1D21AB8B004C6448 /* EditMeViewController.swift */,
+				2141ACF81D15C09200B6F5BF /* SecondViewController.swift */,
+				213783221D2F2FEB00551A3A /* ContactsViewController.swift */,
+				213783201D2EFEAE00551A3A /* ContactsTableViewCell.swift */,
+				3C8DE5EA1D15C90200A4DD85 /* ThirdViewController.swift */,
+				213783241D2F6DA300551A3A /* MeTableViewController.swift */,
 				3C78D92A1D292DFF00E713BC /* SearchTableViewCell.swift */,
 				3C42E7E11D2B6E3E00EC306B /* SearchItemDetailViewController.swift */,
 				3C42E7E31D2B7FFD00EC306B /* SearchItemDetailTableCell.swift */,
@@ -309,11 +315,13 @@
 				2141ACF91D15C09200B6F5BF /* SecondViewController.swift in Sources */,
 				3C42E7E21D2B6E3E00EC306B /* SearchItemDetailViewController.swift in Sources */,
 				2141ACF51D15C09200B6F5BF /* AppDelegate.swift in Sources */,
+				213783251D2F6DA400551A3A /* MeTableViewController.swift in Sources */,
+				213783231D2F2FEC00551A3A /* ContactsViewController.swift in Sources */,
 				3C42E7E01D2AEADE00EC306B /* Gift.swift in Sources */,
 				2179A59D1D215BE0004C6448 /* GiftDetailViewController.swift in Sources */,
 				3C8DE5EB1D15C90200A4DD85 /* ThirdViewController.swift in Sources */,
 				3CAA7DF11D2F39220035FF15 /* GiftTableViewCell.swift in Sources */,
-				2179A59F1D21AB8B004C6448 /* EditMeViewController.swift in Sources */,
+				213783211D2EFEAE00551A3A /* ContactsTableViewCell.swift in Sources */,
 				2141AD201D17234D00B6F5BF /* LoginViewController.swift in Sources */,
 				3C1F8E0D1D1A47E0003F29EB /* AddGiftUIViewController.swift in Sources */,
 				3C42E7E41D2B7FFD00EC306B /* SearchItemDetailTableCell.swift in Sources */,

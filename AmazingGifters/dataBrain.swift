@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 
 class dataBrain{
+    var searchText:String?
     static let sharedDataBrain = dataBrain()
     var user:User!
     var ref : FIRDatabaseReference!
@@ -19,18 +20,18 @@ class dataBrain{
     private init(){
         self.ref = FIRDatabase.database().reference()
     }
-    func setUid(uid:String){
-        self.uid = uid
-    }
     
-    func login(profile:NSDictionary!){
-        self.user  = User(id: self.uid,profile: profile)
+    func login(uid:String,profile:NSDictionary!){
+        self.uid = uid
+        self.user  = User(id: self.uid)
+        self.user.profile = profile
         self.user.createNewOrUpdate(self.ref)
     }
     
     //func getGifts()->[Gift]{
     //    return getGiftsAccordingToFBID()
     //}
+    
     func addNewGift(newGift: Gift){
         //add gift to gift list
         let giftRef = ref.child("gift")
@@ -106,9 +107,13 @@ class dataBrain{
     
         return gifts
     }
-    
-    
  
+    func setContacts(contactsList:[User]) {
+        for friend in contactsList{
+            friend.getProfile(self.ref)
+            self.user.contactsList.append(friend)
+        }
+    }
     func getProgress() {
         
     }

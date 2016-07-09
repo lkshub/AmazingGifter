@@ -34,12 +34,11 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
         if (FBSDKAccessToken.currentAccessToken() != nil)
         {
             // User is already logged in, do work such as go to next view controller.
-            btnFacebook.hidden = true;
+            btnFacebook.hidden = true
             let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
             FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
                 self.returnUserProfileAndJump()
             }
-            btnFacebook.hidden = true
         }
         else
         {
@@ -94,7 +93,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             else
             {
                 var pictureURL:String?
-                var contactsList: [Dictionary<String,String>?] = []
+                var contactsList = [User]()
                 
                 if let picture = result.valueForKey("picture"){//get picture url
                     if let data = picture.valueForKey("data"){
@@ -104,7 +103,8 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
                 if let friends = result.valueForKey("friends"){ //get friends list
                     if let data = friends.valueForKey("data") as? [NSDictionary]{
                         for map in data{
-                            contactsList.append(map as? Dictionary<String,String>)
+                            let user = User(id:map["id"] as! String)
+                            contactsList.append(user)
                         }
                     }
                 }
@@ -128,12 +128,12 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
                 
                 if let uid = result.valueForKey("id") as? String {
                     let brain = dataBrain.sharedDataBrain
-                    brain.setUid(uid)
-                    brain.login(profile)
+                    //brain.setUid(uid)
+                    brain.login(uid,profile: profile)
                     if let cover = result.valueForKey("cover"){
                         brain.user.setCover(cover.valueForKey("source") as? String)
                     }
-                    brain.user.getContacts(contactsList)
+                    brain.setContacts(contactsList)
                 }
                 self.jumpToContent()
             }

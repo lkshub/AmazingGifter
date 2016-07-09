@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController,UISearchBarDelegate {
     
     
     let brain = dataBrain.sharedDataBrain
@@ -18,6 +18,7 @@ class SecondViewController: UIViewController {
     @IBOutlet weak var contactsView: UIView!
     
     @IBOutlet weak var progressView: UIView!
+    
     
     @IBAction func indexChanged(sender: UISegmentedControl) {
         switch segmentedControl.selectedSegmentIndex {
@@ -32,17 +33,11 @@ class SecondViewController: UIViewController {
         }
     }
     
-    private func populateContacts(){
-        
-    }
-    private func populateProgress(){
-        
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        populateContacts();
-        populateProgress();
+        progressView.hidden = true
     }
 
     override func didReceiveMemoryWarning() {
