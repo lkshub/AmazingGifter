@@ -35,13 +35,11 @@ class AddGiftTableViewContonller: UITableViewController {
       
     @IBAction func comfirmAction(sender: AnyObject) {
         confirm()
-        
-
     }
     
  
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewDidAppear(Animated:Bool) {
+        super.viewDidAppear(true)
         datePickerChanged()
         //reasonLabel.text = reasonText
         if(picked){
@@ -127,14 +125,17 @@ class AddGiftTableViewContonller: UITableViewController {
             if(reasonTextField.text?.characters.count>0){
                 reason = reasonTextField.text!
             }
-            newGift = Gift(itemID: searchItem["itemId"] as! String,itemURL: searchItem["viewItemURL"] as! String,dueDate: detailLabel.text!,initiatorID: brain.uid,name: searchItem["title"] as! String,pictureURL: searchItem["galleryURL"] as! String,postTime: DateInFormat, price: searchItem["convertedCurrentPrice"] as! String,reason: reason,receiverID: brain.uid)
+            newGift = Gift(itemID: searchItem["itemId"] as! String,itemURL: searchItem["viewItemURL"] as! String,dueDate: detailLabel.text!,initiatorID: brain.uid,name: searchItem["title"] as! String,pictureURL: searchItem["galleryURL"] as! String,postTime: DateInFormat, price: searchItem["convertedCurrentPrice"] as! String,reason: reason,receiverID: brain.visitedUser.uid)
             print("testgift")
             print(newGift?.itemID)
             print(newGift?.dueDate)
             print(newGift?.postTime)
             print(newGift?.reason)
             self.brain.addNewGift (newGift!)
-            //self.dismissViewControllerAnimated(true, completion: nil);
+            let n: Int! = self.navigationController?.viewControllers.count
+            if let giftViewController = self.navigationController?.viewControllers[n-2] as? FirstViewController{
+                self.navigationController?.popToViewController(giftViewController, animated: true)
+            }
         }
     }
 }

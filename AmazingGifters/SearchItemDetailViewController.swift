@@ -12,6 +12,12 @@ class SearchItemDetailViewController: UIViewController, UITableViewDelegate, UIT
     @IBOutlet weak var itemImage: UIImageView!
 
     @IBAction func pickThisAction(sender: AnyObject) {
+        let n: Int! = self.navigationController?.viewControllers.count
+        if let addGiftController = self.navigationController?.viewControllers[n-3] as? AddGiftTableViewContonller{
+            addGiftController.searchItem = itemDic
+            addGiftController.picked = true
+            self.navigationController?.popToViewController(addGiftController, animated: true)
+        }
     }
     @IBAction func openURLAction(sender: UIButton) {
         UIApplication.sharedApplication().openURL(NSURL(string: itemDic["viewItemURL"] as! String)!)
@@ -89,19 +95,6 @@ class SearchItemDetailViewController: UIViewController, UITableViewDelegate, UIT
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
-    }
-    
-    
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "pickThisSegue"
-        {
-            if let destinationVC = segue.destinationViewController as? AddGiftTableViewContonller {
-                
-                destinationVC.searchItem = itemDic
-                destinationVC.picked = true
-                
-            }
-        }
     }
     
 }
