@@ -67,16 +67,16 @@ class dataBrain{
                 self.ref.child("user").child(self.visitedUser.uid).child("my_gift").child("from_friends").updateChildValues(giftListItem)
                 
             })
-            ref.child("user").child(self.user.uid).child("my_gift").child("gift_for_friend").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            ref.child("user").child(self.user.uid).child("gift_for_friend").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                 
                 let giftListItem = [autoId: true]
-                self.ref.child("user").child(self.user.uid).child("my_gift").child("gift_for_friend").updateChildValues(giftListItem)
+                self.ref.child("user").child(self.user.uid).child("gift_for_friend").updateChildValues(giftListItem)
                 
             })
         }
         
     }
-    
+    /*
     func getMyWishListDetail(wishList:[String]) ->[Gift]{
 
         var gifts:[Gift] = []
@@ -104,6 +104,7 @@ class dataBrain{
     
         return gifts
     }
+ */
  
     func setContacts(contactsList:[User]) {
         for friend in contactsList{
@@ -111,9 +112,7 @@ class dataBrain{
             self.user.contactsList.append(friend)
         }
     }
-    func getProgress() {
-        
-    }
+
     
     //private func getGiftsAccordingToFBID()->[Gift]{
     //    return

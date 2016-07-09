@@ -23,6 +23,7 @@
 		2141AD1B1D171D4F00B6F5BF /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2141AD181D171D4F00B6F5BF /* FBSDKShareKit.framework */; };
 		2141AD1E1D17228B00B6F5BF /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2141AD1D1D17228B00B6F5BF /* Bolts.framework */; };
 		2141AD201D17234D00B6F5BF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2141AD1F1D17234D00B6F5BF /* LoginViewController.swift */; };
+		215365401D3194D90066BFBF /* ProgressTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2153653F1D3194D90066BFBF /* ProgressTableView.swift */; };
 		215B24BE1D246C53002A7C84 /* GiftSearchUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215B24BD1D246C53002A7C84 /* GiftSearchUIViewController.swift */; };
 		216DEDE01D1EBB6F00DAD99F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 216DEDDF1D1EBB6F00DAD99F /* GoogleService-Info.plist */; };
 		2179A59D1D215BE0004C6448 /* GiftDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2179A59C1D215BE0004C6448 /* GiftDetailViewController.swift */; };
@@ -30,7 +31,6 @@
 		3C42E7E21D2B6E3E00EC306B /* SearchItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42E7E11D2B6E3E00EC306B /* SearchItemDetailViewController.swift */; };
 		3C42E7E41D2B7FFD00EC306B /* SearchItemDetailTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42E7E31D2B7FFD00EC306B /* SearchItemDetailTableCell.swift */; };
 		3C42E7E61D2D8C4E00EC306B /* AddGiftTableViewContonller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42E7E51D2D8C4E00EC306B /* AddGiftTableViewContonller.swift */; };
-		3C42E7E81D2D947900EC306B /* reasonPickerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42E7E71D2D947900EC306B /* reasonPickerTableViewController.swift */; };
 		3C78D92B1D292DFF00E713BC /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C78D92A1D292DFF00E713BC /* SearchTableViewCell.swift */; };
 		3C8DE5EB1D15C90200A4DD85 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8DE5EA1D15C90200A4DD85 /* ThirdViewController.swift */; };
 		3CAA7DF11D2F39220035FF15 /* GiftTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAA7DF01D2F39220035FF15 /* GiftTableViewCell.swift */; };
@@ -56,6 +56,7 @@
 		2141AD181D171D4F00B6F5BF /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../Documents/FacebookSDKs-iOS-4.13.1/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		2141AD1D1D17228B00B6F5BF /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../Documents/FacebookSDKs-iOS-4.13.1/Bolts.framework"; sourceTree = "<group>"; };
 		2141AD1F1D17234D00B6F5BF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		2153653F1D3194D90066BFBF /* ProgressTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressTableView.swift; sourceTree = "<group>"; };
 		215B24BD1D246C53002A7C84 /* GiftSearchUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftSearchUIViewController.swift; sourceTree = "<group>"; };
 		216DEDDF1D1EBB6F00DAD99F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2179A59C1D215BE0004C6448 /* GiftDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftDetailViewController.swift; sourceTree = "<group>"; };
@@ -63,7 +64,6 @@
 		3C42E7E11D2B6E3E00EC306B /* SearchItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchItemDetailViewController.swift; sourceTree = "<group>"; };
 		3C42E7E31D2B7FFD00EC306B /* SearchItemDetailTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchItemDetailTableCell.swift; sourceTree = "<group>"; };
 		3C42E7E51D2D8C4E00EC306B /* AddGiftTableViewContonller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGiftTableViewContonller.swift; sourceTree = "<group>"; };
-		3C42E7E71D2D947900EC306B /* reasonPickerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = reasonPickerTableViewController.swift; sourceTree = "<group>"; };
 		3C78D92A1D292DFF00E713BC /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		3C8DE5EA1D15C90200A4DD85 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		3CAA7DF01D2F39220035FF15 /* GiftTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftTableViewCell.swift; sourceTree = "<group>"; };
@@ -141,17 +141,17 @@
 				2141ACF61D15C09200B6F5BF /* FirstViewController.swift */,
 				215B24BD1D246C53002A7C84 /* GiftSearchUIViewController.swift */,
 				2179A59C1D215BE0004C6448 /* GiftDetailViewController.swift */,
-				2141ACF81D15C09200B6F5BF /* SecondViewController.swift */,
-				213783221D2F2FEB00551A3A /* ContactsViewController.swift */,
-				213783201D2EFEAE00551A3A /* ContactsTableViewCell.swift */,
-				3C8DE5EA1D15C90200A4DD85 /* ThirdViewController.swift */,
-				213783241D2F6DA300551A3A /* MeTableViewController.swift */,
 				3C78D92A1D292DFF00E713BC /* SearchTableViewCell.swift */,
 				3C42E7E11D2B6E3E00EC306B /* SearchItemDetailViewController.swift */,
 				3C42E7E31D2B7FFD00EC306B /* SearchItemDetailTableCell.swift */,
 				3C42E7E51D2D8C4E00EC306B /* AddGiftTableViewContonller.swift */,
-				3C42E7E71D2D947900EC306B /* reasonPickerTableViewController.swift */,
 				3CAA7DF01D2F39220035FF15 /* GiftTableViewCell.swift */,
+				2141ACF81D15C09200B6F5BF /* SecondViewController.swift */,
+				213783221D2F2FEB00551A3A /* ContactsViewController.swift */,
+				213783201D2EFEAE00551A3A /* ContactsTableViewCell.swift */,
+				2153653F1D3194D90066BFBF /* ProgressTableView.swift */,
+				3C8DE5EA1D15C90200A4DD85 /* ThirdViewController.swift */,
+				213783241D2F6DA300551A3A /* MeTableViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -312,6 +312,7 @@
 				2141ACF91D15C09200B6F5BF /* SecondViewController.swift in Sources */,
 				3C42E7E21D2B6E3E00EC306B /* SearchItemDetailViewController.swift in Sources */,
 				2141ACF51D15C09200B6F5BF /* AppDelegate.swift in Sources */,
+				215365401D3194D90066BFBF /* ProgressTableView.swift in Sources */,
 				213783251D2F6DA400551A3A /* MeTableViewController.swift in Sources */,
 				213783231D2F2FEC00551A3A /* ContactsViewController.swift in Sources */,
 				3C42E7E01D2AEADE00EC306B /* Gift.swift in Sources */,
@@ -321,7 +322,6 @@
 				213783211D2EFEAE00551A3A /* ContactsTableViewCell.swift in Sources */,
 				2141AD201D17234D00B6F5BF /* LoginViewController.swift in Sources */,
 				3C42E7E41D2B7FFD00EC306B /* SearchItemDetailTableCell.swift in Sources */,
-				3C42E7E81D2D947900EC306B /* reasonPickerTableViewController.swift in Sources */,
 				215B24BE1D246C53002A7C84 /* GiftSearchUIViewController.swift in Sources */,
 				2141ACF71D15C09200B6F5BF /* FirstViewController.swift in Sources */,
 				3C78D92B1D292DFF00E713BC /* SearchTableViewCell.swift in Sources */,
