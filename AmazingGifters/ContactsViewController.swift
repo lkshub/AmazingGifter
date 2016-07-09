@@ -35,7 +35,7 @@ class ContactsViewController: UIViewController,UITableViewDelegate,UITableViewDa
             if let giftVC = destinationVC as? FirstViewController{
                 switch identifier {
                 case "showFriendGifts":
-                    //giftVC.user = tappedUser
+                    giftVC.user = tappedUser
                     giftVC.title = "\(tappedUser.profile!["name"] as! String)'s Gifts"
                 default:
                     break

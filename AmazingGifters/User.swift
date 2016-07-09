@@ -29,6 +29,8 @@ class User {
         return data
     }
     
+    
+
     func getProgress(ref:FIRDatabaseReference!) -> [Gift]{
         let data:[Gift] = []
         

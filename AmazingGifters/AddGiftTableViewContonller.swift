@@ -23,11 +23,12 @@ class AddGiftTableViewContonller: UITableViewController {
          datePickerChanged()
     }
     @IBOutlet weak var datePicker: UIDatePicker!
-    var reasonLabel1 = "Birthday"
+    //var reasonText = ""
     var datePickerHidden = true
     var searchItem = NSMutableDictionary()
     var picked = false
     var newGift: Gift?
+    var user: User!
     let brain = dataBrain.sharedDataBrain
     
     
@@ -42,7 +43,7 @@ class AddGiftTableViewContonller: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         datePickerChanged()
-        //reasonLabel.text = reasonLabel1
+        //reasonLabel.text = reasonText
         if(picked){
             let url = NSURL(string: searchItem["galleryURL"] as? NSString as! String)
             let data = NSData(contentsOfURL: url!)
@@ -81,6 +82,9 @@ class AddGiftTableViewContonller: UITableViewController {
         
         
     }
+    
+    
+    
     func toggleDatepicker() {
         
         datePickerHidden = !datePickerHidden
@@ -129,7 +133,8 @@ class AddGiftTableViewContonller: UITableViewController {
             print(newGift?.dueDate)
             print(newGift?.postTime)
             print(newGift?.reason)
-            brain.addNewGift(newGift!)
+            self.brain.addNewGift (newGift!, user: self.user)
+            //self.dismissViewControllerAnimated(true, completion: nil);
         }
     }
 }

@@ -26,7 +26,6 @@
 		215B24BE1D246C53002A7C84 /* GiftSearchUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215B24BD1D246C53002A7C84 /* GiftSearchUIViewController.swift */; };
 		216DEDE01D1EBB6F00DAD99F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 216DEDDF1D1EBB6F00DAD99F /* GoogleService-Info.plist */; };
 		2179A59D1D215BE0004C6448 /* GiftDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2179A59C1D215BE0004C6448 /* GiftDetailViewController.swift */; };
-		3C1F8E0D1D1A47E0003F29EB /* AddGiftUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C1F8E0C1D1A47E0003F29EB /* AddGiftUIViewController.swift */; };
 		3C42E7E01D2AEADE00EC306B /* Gift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42E7DF1D2AEADE00EC306B /* Gift.swift */; };
 		3C42E7E21D2B6E3E00EC306B /* SearchItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42E7E11D2B6E3E00EC306B /* SearchItemDetailViewController.swift */; };
 		3C42E7E41D2B7FFD00EC306B /* SearchItemDetailTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42E7E31D2B7FFD00EC306B /* SearchItemDetailTableCell.swift */; };
@@ -60,7 +59,6 @@
 		215B24BD1D246C53002A7C84 /* GiftSearchUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftSearchUIViewController.swift; sourceTree = "<group>"; };
 		216DEDDF1D1EBB6F00DAD99F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		2179A59C1D215BE0004C6448 /* GiftDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftDetailViewController.swift; sourceTree = "<group>"; };
-		3C1F8E0C1D1A47E0003F29EB /* AddGiftUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddGiftUIViewController.swift; sourceTree = "<group>"; };
 		3C42E7DF1D2AEADE00EC306B /* Gift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gift.swift; sourceTree = "<group>"; };
 		3C42E7E11D2B6E3E00EC306B /* SearchItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchItemDetailViewController.swift; sourceTree = "<group>"; };
 		3C42E7E31D2B7FFD00EC306B /* SearchItemDetailTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchItemDetailTableCell.swift; sourceTree = "<group>"; };
@@ -141,7 +139,6 @@
 			children = (
 				2141AD1F1D17234D00B6F5BF /* LoginViewController.swift */,
 				2141ACF61D15C09200B6F5BF /* FirstViewController.swift */,
-				3C1F8E0C1D1A47E0003F29EB /* AddGiftUIViewController.swift */,
 				215B24BD1D246C53002A7C84 /* GiftSearchUIViewController.swift */,
 				2179A59C1D215BE0004C6448 /* GiftDetailViewController.swift */,
 				2141ACF81D15C09200B6F5BF /* SecondViewController.swift */,
@@ -323,7 +320,6 @@
 				3CAA7DF11D2F39220035FF15 /* GiftTableViewCell.swift in Sources */,
 				213783211D2EFEAE00551A3A /* ContactsTableViewCell.swift in Sources */,
 				2141AD201D17234D00B6F5BF /* LoginViewController.swift in Sources */,
-				3C1F8E0D1D1A47E0003F29EB /* AddGiftUIViewController.swift in Sources */,
 				3C42E7E41D2B7FFD00EC306B /* SearchItemDetailTableCell.swift in Sources */,
 				3C42E7E81D2D947900EC306B /* reasonPickerTableViewController.swift in Sources */,
 				215B24BE1D246C53002A7C84 /* GiftSearchUIViewController.swift in Sources */,

@@ -92,7 +92,6 @@ class SearchItemDetailViewController: UIViewController, UITableViewDelegate, UIT
     }
     
     
-    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "pickThisSegue"
         {

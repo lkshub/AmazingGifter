@@ -271,7 +271,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xwn-WW-L9w" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3550" y="-400"/>
+            <point key="canvasLocation" x="3624" y="-405"/>
         </scene>
         <!--GiftDetails-->
         <scene sceneID="bGB-Ia-dlt">
@@ -366,7 +366,7 @@
                                         </connections>
                                     </containerView>
                                 </subviews>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="iGv-gH-1Hw" firstAttribute="centerY" secondItem="1ow-OC-EEK" secondAttribute="centerY" id="0v2-Ca-f9h"/>
                                     <constraint firstAttribute="trailing" secondItem="iGv-gH-1Hw" secondAttribute="trailing" id="3dH-La-eut"/>
@@ -453,7 +453,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="myGiftFromWishList" rowHeight="110" id="s7Y-wJ-7dQ" customClass="GiftTableViewCell" customModule="AmazingGifters" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GiftTableViewCell" rowHeight="110" id="s7Y-wJ-7dQ" customClass="GiftTableViewCell" customModule="AmazingGifters" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="600" height="110"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="s7Y-wJ-7dQ" id="e1x-no-Yzi">
@@ -545,7 +545,7 @@
                     <navigationItem key="navigationItem" title="My Gifts" id="7jk-r3-oyT">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="uzy-L4-epJ">
                             <connections>
-                                <segue destination="RbH-G7-mYf" kind="show" id="Huz-1J-HJq"/>
+                                <segue destination="RbH-G7-mYf" kind="show" identifier="toAddGift" id="Huz-1J-HJq"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -553,110 +553,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qg6-Os-Csy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1489" y="-416"/>
-        </scene>
-        <!--Add GiftUI View Controller-->
-        <scene sceneID="wnf-1u-JNN">
-            <objects>
-                <viewController id="jGu-6s-aqo" customClass="AddGiftUIViewController" customModule="AmazingGifters" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="Iqj-bH-OLA"/>
-                        <viewControllerLayoutGuide type="bottom" id="l18-J3-BVc"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="q3v-ha-gc7">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Due" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Axe-3j-U1P">
-                                <rect key="frame" x="60" y="138" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Reason" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gzh-bf-2zl">
-                                <rect key="frame" x="60" y="197" width="73" height="22"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Gift" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WC0-WW-rVR">
-                                <rect key="frame" x="60" y="262" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="khb-iU-cj2">
-                                <rect key="frame" x="149" y="258" width="152" height="30"/>
-                                <state key="normal" title="Pick up from Amazon"/>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wik-tt-kZj">
-                                <rect key="frame" x="149" y="193" width="139" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="139" id="rcj-rH-8gh"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N3d-z7-33g">
-                                <rect key="frame" x="139" y="132" width="149" height="34"/>
-                                <state key="normal" title="Pick a due date"/>
-                                <connections>
-                                    <action selector="pickDueDateValue:" destination="jGu-6s-aqo" eventType="touchUpInside" id="QUM-oI-ciK"/>
-                                </connections>
-                            </button>
-                            <datePicker contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="bSy-ja-M3M">
-                                <rect key="frame" x="32" y="174" width="300" height="200"/>
-                                <date key="date" timeIntervalSinceReferenceDate="488261686.60210103">
-                                    <!--2016-06-22 04:14:46 +0000-->
-                                </date>
-                                <connections>
-                                    <action selector="datePickerValue:" destination="jGu-6s-aqo" eventType="valueChanged" id="gaC-Qp-Mux"/>
-                                </connections>
-                            </datePicker>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Axe-3j-U1P" firstAttribute="leading" secondItem="q3v-ha-gc7" secondAttribute="leadingMargin" constant="40" id="76R-hM-yow"/>
-                            <constraint firstItem="khb-iU-cj2" firstAttribute="top" secondItem="wik-tt-kZj" secondAttribute="bottom" constant="30" id="7jC-cb-Rcv"/>
-                            <constraint firstItem="gzh-bf-2zl" firstAttribute="leading" secondItem="q3v-ha-gc7" secondAttribute="leadingMargin" constant="40" id="7sC-yM-dNs"/>
-                            <constraint firstItem="gzh-bf-2zl" firstAttribute="top" secondItem="bSy-ja-M3M" secondAttribute="bottom" constant="11" id="BXc-6R-Llg"/>
-                            <constraint firstItem="wik-tt-kZj" firstAttribute="leading" secondItem="gzh-bf-2zl" secondAttribute="trailing" constant="25" id="CKz-cP-zNy"/>
-                            <constraint firstItem="WC0-WW-rVR" firstAttribute="leading" secondItem="q3v-ha-gc7" secondAttribute="leadingMargin" constant="40" id="EY6-BN-RKy"/>
-                            <constraint firstItem="khb-iU-cj2" firstAttribute="leading" secondItem="WC0-WW-rVR" secondAttribute="trailing" constant="47" id="KcP-fh-ImY"/>
-                            <constraint firstItem="WC0-WW-rVR" firstAttribute="top" secondItem="gzh-bf-2zl" secondAttribute="bottom" constant="43" id="MYo-no-OJx"/>
-                            <constraint firstItem="khb-iU-cj2" firstAttribute="top" secondItem="wik-tt-kZj" secondAttribute="bottom" constant="35" id="N1g-Pg-8fp"/>
-                            <constraint firstItem="Axe-3j-U1P" firstAttribute="top" secondItem="Iqj-bH-OLA" secondAttribute="bottom" constant="74" id="TUP-q3-ioy"/>
-                            <constraint firstItem="bSy-ja-M3M" firstAttribute="top" secondItem="N3d-z7-33g" secondAttribute="bottom" constant="8" id="Xdz-qb-LeA"/>
-                            <constraint firstItem="bSy-ja-M3M" firstAttribute="centerX" secondItem="q3v-ha-gc7" secondAttribute="centerX" id="YwI-4g-tOF"/>
-                            <constraint firstItem="bSy-ja-M3M" firstAttribute="centerY" secondItem="q3v-ha-gc7" secondAttribute="centerY" id="ZLi-Xo-ryF"/>
-                            <constraint firstItem="N3d-z7-33g" firstAttribute="leading" secondItem="Axe-3j-U1P" secondAttribute="trailing" constant="60" id="aLk-2Z-Tmv"/>
-                            <constraint firstItem="N3d-z7-33g" firstAttribute="top" secondItem="Iqj-bH-OLA" secondAttribute="bottom" constant="68" id="clS-9i-0Vh"/>
-                            <constraint firstItem="gzh-bf-2zl" firstAttribute="top" secondItem="Axe-3j-U1P" secondAttribute="bottom" constant="38" id="edD-fZ-RTk"/>
-                            <constraint firstItem="bSy-ja-M3M" firstAttribute="top" secondItem="khb-iU-cj2" secondAttribute="bottom" constant="23" id="gRL-bp-3Yn"/>
-                            <constraint firstItem="N3d-z7-33g" firstAttribute="top" secondItem="Iqj-bH-OLA" secondAttribute="bottom" constant="68" id="lzz-jC-Uo4"/>
-                            <constraint firstItem="wik-tt-kZj" firstAttribute="top" secondItem="N3d-z7-33g" secondAttribute="bottom" constant="30" id="vdY-yb-qpT"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="ZLi-Xo-ryF"/>
-                                <exclude reference="gRL-bp-3Yn"/>
-                                <exclude reference="clS-9i-0Vh"/>
-                                <exclude reference="BXc-6R-Llg"/>
-                                <exclude reference="7jC-cb-Rcv"/>
-                            </mask>
-                        </variation>
-                    </view>
-                    <connections>
-                        <outlet property="datePicker" destination="bSy-ja-M3M" id="Obi-Km-x5n"/>
-                        <outlet property="giftLabel" destination="WC0-WW-rVR" id="e5f-Tx-sP2"/>
-                        <outlet property="pickDueDate" destination="N3d-z7-33g" id="l0e-rW-9t2"/>
-                        <outlet property="pickUpFromAmazonButton" destination="khb-iU-cj2" id="0Ng-sZ-HPf"/>
-                        <outlet property="reasonLabel" destination="gzh-bf-2zl" id="jFe-0b-gEd"/>
-                        <outlet property="reasonTextField" destination="wik-tt-kZj" id="bFj-58-yfG"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Nsm-GF-m8H" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2208" y="-416"/>
         </scene>
         <!--Add Gift Table View Contonller-->
         <scene sceneID="dlH-A0-HjS">
@@ -847,7 +743,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="v7X-MY-lpr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2194" y="338"/>
+            <point key="canvasLocation" x="2182" y="-400"/>
         </scene>
         <!--Reason Picker Table View Controller-->
         <scene sceneID="C0O-j1-cJi">
@@ -1046,7 +942,7 @@
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleAspectFit" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="static" style="grouped" separatorStyle="default" rowHeight="40" sectionHeaderHeight="5" sectionFooterHeight="5" id="y24-bP-D3Q">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="265"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="sectionIndexBackgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="TfG-ZG-oer">
@@ -1068,7 +964,7 @@
                                                     <rect key="frame" x="15" y="0.0" width="570" height="39.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1085,7 +981,7 @@
                                                     <rect key="frame" x="15" y="0.0" width="570" height="39.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1102,7 +998,7 @@
                                                     <rect key="frame" x="15" y="0.0" width="570" height="39.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1123,7 +1019,7 @@
                                                     <rect key="frame" x="15" y="0.0" width="570" height="39.5"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -1197,7 +1093,7 @@
                                                         <constraint firstAttribute="width" constant="336" id="gW2-RK-wRx"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZEO-9t-IeP">
@@ -1349,7 +1245,7 @@
         <image name="My Gifts" width="36" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Huz-1J-HJq"/>
         <segue reference="hSr-2Q-mNH"/>
+        <segue reference="Huz-1J-HJq"/>
     </inferredMetricsTieBreakers>
 </document>

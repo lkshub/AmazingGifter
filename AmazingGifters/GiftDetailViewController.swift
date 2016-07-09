@@ -23,6 +23,6 @@ class GiftDetailViewController: UIViewController {
     }
     
     @IBAction func btnCancel(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil);
+        
     }
 }
