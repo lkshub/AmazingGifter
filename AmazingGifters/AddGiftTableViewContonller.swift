@@ -133,7 +133,7 @@ class AddGiftTableViewContonller: UITableViewController {
             print(newGift?.dueDate)
             print(newGift?.postTime)
             print(newGift?.reason)
-            self.brain.addNewGift (newGift!, user: self.user)
+            self.brain.addNewGift (newGift!)
             //self.dismissViewControllerAnimated(true, completion: nil);
         }
     }
