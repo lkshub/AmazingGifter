@@ -22,6 +22,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     private var coverURL: String?
     private var pictureURL: String?
     private var myName: String?
+    //private var jumped = false
     
     //private var ref : FIRDatabaseReference!
     
@@ -68,12 +69,14 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             // should check if specific permissions missing
             if result.grantedPermissions.contains("email")
             {
+                /*
                 let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
                 FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
                     self.returnUserProfileAndJump()
                 }
+                */
                 btnFacebook.hidden = true
-                
+ 
             }
         }
     }
@@ -153,6 +156,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     
     
     private func jumpToContent()  {
+        //jumped = true
         print("jumping...")
         self.performSegueWithIdentifier("showContent", sender: self)
 

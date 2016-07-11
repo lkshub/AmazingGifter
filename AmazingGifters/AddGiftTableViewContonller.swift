@@ -126,11 +126,11 @@ class AddGiftTableViewContonller: UITableViewController {
                 reason = reasonTextField.text!
             }
             newGift = Gift(itemID: searchItem["itemId"] as! String,itemURL: searchItem["viewItemURL"] as! String,dueDate: detailLabel.text!,initiatorID: brain.uid,name: searchItem["title"] as! String,pictureURL: searchItem["galleryURL"] as! String,postTime: DateInFormat, price: searchItem["convertedCurrentPrice"] as! String,reason: reason,receiverID: brain.visitedUser.uid)
-            print("testgift")
-            print(newGift?.itemID)
-            print(newGift?.dueDate)
-            print(newGift?.postTime)
-            print(newGift?.reason)
+            //print("testgift")
+            //print(newGift?.itemID)
+            //print(newGift?.dueDate)
+            //print(newGift?.postTime)
+            //print(newGift?.reason)
             self.brain.addNewGift (newGift!)
             let n: Int! = self.navigationController?.viewControllers.count
             if let giftViewController = self.navigationController?.viewControllers[n-2] as? FirstViewController{

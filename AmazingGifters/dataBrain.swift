@@ -37,16 +37,16 @@ class dataBrain{
     func addNewGift(newGift: Gift){
         //add gift to gift list
         let giftRef = ref.child("gift")
-        let newGiftDic = ["itemID": newGift.itemID! as String,
-                          "itemURL":newGift.itemURL! as String,
-                          "dueDate": newGift.dueDate! as String,
-                          "initiatorID": newGift.initiatorID! as String,
+        let newGiftDic = ["item_id": newGift.itemID! as String,
+                          "item_url":newGift.itemURL! as String,
+                          "due_date": newGift.dueDate! as String,
+                          "initiator_id": newGift.initiatorID! as String,
                           "name": newGift.name! as String,
-                          "pictureURL": newGift.pictureURL! as String,
-                          "postTime": newGift.postTime! as String,
+                          "picture_url": newGift.pictureURL! as String,
+                          "post_time": newGift.postTime! as String,
                           "price":newGift.price! as Double,
                           "reason":newGift.reason! as String,
-                          "receiverID":newGift.receiverID! as String,
+                          "receiver_id":newGift.receiverID! as String,
                           "progress": 0.0]
         let gift1Ref = giftRef.childByAutoId()
         let autoId = gift1Ref.key

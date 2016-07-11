@@ -43,16 +43,16 @@ class FirstViewController: UITableViewController {
                     let element = rest.key
                     self.brain.ref.child("gift").child(element).observeEventType(.Value, withBlock: { (snapshot) in
                         let gift : Gift = Gift(
-                            itemID: (snapshot.value!["itemID"] as? String)!,
-                            itemURL: (snapshot.value!["itemURL"] as? String)!,
-                            dueDate: (snapshot.value!["dueDate"] as? String)!,
-                            initiatorID: (snapshot.value!["initiatorID"] as? String)!,
+                            itemID: (snapshot.value!["item_id"] as? String)!,
+                            itemURL: (snapshot.value!["item_url"] as? String)!,
+                            dueDate: (snapshot.value!["due_date"] as? String)!,
+                            initiatorID: (snapshot.value!["initiator_id"] as? String)!,
                             name: (snapshot.value!["name"] as? String)!,
-                            pictureURL: (snapshot.value!["pictureURL"] as? String)!,
-                            postTime: (snapshot.value!["postTime"] as? String)!,
+                            pictureURL: (snapshot.value!["picture_url"] as? String)!,
+                            postTime: (snapshot.value!["post_time"] as? String)!,
                             price: (snapshot.value!["price"] as? Double)!,
                             reason: (snapshot.value!["reason"] as? String)!,
-                            receiverID: (snapshot.value!["receiverID"] as? String)!,
+                            receiverID: (snapshot.value!["receiver_id"] as? String)!,
                             progress: (snapshot.value!["progress"] as? Double)!
                         )
                         self.gifts[index].append(gift)
