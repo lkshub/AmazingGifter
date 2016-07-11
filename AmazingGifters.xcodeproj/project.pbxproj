@@ -34,6 +34,7 @@
 		3C78D92B1D292DFF00E713BC /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C78D92A1D292DFF00E713BC /* SearchTableViewCell.swift */; };
 		3C8DE5EB1D15C90200A4DD85 /* ThirdViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C8DE5EA1D15C90200A4DD85 /* ThirdViewController.swift */; };
 		3CAA7DF11D2F39220035FF15 /* GiftTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAA7DF01D2F39220035FF15 /* GiftTableViewCell.swift */; };
+		3CAA7DF31D3328640035FF15 /* GiftDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3CAA7DF21D3328640035FF15 /* GiftDetailTableViewController.swift */; };
 		DE34EF8E822E7EC48545EADA /* Pods_AmazingGifters.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3DE75D10E5B3C95C5487D6E /* Pods_AmazingGifters.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,6 +68,7 @@
 		3C78D92A1D292DFF00E713BC /* SearchTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		3C8DE5EA1D15C90200A4DD85 /* ThirdViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdViewController.swift; sourceTree = "<group>"; };
 		3CAA7DF01D2F39220035FF15 /* GiftTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftTableViewCell.swift; sourceTree = "<group>"; };
+		3CAA7DF21D3328640035FF15 /* GiftDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftDetailTableViewController.swift; sourceTree = "<group>"; };
 		9F62E7B3A7BDB1DED271BB45 /* Pods-AmazingGifters.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmazingGifters.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AmazingGifters/Pods-AmazingGifters.debug.xcconfig"; sourceTree = "<group>"; };
 		C516711EECF33BE71B4D9018 /* Pods-AmazingGifters.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AmazingGifters.release.xcconfig"; path = "Pods/Target Support Files/Pods-AmazingGifters/Pods-AmazingGifters.release.xcconfig"; sourceTree = "<group>"; };
 		F3DE75D10E5B3C95C5487D6E /* Pods_AmazingGifters.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AmazingGifters.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -140,6 +142,7 @@
 				2141AD1F1D17234D00B6F5BF /* LoginViewController.swift */,
 				2141ACF61D15C09200B6F5BF /* FirstViewController.swift */,
 				3C42E7E51D2D8C4E00EC306B /* AddGiftTableViewContonller.swift */,
+				3CAA7DF21D3328640035FF15 /* GiftDetailTableViewController.swift */,
 				215B24BD1D246C53002A7C84 /* GiftSearchUIViewController.swift */,
 				2179A59C1D215BE0004C6448 /* GiftDetailViewController.swift */,
 				3C42E7E11D2B6E3E00EC306B /* SearchItemDetailViewController.swift */,
@@ -320,6 +323,7 @@
 				3C8DE5EB1D15C90200A4DD85 /* ThirdViewController.swift in Sources */,
 				3CAA7DF11D2F39220035FF15 /* GiftTableViewCell.swift in Sources */,
 				213783211D2EFEAE00551A3A /* ContactsTableViewCell.swift in Sources */,
+				3CAA7DF31D3328640035FF15 /* GiftDetailTableViewController.swift in Sources */,
 				2141AD201D17234D00B6F5BF /* LoginViewController.swift in Sources */,
 				3C42E7E41D2B7FFD00EC306B /* SearchItemDetailTableCell.swift in Sources */,
 				215B24BE1D246C53002A7C84 /* GiftSearchUIViewController.swift in Sources */,

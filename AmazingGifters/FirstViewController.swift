@@ -32,21 +32,23 @@ class FirstViewController: UITableViewController {
         brain.visitedUser  = self.user
         // Do any additional setup after loading the view, typically from a nib.
     }
-    
-    func fetchGifts(){
+        func fetchGifts(){
+        self.gifts = [[],[],[]]
         for index in [0,1]{
-            brain.ref.child("user").child(self.user.uid).child("my_gift").child(sectionKey[index]).observeEventType(.Value, withBlock: { (snapshot) in
+            brain.ref.child("user").child(self.user.uid).child("my_gift").child(sectionKey[index]).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                //self.gifts[index] = []
                 let enumerator = snapshot.children
-                
                 while let rest = enumerator.nextObject() as? FIRDataSnapshot {
-                    self.gifts[index] = []
+                    //self.gifts[index] = []
                     let element = rest.key
-                    self.brain.ref.child("gift").child(element).observeEventType(.Value, withBlock: { (snapshot) in
+                    self.brain.ref.child("gift").child(element).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+
                         let gift : Gift = Gift(
                             itemID: (snapshot.value!["item_id"] as? String)!,
                             itemURL: (snapshot.value!["item_url"] as? String)!,
                             dueDate: (snapshot.value!["due_date"] as? String)!,
                             initiatorID: (snapshot.value!["initiator_id"] as? String)!,
+
                             name: (snapshot.value!["name"] as? String)!,
                             pictureURL: (snapshot.value!["picture_url"] as? String)!,
                             postTime: (snapshot.value!["post_time"] as? String)!,
@@ -55,8 +57,21 @@ class FirstViewController: UITableViewController {
                             receiverID: (snapshot.value!["receiver_id"] as? String)!,
                             progress: (snapshot.value!["progress"] as? Double)!
                         )
-                        self.gifts[index].append(gift)
-                        //self.tableView.reloadData()
+                        
+                        let dateFormatter = NSDateFormatter()
+                        dateFormatter.dateFormat = "MM/dd/yy"
+                        let date = dateFormatter.dateFromString(gift.dueDate!)?.addDays(1)
+                        let currentDateTime = NSDate()
+                        
+                    
+
+                        if(gift.price<=gift.progress && !currentDateTime.isLessThanDate(date!)){
+                            self.gifts[2].append(gift)
+
+                        }else{
+                            self.gifts[index].append(gift)
+                                                    }
+                    //    self.tableView.reloadData()
                     })
                 }
             })
@@ -106,6 +121,48 @@ class FirstViewController: UITableViewController {
     {
         return gifts[section].count
     }
-       
+    
+
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showGiftDetailTableSegue"
+        {
+            if let destinationVC = segue.destinationViewController as? GiftDetailTableViewController {
+                if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPathForCell(cell) {
+                    destinationVC.gift = gifts[indexPath.section][indexPath.row]
+                    
+                }
+            }
+        }
+    }
+
 }
 
+
+
+extension NSDate {
+    
+    
+    func isLessThanDate(dateToCompare: NSDate) -> Bool {
+        //Declare Variables
+        var isLess = false
+        
+        //Compare Values
+        if self.compare(dateToCompare) == NSComparisonResult.OrderedAscending {
+            isLess = true
+        }
+        
+        //Return Result
+        return isLess
+    }
+    
+    
+    
+    func addDays(daysToAdd: Int) -> NSDate {
+        let secondsInDays: NSTimeInterval = Double(daysToAdd) * 60 * 60 * 24
+        let dateWithDaysAdded: NSDate = self.dateByAddingTimeInterval(secondsInDays)
+        
+        //Return Result
+        return dateWithDaysAdded
+    }
+    
+}
