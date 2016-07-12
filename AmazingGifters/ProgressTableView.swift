@@ -73,7 +73,7 @@ class ProgressTableView: UIViewController,UITableViewDelegate,UITableViewDataSou
         }
     }
     
-    func fetchGifts(){
+    func fetchGiftsOnce(){
             brain.ref.child("user").child(self.user.uid).child("gift_for_friend").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                 let enumerator = snapshot.children
                 
@@ -82,19 +82,7 @@ class ProgressTableView: UIViewController,UITableViewDelegate,UITableViewDataSou
                     self.allGifts = []
                     let element = rest.key
                     self.brain.ref.child("gift").child(element).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                        let gift : Gift = Gift(
-                            itemID: (snapshot.value!["item_id"] as? String)!,
-                            itemURL: (snapshot.value!["item_url"] as? String)!,
-                            dueDate: (snapshot.value!["due_date"] as? String)!,
-                            initiatorID: (snapshot.value!["initiator_id"] as? String)!,
-                            name: (snapshot.value!["name"] as? String)!,
-                            pictureURL: (snapshot.value!["picture_url"] as? String)!,
-                            postTime: (snapshot.value!["post_time"] as? String)!,
-                            price: (snapshot.value!["price"] as? Double)!,
-                            reason: (snapshot.value!["reason"] as? String)!,
-                            receiverID: (snapshot.value!["receiver_id"] as? String)!,
-                            progress: (snapshot.value!["progress"] as? Double)!
-                        )
+                        let gift = self.getGiftFromSnapshot(snapshot)
                         self.brain.ref.child("user").child(gift.receiverID!).child("name").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                             let name = snapshot.value as? String
                             gift.receiverName = name
@@ -106,9 +94,44 @@ class ProgressTableView: UIViewController,UITableViewDelegate,UITableViewDataSou
                 }
             })
     }
+    func fetchGifts(){
+        brain.ref.child("user").child(self.user.uid).child("gift_for_friend").observeEventType(.ChildAdded, withBlock: { (snapshot) in
+            
+            let element = snapshot.key
+            self.brain.ref.child("gift").child(element).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                let gift = self.getGiftFromSnapshot(snapshot)
+                self.brain.ref.child("user").child(gift.receiverID!).child("name").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                    let name = snapshot.value as? String
+                    gift.receiverName = name
+                    self.gifts.append(gift)
+                    self.allGifts.append(gift)
+                })
+            })
+            self.brain.ref.child("gift").child(element).observeEventType(.ChildChanged, withBlock: { (snapshot) in
+                self.fetchGiftsOnce()
+            })
+            
+        })
+    }
 
-
-
+    func getGiftFromSnapshot(snapshot:FIRDataSnapshot) -> Gift{
+        let gift : Gift = Gift(
+            itemID: (snapshot.value!["item_id"] as? String)!,
+            itemURL: (snapshot.value!["item_url"] as? String)!,
+            dueDate: (snapshot.value!["due_date"] as? String)!,
+            initiatorID: (snapshot.value!["initiator_id"] as? String)!,
+            
+            name: (snapshot.value!["name"] as? String)!,
+            pictureURL: (snapshot.value!["picture_url"] as? String)!,
+            postTime: (snapshot.value!["post_time"] as? String)!,
+            price: (snapshot.value!["price"] as? Double)!,
+            reason: (snapshot.value!["reason"] as? String)!,
+            receiverID: (snapshot.value!["receiver_id"] as? String)!,
+            progress: (snapshot.value!["progress"] as? Double)!
+        )
+        return gift
+    }
+    
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "ProgressTableViewCell"

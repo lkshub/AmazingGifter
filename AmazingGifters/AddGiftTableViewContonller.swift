@@ -134,7 +134,7 @@ class AddGiftTableViewContonller: UITableViewController {
             self.brain.addNewGift (newGift!)
             let n: Int! = self.navigationController?.viewControllers.count
             if let giftViewController = self.navigationController?.viewControllers[n-2] as? FirstViewController{
-                giftViewController.fetchGifts()
+                //giftViewController.fetchGifts()
                 self.navigationController?.popToViewController(giftViewController, animated: true)
             }
         }
