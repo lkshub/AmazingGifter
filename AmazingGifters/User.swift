@@ -23,11 +23,7 @@ class User {
         self.coverUrl = cover
     }
     
-    func getMyGifts(ref:FIRDatabaseReference!) -> [Array<[Gift]>] {
-        var data:[Array<[Gift]>] = []
-        
-        return data
-    }
+
     
     
 

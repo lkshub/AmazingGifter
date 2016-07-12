@@ -44,17 +44,17 @@ class FirstViewController: UITableViewController {
                     let element = rest.key
                     self.brain.ref.child("gift").child(element).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
 
-                        let gift = self.getGiftFromSnapshot(snapshot)
+                        let gift = self.getGiftFromSnapshot(element,snapshot:snapshot)
                         let dateFormatter = NSDateFormatter()
                         dateFormatter.dateFormat = "MM/dd/yy"
                         let date = dateFormatter.dateFromString(gift.dueDate!)?.addDays(1)
                         let currentDateTime = NSDate()
                         
                         if(gift.price<=gift.progress && !currentDateTime.isLessThanDate(date!)){
-                            self.gifts[2].append(gift)
+                            self.gifts[2].insert(gift,atIndex:0)
 
                         }else{
-                            self.gifts[index].append(gift)
+                            self.gifts[index].insert(gift,atIndex: 0)
                         }
                     })
                 }
@@ -67,32 +67,37 @@ class FirstViewController: UITableViewController {
         for index in [0,1]{
             brain.ref.child("user").child(self.user.uid).child("my_gift").child(sectionKey[index]).observeEventType(.ChildAdded, withBlock: { (snapshot) in
                 
-                    let element = snapshot.key
-                    self.brain.ref.child("gift").child(element).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                let element = snapshot.key
+                self.brain.ref.child("gift").child(element).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                    
+                    let gift = self.getGiftFromSnapshot(element,snapshot: snapshot)
+                    let dateFormatter = NSDateFormatter()
+                    dateFormatter.dateFormat = "MM/dd/yy"
+                    let date = dateFormatter.dateFromString(gift.dueDate!)?.addDays(1)
+                    let currentDateTime = NSDate()
+                    
+                    if(gift.price<=gift.progress && !currentDateTime.isLessThanDate(date!)){
+                        self.gifts[2].insert(gift,atIndex:0)
                         
-                        let gift = self.getGiftFromSnapshot(snapshot)
-                        let dateFormatter = NSDateFormatter()
-                        dateFormatter.dateFormat = "MM/dd/yy"
-                        let date = dateFormatter.dateFromString(gift.dueDate!)?.addDays(1)
-                        let currentDateTime = NSDate()
-                        
-                        if(gift.price<=gift.progress && !currentDateTime.isLessThanDate(date!)){
-                            self.gifts[2].append(gift)
-                            
-                        }else{
-                            self.gifts[index].append(gift)
-                        }
-                    })
-                    self.brain.ref.child("gift").child(element).observeEventType(.ChildChanged, withBlock: { (snapshot) in
-                        self.fetchGiftsOnce()
-                    })
+                    }else{
+                        self.gifts[index].insert(gift,atIndex: 0)
+                    }
+                })
+                self.brain.ref.child("gift").child(element).observeEventType(.ChildChanged, withBlock: { (snapshot) in
+                    self.fetchGiftsOnce()
+                })
                 
+                
+            })
+            brain.ref.child("user").child(self.user.uid).child("my_gift").child(sectionKey[index]).observeEventType(.ChildRemoved, withBlock: { (snapshot) in
+                self.fetchGiftsOnce()
             })
         }
 
     }
 
-    func getGiftFromSnapshot(snapshot:FIRDataSnapshot) -> Gift{
+    func getGiftFromSnapshot(auto_id:String,snapshot:FIRDataSnapshot) -> Gift{
+        print(snapshot)
         let gift : Gift = Gift(
             itemID: (snapshot.value!["item_id"] as? String)!,
             itemURL: (snapshot.value!["item_url"] as? String)!,
@@ -107,6 +112,7 @@ class FirstViewController: UITableViewController {
             receiverID: (snapshot.value!["receiver_id"] as? String)!,
             progress: (snapshot.value!["progress"] as? Double)!
         )
+        gift.auto_id  = auto_id
         return gift
     }
     override func didReceiveMemoryWarning() {
@@ -161,7 +167,7 @@ class FirstViewController: UITableViewController {
             if let destinationVC = segue.destinationViewController as? GiftDetailTableViewController {
                 if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPathForCell(cell) {
                     destinationVC.gift = gifts[indexPath.section][indexPath.row]
-                    
+                    cell.selected = false
                 }
             }
         }

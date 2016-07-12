@@ -93,15 +93,8 @@ class GiftDetailTableViewController: UITableViewController {
             }
             
         })
-        let n: Int! = self.navigationController?.viewControllers.count
-        if let giftViewController = self.navigationController?.viewControllers[n-2] as? FirstViewController{
-            //giftViewController.fetchGifts()
-            self.navigationController?.popToViewController(giftViewController, animated: true)
-        }
-        if let secondViewController = self.navigationController?.viewControllers[n-2] as? SecondViewController{
-            self.navigationController?.popToViewController(secondViewController, animated: true)
-            
-        }
+        goBack()
+        
 
         /*
         giftRef.queryOrderedByChild("progress").observeEventType(.ChildAdded, withBlock: { snapshot in
@@ -117,6 +110,38 @@ class GiftDetailTableViewController: UITableViewController {
             }
         })
  */
+    }
+    override func tableView(tableView: UITableView,
+                   didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        print(indexPath.section)
+        print(indexPath.row)
+        if(indexPath.section == 0 && indexPath.row == 10){
+            if(self.gift?.progress == 0){
+                deleteGift(self.gift!)
+                goBack()
+            }
+        }
+    }
+    func deleteGift(gift:Gift)  {
+        brain.ref.child("gift").child(self.gift!.auto_id!).removeValue()
+        if(self.gift!.receiverID! == self.gift!.initiatorID!){
+            brain.ref.child("user").child(brain.visitedUser!.uid).child("my_gift").child("wish_list").child(self.gift!.auto_id!).removeValue()
+        }else{
+            brain.ref.child("user").child(brain.visitedUser!.uid).child("my_gift").child("from_friends").child(self.gift!.auto_id!).removeValue()
+            brain.ref.child("user").child((self.gift?.initiatorID)!).child("gift_for_friend").child(self.gift!.auto_id!).removeValue()
+        }
+    }
+    func goBack(){
+        let n: Int! = self.navigationController?.viewControllers.count
+        if let giftViewController = self.navigationController?.viewControllers[n-2] as? FirstViewController{
+            //giftViewController.fetchGifts()
+            self.navigationController?.popToViewController(giftViewController, animated: true)
+        }
+        if let secondViewController = self.navigationController?.viewControllers[n-2] as? SecondViewController{
+            self.navigationController?.popToViewController(secondViewController, animated: true)
+            
+        }
     }
 
 }
