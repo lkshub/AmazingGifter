@@ -58,7 +58,7 @@ class GiftDetailTableViewController: UITableViewController {
         reasonLabel.text = gift?.reason
         dueDateLabel.text = gift?.dueDate
         progressView.transform = CGAffineTransformMakeScale( 1, 3)
-        progressView.setProgress(Float((gift?.progress)!/(gift?.price)!), animated: false)
+        progressView.setProgress(Float((gift?.progress)!/(gift?.price)!), animated: true)
     }
 
  
@@ -88,11 +88,21 @@ class GiftDetailTableViewController: UITableViewController {
                     let newProgress = Float(contribution + progress)
                     giftRef.child(snapshot.key).child("progress").setValue(newProgress)
                     self.itemProgressLabel.text = String(newProgress) + "/" + String(self.gift!.price!)
-                    self.progressView.setProgress(newProgress/Float(self.gift!.price!), animated: true)
+                    self.progressView.setProgress(newProgress/Float(self.gift!.price!), animated: false)
                 }
             }
             
         })
+        let n: Int! = self.navigationController?.viewControllers.count
+        if let giftViewController = self.navigationController?.viewControllers[n-2] as? FirstViewController{
+            //giftViewController.fetchGifts()
+            self.navigationController?.popToViewController(giftViewController, animated: true)
+        }
+        if let secondViewController = self.navigationController?.viewControllers[n-2] as? SecondViewController{
+            self.navigationController?.popToViewController(secondViewController, animated: true)
+            
+        }
+
         /*
         giftRef.queryOrderedByChild("progress").observeEventType(.ChildAdded, withBlock: { snapshot in
              print(snapshot.childrenCount)

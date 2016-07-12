@@ -51,7 +51,7 @@ class dataBrain{
         let gift1Ref = giftRef.childByAutoId()
         let autoId = gift1Ref.key
         gift1Ref.setValue(newGiftDic)
-        
+        newGift.auto_id = autoId
         //add gift to user's my_wish_list
         if self.user.uid == visitedUser.uid{
             ref.child("user").child(self.user.uid).child("my_gift").child("wish_list").observeSingleEventOfType(.Value, withBlock: { (snapshot) in

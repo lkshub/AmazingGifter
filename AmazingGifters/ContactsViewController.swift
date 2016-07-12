@@ -45,7 +45,7 @@ class ContactsViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     private func searchForContacts(){
-        var contacts = [User]()
+        var contacts : [User] = []
         if let text = searchText where !text.isEmpty{
             for user in brain.user.contactsList{
                 if let profile = user.profile{
@@ -75,7 +75,7 @@ class ContactsViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     private func allContacts()->[User]{
-        var contacts = [User]()
+        var contacts : [User] = []
         for contact in brain.user.contactsList{
             if contact.profile != nil{
                 contacts.append(contact)

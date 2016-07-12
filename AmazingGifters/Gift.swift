@@ -34,6 +34,7 @@ class Gift{
     var receiverID: String?
     var progress: Double?
     var receiverName : String?
+    var auto_id:String?
     
     init(dic: NSDictionary){
        

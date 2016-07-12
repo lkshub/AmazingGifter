@@ -32,6 +32,17 @@ class ProgressTableView: UIViewController,UITableViewDelegate,UITableViewDataSou
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showProgressDetailTableSegue"
+        {
+            if let destinationVC = segue.destinationViewController as? GiftDetailTableViewController {
+                if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPathForCell(cell) {
+                    destinationVC.gift = gifts[indexPath.row]
+                    
+                }
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,14 +74,14 @@ class ProgressTableView: UIViewController,UITableViewDelegate,UITableViewDataSou
     }
     
     func fetchGifts(){
-            brain.ref.child("user").child(self.user.uid).child("gift_for_friend").observeEventType(.Value, withBlock: { (snapshot) in
+            brain.ref.child("user").child(self.user.uid).child("gift_for_friend").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                 let enumerator = snapshot.children
                 
                 while let rest = enumerator.nextObject() as? FIRDataSnapshot {
                     self.gifts = []
                     self.allGifts = []
                     let element = rest.key
-                    self.brain.ref.child("gift").child(element).observeEventType(.Value, withBlock: { (snapshot) in
+                    self.brain.ref.child("gift").child(element).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                         let gift : Gift = Gift(
                             itemID: (snapshot.value!["item_id"] as? String)!,
                             itemURL: (snapshot.value!["item_url"] as? String)!,

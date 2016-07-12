@@ -28,55 +28,106 @@ class FirstViewController: UITableViewController {
         if user == nil{
             user = brain.user
         }
-        fetchGifts()
         brain.visitedUser  = self.user
+        fetchGifts()
+        //addProgressLisenter()
         // Do any additional setup after loading the view, typically from a nib.
     }
-        func fetchGifts(){
+    
+    func fetchGiftsOnce(){
         self.gifts = [[],[],[]]
         for index in [0,1]{
             brain.ref.child("user").child(self.user.uid).child("my_gift").child(sectionKey[index]).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                 //self.gifts[index] = []
                 let enumerator = snapshot.children
                 while let rest = enumerator.nextObject() as? FIRDataSnapshot {
-                    //self.gifts[index] = []
                     let element = rest.key
                     self.brain.ref.child("gift").child(element).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
 
-                        let gift : Gift = Gift(
-                            itemID: (snapshot.value!["item_id"] as? String)!,
-                            itemURL: (snapshot.value!["item_url"] as? String)!,
-                            dueDate: (snapshot.value!["due_date"] as? String)!,
-                            initiatorID: (snapshot.value!["initiator_id"] as? String)!,
-
-                            name: (snapshot.value!["name"] as? String)!,
-                            pictureURL: (snapshot.value!["picture_url"] as? String)!,
-                            postTime: (snapshot.value!["post_time"] as? String)!,
-                            price: (snapshot.value!["price"] as? Double)!,
-                            reason: (snapshot.value!["reason"] as? String)!,
-                            receiverID: (snapshot.value!["receiver_id"] as? String)!,
-                            progress: (snapshot.value!["progress"] as? Double)!
-                        )
-                        
+                        let gift = self.getGiftFromSnapshot(snapshot)
                         let dateFormatter = NSDateFormatter()
                         dateFormatter.dateFormat = "MM/dd/yy"
                         let date = dateFormatter.dateFromString(gift.dueDate!)?.addDays(1)
                         let currentDateTime = NSDate()
                         
-                    
-
                         if(gift.price<=gift.progress && !currentDateTime.isLessThanDate(date!)){
                             self.gifts[2].append(gift)
 
                         }else{
                             self.gifts[index].append(gift)
-                                                    }
-                    //    self.tableView.reloadData()
+                        }
                     })
                 }
             })
         }
     }
+    
+    func fetchGifts(){
+        self.gifts = [[],[],[]]
+        for index in [0,1]{
+            brain.ref.child("user").child(self.user.uid).child("my_gift").child(sectionKey[index]).observeEventType(.Value, withBlock: { (snapshot) in
+                self.gifts[index] = []
+                let enumerator = snapshot.children
+                while let rest = enumerator.nextObject() as? FIRDataSnapshot {
+                    let element = rest.key
+                    self.brain.ref.child("gift").child(element).observeEventType(.Value, withBlock: { (snapshot) in
+                        
+                        let gift = self.getGiftFromSnapshot(snapshot)
+                        let dateFormatter = NSDateFormatter()
+                        dateFormatter.dateFormat = "MM/dd/yy"
+                        let date = dateFormatter.dateFromString(gift.dueDate!)?.addDays(1)
+                        let currentDateTime = NSDate()
+                        
+                        if(gift.price<=gift.progress && !currentDateTime.isLessThanDate(date!)){
+                            self.gifts[2].append(gift)
+                            
+                        }else{
+                            self.gifts[index].append(gift)
+                        }
+                    })
+                }
+            })
+        }
+
+    }
+    func getGiftFromSnapshot(snapshot:FIRDataSnapshot) -> Gift{
+        let gift : Gift = Gift(
+            itemID: (snapshot.value!["item_id"] as? String)!,
+            itemURL: (snapshot.value!["item_url"] as? String)!,
+            dueDate: (snapshot.value!["due_date"] as? String)!,
+            initiatorID: (snapshot.value!["initiator_id"] as? String)!,
+            
+            name: (snapshot.value!["name"] as? String)!,
+            pictureURL: (snapshot.value!["picture_url"] as? String)!,
+            postTime: (snapshot.value!["post_time"] as? String)!,
+            price: (snapshot.value!["price"] as? Double)!,
+            reason: (snapshot.value!["reason"] as? String)!,
+            receiverID: (snapshot.value!["receiver_id"] as? String)!,
+            progress: (snapshot.value!["progress"] as? Double)!
+        )
+        return gift
+    }
+    /*
+    
+    func addProgressLisenter(){
+        for index in [0,1]{
+            brain.ref.child("user").child(self.user.uid).child("my_gift").child(sectionKey[index]).observeEventType(.ChildChanged, withBlock: { (snapshot) in
+                print("gift added")
+                let element = snapshot.key
+                //print("gift did added")
+                self.brain.ref.child("gift").child(element).observeEventType(.ChildChanged, withBlock: { (snapshot) in
+                        print("childChanged")
+                        self.fetchGifts()
+                        
+                })
+            })
+            brain.ref.child("user").child(self.user.uid).child("my_gift").child(sectionKey[index]).observeEventType(.ChildRemoved, withBlock: { (snapshot) in
+                self.fetchGifts()
+            })
+
+        }
+    }
+    */
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
