@@ -75,26 +75,23 @@ class GiftDetailTableViewController: UITableViewController {
         return tableView.sectionFooterHeight
     }
     func contribute(){
-        print("test")
-        let giftRef = brain.ref.child("gift")
-        giftRef.queryOrderedByValue().observeEventType(.ChildAdded, withBlock: { snapshot in
-        
-            
-            if (snapshot.value!["name"] as? String == self.gift?.name && snapshot.value!["post_time"] as? String == self.gift?.postTime && snapshot.value!["initiator_id"] as? String == self.gift?.initiatorID){
-                print(snapshot.key)
-                if(!(self.contributrTextField.text?.isEmpty)!){
-                    let contribution = Float(self.contributrTextField.text!)!
+        let autoId = self.gift!.auto_id!
+        if(!(self.contributrTextField.text?.isEmpty)!){
+            let contribution = Float(self.contributrTextField.text!)!
+            if contribution > 0{
+                self.brain.ref.child("gift").child(autoId).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
                     let progress = snapshot.value!["progress"] as! Float
                     let newProgress = Float(contribution + progress)
-                    giftRef.child(snapshot.key).child("progress").setValue(newProgress)
+                    self.brain.ref.child("gift").child(autoId).child("progress").setValue(newProgress)
                     self.itemProgressLabel.text = String(newProgress) + "/" + String(self.gift!.price!)
                     self.progressView.setProgress(newProgress/Float(self.gift!.price!), animated: false)
-                }
+
+                })
             }
-            
-        })
-        let autoId = self.gift?.auto_id
-        brain.ref.child("user").child(self.brain.user.uid).child("my_gift").child("gift_for_friends").updateChildValues([autoId! : true])
+        }
+        if (brain.user.uid != brain.visitedUser.uid){
+            brain.ref.child("user").child(self.brain.user.uid).child("gift_for_friend").updateChildValues([autoId : true])
+        }
         goBack()
         
 
