@@ -169,6 +169,13 @@ class FirstViewController: UITableViewController {
                     destinationVC.gift = gifts[indexPath.section][indexPath.row]
                     cell.selected = false
                 }
+                brain.visitedUser = self.user
+            }
+        }
+        if segue.identifier == "toAddGift"
+        {
+            if segue.destinationViewController is AddGiftTableViewContonller{
+                brain.visitedUser = self.user
             }
         }
     }

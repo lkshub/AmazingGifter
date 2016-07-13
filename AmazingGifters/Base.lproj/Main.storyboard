@@ -1587,7 +1587,7 @@
         <image name="My Gifts" width="36" height="36"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="B6g-qr-PZ3"/>
         <segue reference="dim-9z-gtX"/>
+        <segue reference="B6g-qr-PZ3"/>
     </inferredMetricsTieBreakers>
 </document>

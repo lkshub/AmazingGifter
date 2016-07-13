@@ -93,6 +93,8 @@ class GiftDetailTableViewController: UITableViewController {
             }
             
         })
+        let autoId = self.gift?.auto_id
+        brain.ref.child("user").child(self.brain.user.uid).child("my_gift").child("gift_for_friends").updateChildValues([autoId! : true])
         goBack()
         
 
