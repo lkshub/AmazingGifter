@@ -11,6 +11,7 @@ import UIKit
 import Firebase
 import FBSDKShareKit
 import FBSDKCoreKit
+import FBSDKLoginKit
 //import Social
 
 class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate, PayPalFuturePaymentDelegate, PayPalProfileSharingDelegate{
@@ -246,7 +247,27 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
         progressView.transform = CGAffineTransformMakeScale( 1, 3)
         progressView.setProgress(Float((gift?.progress)!/(gift?.price)!), animated: true)
     }
+    
+    @IBAction func shareBtnClicked(sender: AnyObject) {
+        let loginResult: FBSDKAccessToken = FBSDKAccessToken.currentAccessToken()
+        if !loginResult.permissions.contains("public_profile")
+        {
+            let manager : FBSDKLoginManager = FBSDKLoginManager()
+            manager.logInWithPublishPermissions(["public_profile"], handler: { (result, error) in
+                if (error != nil) {
+                    print(error.localizedDescription)
+                }
+                else if result.isCancelled {
+                    // Handle cancellations
+                }
+                else {
+                }
 
+            })
+            
+        }
+        
+    }
  
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {

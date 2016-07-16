@@ -34,7 +34,7 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             btnFacebook.hidden = true
         }else{
             btnFacebook.readPermissions = ["public_profile", "email", "user_friends","user_birthday"]
-            btnFacebook.publishPermissions = ["publish_actions"]
+            //btnFacebook.publishPermissions = ["publish_actions"]
             btnFacebook.delegate = self
 
         }
