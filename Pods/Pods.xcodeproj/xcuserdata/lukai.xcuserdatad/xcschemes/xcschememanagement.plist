@@ -16,10 +16,25 @@
 			<key>orderHint</key>
 			<integer>1</integer>
 		</dict>
+		<key>Stripe.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>3</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>7B30587B90C42A2DE968DE343376D9D0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>8214F9DDDAB97A9250C4E5130CCEDEFC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C93103AAFDF3DFA2956FFA3E6F0D0BB6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

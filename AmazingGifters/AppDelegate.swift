@@ -9,8 +9,10 @@
 import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
+import FBSDKShareKit
 import Firebase
 import Stripe
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

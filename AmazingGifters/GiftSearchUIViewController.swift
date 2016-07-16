@@ -124,11 +124,6 @@ class GiftSearchUIViewController: UIViewController,NSXMLParserDelegate,UITableVi
     
     
     
-    @IBAction func search(sender: UIButton) {
-        self.tableView.reloadData()
-    }
-    
-    
     /*
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
@@ -203,6 +198,7 @@ class GiftSearchUIViewController: UIViewController,NSXMLParserDelegate,UITableVi
         })
 
         dataTask.resume()
+        self.searchBar.endEditing(true)
     }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "ShowItemDetailSegue"

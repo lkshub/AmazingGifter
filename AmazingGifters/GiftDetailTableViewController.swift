@@ -9,17 +9,15 @@
 
 import UIKit
 import Firebase
+import FBSDKShareKit
+import FBSDKCoreKit
+//import Social
+
 class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate, PayPalFuturePaymentDelegate, PayPalProfileSharingDelegate{
     
     //////////////////////paypal testing code
     
-    var environment:String = PayPalEnvironmentNoNetwork {
-        willSet(newEnvironment) {
-            if (newEnvironment != environment) {
-                PayPalMobile.preconnectWithEnvironment(newEnvironment)
-            }
-        }
-    }
+
     
     #if HAS_CARDIO
     // You should use the PayPal-iOS-SDK+card-Sample-App target to enable this setting.
@@ -193,12 +191,31 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
     
     @IBOutlet weak var receiverLabel: UILabel!
     @IBOutlet weak var initiatorLabel: UILabel!
+    
+    @IBOutlet weak var facebookShare: FBSDKShareButton!
+    /*
+    @IBAction func facebookShareBtn(sender: AnyObject) {
+                FBSDKShareDialog.showFromViewController(self, withContent: content, delegate: nil)
+    }
+ */
+    var environment:String = PayPalEnvironmentNoNetwork {
+        willSet(newEnvironment) {
+            if (newEnvironment != environment) {
+                PayPalMobile.preconnectWithEnvironment(newEnvironment)
+            }
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
+        let content: FBSDKShareLinkContent = FBSDKShareLinkContent()
+        //content.contentURL = NSURL(string: "https://www.facebook.com/FacebookDevelopers")
+        content.contentTitle = "An amazing gift for \(self.gift?.receiverName)"
+        content.contentDescription = self.gift?.name
+        content.imageURL = NSURL(string: (self.gift?.pictureURL)!)
+        facebookShare.shareContent = content
+        //facebookShare.
 //paypal testing
-        
         
         payPalConfig.acceptCreditCards = acceptCreditCards;
         payPalConfig.merchantName = "AmazingGifter Testing."
