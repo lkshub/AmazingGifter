@@ -22,6 +22,7 @@ class GiftSearchUIViewController: UIViewController,NSXMLParserDelegate,UITableVi
     var itemId = NSMutableString()
     var viewItemURL = NSMutableString()
     var responseString : NSString = ""
+    var category = NSMutableString()
   
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var tableView: UITableView!
@@ -68,9 +69,11 @@ class GiftSearchUIViewController: UIViewController,NSXMLParserDelegate,UITableVi
             itemId = ""
             viewItemURL = NSMutableString()
             viewItemURL = ""
+            category = NSMutableString()
+            category = ""
         }
     }
-    func parser(parser: NSXMLParser!, foundCharacters string: String!)
+    func parser(parser: NSXMLParser, foundCharacters string: String)
     {
         if element.isEqualToString("title") {
             title1.appendString(string)
@@ -82,9 +85,11 @@ class GiftSearchUIViewController: UIViewController,NSXMLParserDelegate,UITableVi
             itemId.appendString(string)
         }else if element.isEqualToString("viewItemURL") {
             viewItemURL.appendString(string)
+        }else if element.isEqualToString("categoryName"){
+            category.appendString(string)
         }
     }
-    func parser(parser: NSXMLParser!, didEndElement elementName: String!, namespaceURI: String!, qualifiedName qName: String!)
+    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
     {
         if (elementName as NSString).isEqualToString("item") {
             if !title1.isEqual(nil) {
@@ -101,6 +106,10 @@ class GiftSearchUIViewController: UIViewController,NSXMLParserDelegate,UITableVi
             }
             if !viewItemURL.isEqual(nil) {
                 elements.setObject(viewItemURL, forKey: "viewItemURL")
+            }
+            if !category.isEqual(nil) {
+                elements.setObject(category, forKey: "category")
+                print(category)
             }
             posts.addObject(elements)
         }
@@ -182,9 +191,9 @@ class GiftSearchUIViewController: UIViewController,NSXMLParserDelegate,UITableVi
             if (error != nil) {
                 print(error)
             } else {
-                let httpResponse = response as? NSHTTPURLResponse
+                _ = response as? NSHTTPURLResponse
                 self.responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)!
-                print("responseString = \(self.responseString)")
+                //print("responseString = \(self.responseString)")
                 self.beginParsing()
                 self.tableView.reloadData()
                 dispatch_async(dispatch_get_main_queue(), { () -> Void in

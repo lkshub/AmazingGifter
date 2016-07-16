@@ -82,14 +82,15 @@ class ProgressTableView: UIViewController,UITableViewDelegate,UITableViewDataSou
                     self.allGifts = []
                     let element = rest.key
                     self.brain.ref.child("gift").child(element).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                        let gift = self.getGiftFromSnapshot(element,snapshot:snapshot)
-                        self.brain.ref.child("user").child(gift.receiverID!).child("name").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                            let name = snapshot.value as? String
-                            gift.receiverName = name
-                            self.gifts.insert(gift, atIndex: 0)
-                            self.allGifts.insert(gift, atIndex: 0)
-                        })
-                        //self.tableView.reloadData()
+                        if !(snapshot.value is NSNull) {
+                            let gift = self.getGiftFromSnapshot(element,snapshot:snapshot)
+                            self.brain.ref.child("user").child(gift.receiverID!).child("name").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                                let name = snapshot.value as? String
+                                gift.receiverName = name
+                                self.gifts.insert(gift, atIndex: 0)
+                                self.allGifts.insert(gift, atIndex: 0)
+                            })
+                        }
                     })
                 }
             })
@@ -99,13 +100,16 @@ class ProgressTableView: UIViewController,UITableViewDelegate,UITableViewDataSou
             
             let element = snapshot.key
             self.brain.ref.child("gift").child(element).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                let gift = self.getGiftFromSnapshot(element,snapshot:snapshot)
-                self.brain.ref.child("user").child(gift.receiverID!).child("name").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                    let name = snapshot.value as? String
-                    gift.receiverName = name
-                    self.gifts.insert(gift, atIndex: 0)
-                    self.allGifts.insert(gift, atIndex: 0)
-                })
+                //print(snapshot)
+                if !(snapshot.value is NSNull) {
+                    let gift = self.getGiftFromSnapshot(element,snapshot:snapshot)
+                    self.brain.ref.child("user").child(gift.receiverID!).child("name").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                        let name = snapshot.value as? String
+                        gift.receiverName = name
+                        self.gifts.insert(gift, atIndex: 0)
+                        self.allGifts.insert(gift, atIndex: 0)
+                    })
+                }
             })
             self.brain.ref.child("gift").child(element).observeEventType(.ChildChanged, withBlock: { (snapshot) in
                 self.fetchGiftsOnce()
@@ -123,14 +127,15 @@ class ProgressTableView: UIViewController,UITableViewDelegate,UITableViewDataSou
             itemURL: (snapshot.value!["item_url"] as? String)!,
             dueDate: (snapshot.value!["due_date"] as? String)!,
             initiatorID: (snapshot.value!["initiator_id"] as? String)!,
-            
             name: (snapshot.value!["name"] as? String)!,
             pictureURL: (snapshot.value!["picture_url"] as? String)!,
             postTime: (snapshot.value!["post_time"] as? String)!,
             price: (snapshot.value!["price"] as? Double)!,
             reason: (snapshot.value!["reason"] as? String)!,
             receiverID: (snapshot.value!["receiver_id"] as? String)!,
-            progress: (snapshot.value!["progress"] as? Double)!
+            progress: (snapshot.value!["progress"] as? Double)!,
+            category: (snapshot.value!["category"] as? String)!,
+            hidden: false
         )
         gift.auto_id = auto_id
         return gift

@@ -95,20 +95,6 @@ class GiftDetailTableViewController: UITableViewController {
         goBack()
         
 
-        /*
-        giftRef.queryOrderedByChild("progress").observeEventType(.ChildAdded, withBlock: { snapshot in
-             print(snapshot.childrenCount)
-             let enumerator = snapshot.children
-             while let rest = enumerator.nextObject() as? FIRDataSnapshot {
-                print(rest.key)
-                print("!!!!!")
-                              if (rest.value!["name"] as? String == self.gift?.name && rest.value!["postTime"] as? String == self.gift?.postTime && rest.value!["initiatorID"] as? String == self.gift?.initiatorID){
-                    print("Found")
-                    rest.setValue(Float(self.contributrTextField.text!), forKey: "progress")
-                }
-            }
-        })
- */
     }
     override func tableView(tableView: UITableView,
                    didSelectRowAtIndexPath indexPath: NSIndexPath) {

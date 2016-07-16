@@ -35,6 +35,8 @@ class Gift{
     var progress: Double?
     var receiverName : String?
     var auto_id:String?
+    var category:String?
+    var hidden:Bool?
     
     init(dic: NSDictionary){
        
@@ -51,7 +53,7 @@ class Gift{
             self.progress = dic["progress"] as? Double
     
     }
-    init(itemID: String,itemURL: String, dueDate: String,initiatorID :String, name:String, pictureURL:String, postTime:String, price:String, reason:String, receiverID :String) {
+    init(itemID: String,itemURL: String, dueDate: String,initiatorID :String, name:String, pictureURL:String, postTime:String, price:String, reason:String, receiverID :String,category:String) {
         self.itemID = itemID
         self.itemURL = itemURL
         self.dueDate = dueDate
@@ -63,8 +65,9 @@ class Gift{
         self.reason = reason
         self.receiverID = receiverID
         self.progress = 0.0
+        self.category = category
     }
-    init(itemID: String,itemURL: String, dueDate: String,initiatorID :String, name:String, pictureURL:String, postTime:String, price:Double, reason:String, receiverID :String, progress: Double) {
+    init(itemID: String,itemURL: String, dueDate: String,initiatorID :String, name:String, pictureURL:String, postTime:String, price:Double, reason:String, receiverID :String, progress: Double,category:String,hidden:Bool) {
         self.itemID = itemID
         self.itemURL = itemURL
         self.dueDate = dueDate
@@ -76,6 +79,8 @@ class Gift{
         self.reason = reason
         self.receiverID = receiverID
         self.progress = progress
+        self.category = category
+        self.hidden = hidden
     }
     /*
     func createNewGift(ref:FIRDatabaseReference) {

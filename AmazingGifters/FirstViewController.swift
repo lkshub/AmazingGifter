@@ -12,9 +12,6 @@ class FirstViewController: UITableViewController {
     
     let sectionName = ["Wish List", "From Friends", "Received"]
     let sectionKey = ["wish_list","from_friends"]
-    //var section0 :[String] = []
-    //var section0Gift :[Gift] = []
-    //var section1 :[String] = []
     let brain = dataBrain.sharedDataBrain
     var gifts:[Array<Gift>] = [[],[],[]] {
         didSet{
@@ -28,12 +25,12 @@ class FirstViewController: UITableViewController {
         if user == nil{
             user = brain.user
         }
-        brain.visitedUser  = self.user
         fetchGifts()
+        //brain.visitedUser = self.user
         //addProgressLisenter()
         // Do any additional setup after loading the view, typically from a nib.
     }
-    
+
     func fetchGiftsOnce(){
         self.gifts = [[],[],[]]
         for index in [0,1]{
@@ -43,18 +40,20 @@ class FirstViewController: UITableViewController {
                 while let rest = enumerator.nextObject() as? FIRDataSnapshot {
                     let element = rest.key
                     self.brain.ref.child("gift").child(element).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-
-                        let gift = self.getGiftFromSnapshot(element,snapshot:snapshot)
-                        let dateFormatter = NSDateFormatter()
-                        dateFormatter.dateFormat = "MM/dd/yy"
-                        let date = dateFormatter.dateFromString(gift.dueDate!)?.addDays(1)
-                        let currentDateTime = NSDate()
-                        
-                        if(gift.price<=gift.progress && !currentDateTime.isLessThanDate(date!)){
-                            self.gifts[2].insert(gift,atIndex:0)
-
-                        }else{
-                            self.gifts[index].insert(gift,atIndex: 0)
+                        if !(snapshot.value is NSNull) {
+                            let gift = self.getGiftFromSnapshot(element,snapshot:snapshot,hidden: index == 1 && self.user.uid == self.brain.user.uid)
+                            let dateFormatter = NSDateFormatter()
+                            dateFormatter.dateFormat = "MM/dd/yy"
+                            let date = dateFormatter.dateFromString(gift.dueDate!)?.addDays(1)
+                            let currentDateTime = NSDate()
+                            
+                            if(gift.price<=gift.progress && !currentDateTime.isLessThanDate(date!)){
+                                gift.hidden = false
+                                self.gifts[2].insert(gift,atIndex:0)
+                                
+                            }else{
+                                self.gifts[index].insert(gift,atIndex: 0)
+                            }
                         }
                     })
                 }
@@ -69,18 +68,20 @@ class FirstViewController: UITableViewController {
                 
                 let element = snapshot.key
                 self.brain.ref.child("gift").child(element).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                    
-                    let gift = self.getGiftFromSnapshot(element,snapshot: snapshot)
-                    let dateFormatter = NSDateFormatter()
-                    dateFormatter.dateFormat = "MM/dd/yy"
-                    let date = dateFormatter.dateFromString(gift.dueDate!)?.addDays(1)
-                    let currentDateTime = NSDate()
-                    
-                    if(gift.price<=gift.progress && !currentDateTime.isLessThanDate(date!)){
-                        self.gifts[2].insert(gift,atIndex:0)
+                    if !(snapshot.value is NSNull) {
+                        let gift = self.getGiftFromSnapshot(element,snapshot: snapshot,hidden: index == 1 && self.user.uid == self.brain.user.uid)
+                        let dateFormatter = NSDateFormatter()
+                        dateFormatter.dateFormat = "MM/dd/yy"
+                        let date = dateFormatter.dateFromString(gift.dueDate!)?.addDays(1)
+                        let currentDateTime = NSDate()
                         
-                    }else{
-                        self.gifts[index].insert(gift,atIndex: 0)
+                        if(gift.price<=gift.progress && !currentDateTime.isLessThanDate(date!)){
+                            gift.hidden = false
+                            self.gifts[2].insert(gift,atIndex:0)
+                            
+                        }else{
+                            self.gifts[index].insert(gift,atIndex: 0)
+                        }
                     }
                 })
                 self.brain.ref.child("gift").child(element).observeEventType(.ChildChanged, withBlock: { (snapshot) in
@@ -96,21 +97,22 @@ class FirstViewController: UITableViewController {
 
     }
 
-    func getGiftFromSnapshot(auto_id:String,snapshot:FIRDataSnapshot) -> Gift{
+    func getGiftFromSnapshot(auto_id:String,snapshot:FIRDataSnapshot,hidden:Bool) -> Gift{
         print(snapshot)
         let gift : Gift = Gift(
             itemID: (snapshot.value!["item_id"] as? String)!,
             itemURL: (snapshot.value!["item_url"] as? String)!,
             dueDate: (snapshot.value!["due_date"] as? String)!,
             initiatorID: (snapshot.value!["initiator_id"] as? String)!,
-            
             name: (snapshot.value!["name"] as? String)!,
             pictureURL: (snapshot.value!["picture_url"] as? String)!,
             postTime: (snapshot.value!["post_time"] as? String)!,
             price: (snapshot.value!["price"] as? Double)!,
             reason: (snapshot.value!["reason"] as? String)!,
             receiverID: (snapshot.value!["receiver_id"] as? String)!,
-            progress: (snapshot.value!["progress"] as? Double)!
+            progress: (snapshot.value!["progress"] as? Double)!,
+            category: (snapshot.value!["category"] as? String)!,
+            hidden: hidden
         )
         gift.auto_id  = auto_id
         return gift
@@ -128,18 +130,19 @@ class FirstViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "GiftTableViewCell"
+        let gift = gifts[indexPath.section][indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! GiftTableViewCell
-        cell.giftNameLabel?.text = self.gifts[indexPath.section][indexPath.row].name
-        cell.giftDueDateLabel?.text = self.gifts[indexPath.section][indexPath.row].dueDate
-        cell.giftReasonCell?.text = "For " + self.gifts[indexPath.section][indexPath.row].reason!
-        let url = NSURL(string: self.gifts[indexPath.section][indexPath.row].pictureURL! as NSString as String)
+        cell.giftNameLabel?.text = (gift.hidden==true ? ("some "+gift.category!):(gift.name!))
+        cell.giftDueDateLabel?.text = gift.dueDate
+        cell.giftReasonCell?.text = "For " + gift.reason!
+        let url = NSURL(string: (gift.hidden==true ? ("https://ouryoungaddicts.files.wordpress.com/2015/06/clue.jpeg"):(gift.pictureURL! as NSString as String)) )
         let data = NSData(contentsOfURL: url!)
         cell.giftImageView.contentMode = .ScaleAspectFit
         cell.giftImageView.image = UIImage(data: data!)
         cell.giftProgressView.transform = CGAffineTransformMakeScale( 1, 3)
-        cell.giftProgressView.setProgress(Float(self.gifts[indexPath.section][indexPath.row].progress!/self.gifts[indexPath.section][indexPath.row].price!), animated: false)
+        cell.giftProgressView.setProgress(Float(gift.progress!/gift.price!), animated: false)
         
-        let f = Float(self.gifts[indexPath.section][indexPath.row].progress!/self.gifts[indexPath.section][indexPath.row].price!) * 100
+        let f = Float(gift.progress!/gift.price!) * 100
         let progress = String(format: "%.01f", f)
         cell.progressViewNumber.text = progress + "%"
 
@@ -178,6 +181,23 @@ class FirstViewController: UITableViewController {
                 brain.visitedUser = self.user
             }
         }
+    }
+    override func shouldPerformSegueWithIdentifier(identifier: String, sender: AnyObject?) -> Bool {
+        if identifier == "showGiftDetailTableSegue" {
+            
+            if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPathForCell(cell) {
+                if gifts[indexPath.section][indexPath.row].hidden == true {
+                    let alertController = UIAlertController(title: "Surprise!", message:
+                        "Gift details unavailable until the due date!", preferredStyle: UIAlertControllerStyle.Alert)
+                    alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                    cell.selected = false
+                    return false
+                }
+            }
+        }
+        // by default, transition
+        return true
     }
 
 }
