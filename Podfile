@@ -10,5 +10,6 @@ target 'AmazingGifters' do
   pod 'Firebase'
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
-  
+  pod 'PayPal-iOS-SDK'
+  pod 'Stripe'
 end

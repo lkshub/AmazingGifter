@@ -10,7 +10,7 @@ import UIKit
 import FBSDKCoreKit
 import FBSDKLoginKit
 import Firebase
-
+import Stripe
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -20,7 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         FIRApp.configure()
-        
+        STPPaymentConfiguration.sharedConfiguration().publishableKey = "pk_test_Lyb0pvsoqeWWP5fKsG7foUnt"
+        PayPalMobile .initializeWithClientIdsForEnvironments([PayPalEnvironmentProduction: "YOUR_CLIENT_ID_FOR_PRODUCTION",
+            PayPalEnvironmentSandbox: "YOUR_CLIENT_ID_FOR_SANDBOX"])
+
         return FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
     }
     

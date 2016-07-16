@@ -35,6 +35,13 @@
 	<string>Amazing Gifter</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>org-appextension-feature-password-management</string>
+		<string>com.paypal.ppclient.touch.v2
+com.paypal.ppclient.touch.v2
+com.paypal.ppclient.touch.v2
+com.paypal.ppclient.touch.v2
+com.paypal.ppclient.touch.v2</string>
+		<string>com.paypal.ppclient.touch.v1</string>
 		<string>fbapi</string>
 		<string>fbapi20130214</string>
 		<string>fbapi20130410</string>

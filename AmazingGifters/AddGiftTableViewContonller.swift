@@ -10,11 +10,11 @@ import UIKit
 
 class AddGiftTableViewContonller: UITableViewController {
     
-    
+
     @IBOutlet weak var reasonLabel: UILabel!
 
 
-    @IBOutlet weak var reasonTextField: UITextField!
+   // @IBOutlet weak var reasonTextField: UITextField!
     @IBOutlet weak var giftImageView: UIImageView!
     
     @IBOutlet weak var detailLabel: UILabel!
@@ -22,6 +22,7 @@ class AddGiftTableViewContonller: UITableViewController {
     @IBAction func datePickerValue(sender: AnyObject) {
          datePickerChanged()
     }
+    @IBOutlet weak var ReasonButtonOutlet: UIButton!
     @IBOutlet weak var datePicker: UIDatePicker!
     //var reasonText = ""
     var datePickerHidden = true
@@ -122,10 +123,11 @@ class AddGiftTableViewContonller: UITableViewController {
             dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
             let DateInFormat:String = dateFormatter.stringFromDate(todaysDate)
             var reason :String = ""
-            if(reasonTextField.text?.characters.count>0){
-                reason = reasonTextField.text!
-            }
+
+            reason = self.ReasonButtonOutlet.titleLabel!.text!
+
             newGift = Gift(itemID: searchItem["itemId"] as! String,itemURL: searchItem["viewItemURL"] as! String,dueDate: detailLabel.text!,initiatorID: brain.uid,name: searchItem["title"] as! String,pictureURL: searchItem["galleryURL"] as! String,postTime: DateInFormat, price: searchItem["convertedCurrentPrice"] as! String,reason: reason,receiverID: brain.visitedUser.uid,category:searchItem["category"] as! String)
+
             self.brain.addNewGift (newGift!)
             let n: Int! = self.navigationController?.viewControllers.count
             if let giftViewController = self.navigationController?.viewControllers[n-2] as? FirstViewController{

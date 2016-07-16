@@ -4,22 +4,25 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>Pods-AmazingGifters 2.xcscheme</key>
-		<dict>
-			<key>orderHint</key>
-			<integer>2</integer>
-		</dict>
 		<key>Pods-AmazingGifters.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
-			<key>orderHint</key>
-			<integer>1</integer>
+			<true/>
+		</dict>
+		<key>Stripe.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<true/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>8214F9DDDAB97A9250C4E5130CCEDEFC</key>
+		<key>7B30587B90C42A2DE968DE343376D9D0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C93103AAFDF3DFA2956FFA3E6F0D0BB6</key>
 		<dict>
 			<key>primary</key>
 			<true/>
