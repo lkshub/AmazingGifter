@@ -26,15 +26,19 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     
     //private var ref : FIRDatabaseReference!
     
+    @IBOutlet weak var loadingIcon: UIActivityIndicatorView!
+    
     @IBOutlet weak var btnFacebook: FBSDKLoginButton!
     override func viewDidLoad() {
         super.viewDidLoad()
         if (FBSDKAccessToken.currentAccessToken() != nil)
         {
             btnFacebook.hidden = true
+            //loadingIcon.hidden = false
+            loadingIcon.startAnimating()
         }else{
+            loadingIcon.hidden = true
             btnFacebook.readPermissions = ["public_profile", "email", "user_friends","user_birthday"]
-            //btnFacebook.publishPermissions = ["publish_actions"]
             btnFacebook.delegate = self
 
         }
@@ -49,15 +53,19 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             //print(loginResult)
             if !loginResult.permissions.contains("email"){
                 btnFacebook.hidden = false
-            }
-
-            // User is already logged in, do work such as go to next view controller.
-            let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
-            FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
-                self.returnUserProfileAndJump()
+                loadingIcon.hidden = true
+            }else{
+                loadingIcon.hidden = false
+                loadingIcon.startAnimating()
+                let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
+                FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
+                    self.returnUserProfileAndJump()
+                }
             }
         }
         else{
+            btnFacebook.hidden = false
+            loadingIcon.hidden = true
         }
         
     }

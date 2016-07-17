@@ -27,6 +27,7 @@
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
+      "filename" : "iphone5blue-1.png",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
       "scale" : "2x"

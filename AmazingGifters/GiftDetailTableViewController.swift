@@ -193,28 +193,14 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
     @IBOutlet weak var receiverLabel: UILabel!
     @IBOutlet weak var initiatorLabel: UILabel!
     
-    @IBOutlet weak var facebookShare: FBSDKShareButton!
-    /*
-    @IBAction func facebookShareBtn(sender: AnyObject) {
-                FBSDKShareDialog.showFromViewController(self, withContent: content, delegate: nil)
-    }
- */
+    //@IBOutlet weak var facebookShare: FBSDKShareButton!
+
     var environment:String = PayPalEnvironmentNoNetwork {
         willSet(newEnvironment) {
             if (newEnvironment != environment) {
                 PayPalMobile.preconnectWithEnvironment(newEnvironment)
             }
         }
-    }
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(true)
-        let content: FBSDKShareLinkContent = FBSDKShareLinkContent()
-        //content.contentURL = NSURL(string: "https://www.facebook.com/FacebookDevelopers")
-        content.contentTitle = "An amazing gift for \(self.gift!.receiverName!)"
-        content.contentDescription = self.gift?.name!
-        content.imageURL = NSURL(string: (self.gift?.pictureURL)!)
-        self.facebookShare.shareContent = content
-        //self.facebookShare.userInteractionEnabled = false
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -251,16 +237,17 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
         progressView.transform = CGAffineTransformMakeScale( 1, 3)
         progressView.setProgress(Float((gift?.progress)!/(gift?.price)!), animated: true)
     }
-    /*
+    
     @IBAction func shareBtnClicked(sender: AnyObject) {
         let loginResult: FBSDKAccessToken = FBSDKAccessToken.currentAccessToken()
-        
+        //print(loginResult.permissions)
         if !loginResult.permissions.contains("publish_actions")
         {
             print(loginResult.permissions)
             
             let manager : FBSDKLoginManager = FBSDKLoginManager()
             manager.logInWithPublishPermissions(["publish_actions"], fromViewController: self, handler: { (result, error) in
+                print(result.grantedPermissions)
                 if (error != nil) {
                     print(error.localizedDescription)
                 }
@@ -269,18 +256,35 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
                 }
                 else {
                     if result.grantedPermissions.contains("publish_actions")  {
-                        //self.facebookShare.shareContent.imageURL = NSURL(string: (self.gift?.pictureURL)!)
+                        self.shareGift()
+
                     }
                 }
 
             })
             
         }else{
-            //self.facebookShare.shareContent.imageURL = NSURL(string: (self.gift?.pictureURL)!)
+            shareGift()
         }
         
     }
- */
+    func shareGift(){
+        let photoContent: FBSDKSharePhotoContent = FBSDKSharePhotoContent()
+        let content: FBSDKShareLinkContent = FBSDKShareLinkContent()
+        //content.contentURL = NSURL(string: "https://www.facebook.com/FacebookDevelopers")
+        content.contentTitle = "An amazing gift for \(self.gift!.receiverName!)"
+        content.contentDescription = self.gift?.name!
+        //let photo : FBSDKSharePhoto = FBSDKSharePhoto()
+        content.imageURL = NSURL(string: (self.gift?.pictureURL)!)
+        let thisURL = NSURL(string: (self.gift?.pictureURL)!)
+        let data = NSData(contentsOfURL: thisURL!)
+        let photo = FBSDKSharePhoto()
+        photo.image = UIImage(data:data!)
+        photoContent.photos = [photo]
+        photo.caption = "Test"
+        //facebookShare.enabled = true
+        FBSDKShareDialog.showFromViewController(self, withContent: photoContent, delegate: nil)
+    }
  
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
