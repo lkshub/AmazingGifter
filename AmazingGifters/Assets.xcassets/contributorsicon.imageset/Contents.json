@@ -2,11 +2,12 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "iphone5blue.png",
+      "filename" : "contributorsicon1x.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
+      "filename" : "contributorsicon.png",
       "scale" : "2x"
     },
     {
