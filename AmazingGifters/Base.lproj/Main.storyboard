@@ -311,9 +311,6 @@
                                                         <constraint firstAttribute="width" constant="72" id="csb-Zb-DUH"/>
                                                         <constraint firstAttribute="height" constant="30" id="nf9-ei-xxZ"/>
                                                     </constraints>
-                                                    <connections>
-                                                        <action selector="shareBtnClicked:" destination="FI3-YR-sln" eventType="touchDown" id="qdn-Ey-Veq"/>
-                                                    </connections>
                                                 </view>
                                             </subviews>
                                             <constraints>

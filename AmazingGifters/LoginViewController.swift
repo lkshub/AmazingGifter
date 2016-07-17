@@ -45,6 +45,12 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
         
         if (FBSDKAccessToken.currentAccessToken() != nil)
         {
+            let loginResult: FBSDKAccessToken = FBSDKAccessToken.currentAccessToken()
+            //print(loginResult)
+            if !loginResult.permissions.contains("email"){
+                btnFacebook.hidden = false
+            }
+
             // User is already logged in, do work such as go to next view controller.
             let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
             FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
