@@ -69,6 +69,7 @@ class AddGiftTableViewContonller: UITableViewController {
         if indexPath.section == 0 && indexPath.row == 0 {
             toggleDatepicker()
         }
+        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
 
     }
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -104,18 +105,7 @@ class AddGiftTableViewContonller: UITableViewController {
         }
         return tableView.sectionFooterHeight
     }
-    /*
-    var itemID : String?
-    var itemURL : String?
-    var dueDate: String
-    var initiatorID: String?
-    var name: String?
-    var pictureURL: String?
-    var postTime: String?
-    var price: String?
-    var reason: String?
-    var receiverID: String?
-     */
+
     func confirm(){
         if(picked){
             let todaysDate:NSDate = NSDate()

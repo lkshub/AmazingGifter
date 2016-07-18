@@ -13,6 +13,7 @@
 		210136551D3BDE8C000A3813 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 210136511D3BDE8C000A3813 /* FBSDKLoginKit.framework */; };
 		210136571D3D42B5000A3813 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210136561D3D42B5000A3813 /* ProfileTableViewController.swift */; };
 		210136591D3D4D68000A3813 /* AddressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210136581D3D4D68000A3813 /* AddressTableViewController.swift */; };
+		2101365C1D3D76DC000A3813 /* EditAddressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101365B1D3D76DC000A3813 /* EditAddressTableViewController.swift */; };
 		213783191D29EE3700551A3A /* dataBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213783181D29EE3700551A3A /* dataBrain.swift */; };
 		2137831B1D2AFD0800551A3A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137831A1D2AFD0800551A3A /* User.swift */; };
 		213783211D2EFEAE00551A3A /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213783201D2EFEAE00551A3A /* ContactsTableViewCell.swift */; };
@@ -49,6 +50,7 @@
 		210136511D3BDE8C000A3813 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../Documents/FacebookSDKs-iOS-4.14.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		210136561D3D42B5000A3813 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		210136581D3D4D68000A3813 /* AddressTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTableViewController.swift; sourceTree = "<group>"; };
+		2101365B1D3D76DC000A3813 /* EditAddressTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAddressTableViewController.swift; sourceTree = "<group>"; };
 		213783181D29EE3700551A3A /* dataBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dataBrain.swift; sourceTree = "<group>"; };
 		2137831A1D2AFD0800551A3A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		213783201D2EFEAE00551A3A /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				3CDC2A911D3A101500FD9D85 /* ContributionDetailsUITableViewController.swift */,
 				3CDC2A931D3A24E200FD9D85 /* ContributionTableCell.swift */,
 				210136581D3D4D68000A3813 /* AddressTableViewController.swift */,
+				2101365B1D3D76DC000A3813 /* EditAddressTableViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -323,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2101365C1D3D76DC000A3813 /* EditAddressTableViewController.swift in Sources */,
 				2137831B1D2AFD0800551A3A /* User.swift in Sources */,
 				213783191D29EE3700551A3A /* dataBrain.swift in Sources */,
 				3C42E7E61D2D8C4E00EC306B /* AddGiftTableViewContonller.swift in Sources */,

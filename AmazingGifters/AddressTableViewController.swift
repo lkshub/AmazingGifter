@@ -10,35 +10,40 @@ import UIKit
 
 class AddressTableViewController: UITableViewController {
 
-    @IBAction func backBtn(sender: UIBarButtonItem) {
+    @IBAction func backBtnClicked(sender: UIBarButtonItem) {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    let labels = ["Full Name","Address Line 1","Address Line 2","City","State","ZIP Code","Country","Phone Number"]
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var addressFirstLabel: UILabel!
+    @IBOutlet weak var addressSecondLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var stateLabel: UILabel!
+    @IBOutlet weak var zipLabel: UILabel!
+    @IBOutlet weak var countryLabel: UILabel!
+    @IBOutlet weak var phoneLabel: UILabel!
+    
+    
     let keys  = ["name","address_first","address_second","city","state","zipcode","country","phone"]
     
     let brain = dataBrain.sharedDataBrain
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        tableView.reloadData()
-        
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        let labels = [nameLabel,addressFirstLabel,addressSecondLabel,cityLabel,stateLabel,zipLabel,countryLabel,phoneLabel]
+        for (index,label) in labels.enumerate(){
+            label.text = brain.user.profile![keys[index]] as? String
+        }
     }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if let editAddressTVC = self.storyboard!.instantiateViewControllerWithIdentifier("EditAddressView") as? EditAddressTableViewController{
+        editAddressTVC.text = brain.user.profile![keys[indexPath.row]] as? String
+        editAddressTVC.key = keys[indexPath.row] 
+        self.showViewController(editAddressTVC, sender: nil)
+        }
+    }
+    
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return labels.count
-    }
+
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
-        //cell.style
-        cell.textLabel!.text = labels[indexPath.row] 
-        cell.detailTextLabel!.text = brain.user.profile![keys[indexPath.row]] as? String
-        return cell
-        
-    }
 }

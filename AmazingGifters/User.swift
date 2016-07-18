@@ -23,10 +23,6 @@ class User {
         self.coverUrl = cover
     }
     
-
-    
-    
-
     func getProgress(ref:FIRDatabaseReference!) -> [Gift]{
         let data:[Gift] = []
         
