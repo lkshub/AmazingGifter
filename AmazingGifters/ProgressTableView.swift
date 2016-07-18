@@ -38,6 +38,7 @@ class ProgressTableView: UIViewController,UITableViewDelegate,UITableViewDataSou
             if let destinationVC = segue.destinationViewController as? GiftDetailTableViewController {
                 if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPathForCell(cell) {
                     destinationVC.gift = gifts[indexPath.row]
+                    cell.selected = false
                     
                 }
             }

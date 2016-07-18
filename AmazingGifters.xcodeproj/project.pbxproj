@@ -11,6 +11,8 @@
 		210136531D3BDE8C000A3813 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2101364F1D3BDE8C000A3813 /* FBSDKShareKit.framework */; };
 		210136541D3BDE8C000A3813 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 210136501D3BDE8C000A3813 /* FBSDKCoreKit.framework */; };
 		210136551D3BDE8C000A3813 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 210136511D3BDE8C000A3813 /* FBSDKLoginKit.framework */; };
+		210136571D3D42B5000A3813 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210136561D3D42B5000A3813 /* ProfileTableViewController.swift */; };
+		210136591D3D4D68000A3813 /* AddressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210136581D3D4D68000A3813 /* AddressTableViewController.swift */; };
 		213783191D29EE3700551A3A /* dataBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213783181D29EE3700551A3A /* dataBrain.swift */; };
 		2137831B1D2AFD0800551A3A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2137831A1D2AFD0800551A3A /* User.swift */; };
 		213783211D2EFEAE00551A3A /* ContactsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 213783201D2EFEAE00551A3A /* ContactsTableViewCell.swift */; };
@@ -45,6 +47,8 @@
 		2101364F1D3BDE8C000A3813 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../Documents/FacebookSDKs-iOS-4.14.0/FBSDKShareKit.framework"; sourceTree = "<group>"; };
 		210136501D3BDE8C000A3813 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../Documents/FacebookSDKs-iOS-4.14.0/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
 		210136511D3BDE8C000A3813 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../Documents/FacebookSDKs-iOS-4.14.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
+		210136561D3D42B5000A3813 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
+		210136581D3D4D68000A3813 /* AddressTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTableViewController.swift; sourceTree = "<group>"; };
 		213783181D29EE3700551A3A /* dataBrain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = dataBrain.swift; sourceTree = "<group>"; };
 		2137831A1D2AFD0800551A3A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		213783201D2EFEAE00551A3A /* ContactsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactsTableViewCell.swift; sourceTree = "<group>"; };
@@ -159,10 +163,12 @@
 				2153653F1D3194D90066BFBF /* ProgressTableView.swift */,
 				3C8DE5EA1D15C90200A4DD85 /* ThirdViewController.swift */,
 				213783241D2F6DA300551A3A /* MeTableViewController.swift */,
+				210136561D3D42B5000A3813 /* ProfileTableViewController.swift */,
 				3C748D9A1D371BF600BD4C1C /* AmazingGifters-Bridging-Header.h */,
 				3CDC2A8F1D39F7DD00FD9D85 /* GiftReasonChooserViewController.swift */,
 				3CDC2A911D3A101500FD9D85 /* ContributionDetailsUITableViewController.swift */,
 				3CDC2A931D3A24E200FD9D85 /* ContributionTableCell.swift */,
+				210136581D3D4D68000A3813 /* AddressTableViewController.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -320,6 +326,7 @@
 				2137831B1D2AFD0800551A3A /* User.swift in Sources */,
 				213783191D29EE3700551A3A /* dataBrain.swift in Sources */,
 				3C42E7E61D2D8C4E00EC306B /* AddGiftTableViewContonller.swift in Sources */,
+				210136571D3D42B5000A3813 /* ProfileTableViewController.swift in Sources */,
 				2141ACF91D15C09200B6F5BF /* SecondViewController.swift in Sources */,
 				3C42E7E21D2B6E3E00EC306B /* SearchItemDetailViewController.swift in Sources */,
 				2141ACF51D15C09200B6F5BF /* AppDelegate.swift in Sources */,
@@ -332,6 +339,7 @@
 				3CDC2A921D3A101500FD9D85 /* ContributionDetailsUITableViewController.swift in Sources */,
 				3CDC2A901D39F7DD00FD9D85 /* GiftReasonChooserViewController.swift in Sources */,
 				213783211D2EFEAE00551A3A /* ContactsTableViewCell.swift in Sources */,
+				210136591D3D4D68000A3813 /* AddressTableViewController.swift in Sources */,
 				3CAA7DF31D3328640035FF15 /* GiftDetailTableViewController.swift in Sources */,
 				3CDC2A941D3A24E200FD9D85 /* ContributionTableCell.swift in Sources */,
 				2141AD201D17234D00B6F5BF /* LoginViewController.swift in Sources */,
