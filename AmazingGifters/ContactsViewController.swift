@@ -67,6 +67,7 @@ class ContactsViewController: UIViewController,UITableViewDelegate,UITableViewDa
         tableView.dataSource = self
         tableView.delegate = self
         tableView.contentInset = UIEdgeInsetsMake(-65, 0, 0, 0)
+        //searchBar.showsCancelButton = true
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -84,11 +85,20 @@ class ContactsViewController: UIViewController,UITableViewDelegate,UITableViewDa
         return contacts
     }
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        self.contacts = allContacts()
-
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+        searchBar.showsCancelButton = false
     }
     
+    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+        searchBar.text = ""
+        searchText = ""
+        searchBar.endEditing(true)
+        searchBar.showsCancelButton = false
+    }
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
     }

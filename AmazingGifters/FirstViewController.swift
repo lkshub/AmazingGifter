@@ -132,7 +132,7 @@ class FirstViewController: UITableViewController {
         let cellIdentifier = "GiftTableViewCell"
         let gift = gifts[indexPath.section][indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! GiftTableViewCell
-        cell.giftNameLabel?.text = (gift.hidden==true ? ("some "+gift.category!):(gift.name!))
+        cell.giftNameLabel?.text = (gift.hidden==true ? ("Some "+gift.category!):(gift.name!))
         cell.giftDueDateLabel?.text = gift.dueDate
         cell.giftReasonCell?.text = "For " + gift.reason!
         let url = NSURL(string: (gift.hidden==true ? ("https://ouryoungaddicts.files.wordpress.com/2015/06/clue.jpeg"):(gift.pictureURL! as NSString as String)) )

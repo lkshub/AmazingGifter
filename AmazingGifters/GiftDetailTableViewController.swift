@@ -47,7 +47,8 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
     
     func payPalPaymentDidCancel(paymentViewController: PayPalPaymentViewController) {
      
-        print("PayPal Payment Cancelled")
+       
+    print("PayPal Payment Cancelled")
       //  resultText = ""
       //  successView.hidden = true
         paymentViewController.dismissViewControllerAnimated(true, completion: nil)
@@ -243,11 +244,11 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
         //print(loginResult.permissions)
         if !loginResult.permissions.contains("publish_actions")
         {
-            print(loginResult.permissions)
+            //print(loginResult.permissions)
             
             let manager : FBSDKLoginManager = FBSDKLoginManager()
             manager.logInWithPublishPermissions(["publish_actions"], fromViewController: self, handler: { (result, error) in
-                print(result.grantedPermissions)
+                //print(result.grantedPermissions)
                 if (error != nil) {
                     print(error.localizedDescription)
                 }
@@ -268,6 +269,17 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
         }
         
     }
+    @IBAction func deleteBtnClicked(sender: UIButton) {
+        if (self.gift?.progress == 0 && self.gift?.initiatorID == brain.user.uid){
+            deleteGift(self.gift!)
+        }else{
+            let alertController = UIAlertController(title: "", message:
+                "Gift cannot be deleted!", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
+        }
+    }
+
     func shareGift(){
         let photoContent: FBSDKSharePhotoContent = FBSDKSharePhotoContent()
         let content: FBSDKShareLinkContent = FBSDKShareLinkContent()
@@ -337,20 +349,9 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
  
 
         contri1Ref.setValue(contributionDic)
-
+        contributrTextField.text = nil
     }
-    override func tableView(tableView: UITableView,
-                   didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        print(indexPath.section)
-        print(indexPath.row)
-        if(indexPath.section == 0 && indexPath.row == 10){
-            if(self.gift?.progress == 0){
-                deleteGift(self.gift!)
-                goBack()
-            }
-        }
-    }
+    
     func deleteGift(gift:Gift)  {
         brain.ref.child("gift").child(self.gift!.auto_id!).removeValue()
         if(self.gift!.receiverID! == self.gift!.initiatorID!){
@@ -359,6 +360,7 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
             brain.ref.child("user").child(brain.visitedUser!.uid).child("my_gift").child("from_friends").child(self.gift!.auto_id!).removeValue()
             brain.ref.child("user").child((self.gift?.initiatorID)!).child("gift_for_friend").child(self.gift!.auto_id!).removeValue()
         }
+        goBack()
     }
     func goBack(){
         let n: Int! = self.navigationController?.viewControllers.count

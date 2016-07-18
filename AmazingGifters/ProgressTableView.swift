@@ -176,9 +176,19 @@ class ProgressTableView: UIViewController,UITableViewDelegate,UITableViewDataSou
         return gifts.count
     }
     
+    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+        searchBar.showsCancelButton = true
+    }
+    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+        searchBar.showsCancelButton = false
+    }
+    
     func searchBarCancelButtonClicked(searchBar: UISearchBar) {
-        self.gifts = self.allGifts
-        
+        searchBar.text = ""
+        searchText = ""
+        searchBar.endEditing(true)
+        searchBar.showsCancelButton = false
     }
     
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
