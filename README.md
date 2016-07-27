@@ -58,8 +58,11 @@ As the overall architecture mentioned above, we have been implemented most of th
 ## 7. External Services
 
 Firebase: for database and user authentication
+
 Facebook: for user profile, social connection and sharing gifts to timeline
+
 eBay: for gift resources
+
 Paypal: for the purchase transactions
 
 
