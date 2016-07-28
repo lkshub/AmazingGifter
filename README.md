@@ -36,7 +36,8 @@ The other distinction about our app is the social network integration. We integr
 
 Our project’s overall architecture can be explained explicitly according to the following figure. Speaking generally, the architecture consists of three technical parts.
 
-![](https://firebasestorage.googleapis.com/v0/b/amazinggifter-prealpha.appspot.com/o/Copy%20of%20Application%20architecture.png?alt=media&token=3e4df01f-0f4e-4938-8052-be2026b4bd35)
+![](https://firebasestorage.googleapis.com/v0/b/amazinggifter-prealpha.appspot.com/o/Copy%20of%20Application%20architecture%20(1).png?alt=media&token=9c61e89c-1200-4085-87a6-483f89a7050f)
+
 Figure 2 Project Architecture
 
 1.As to frontend part, it includes two major mainstream mobile phone platforms which are native Android and iOS. Those two frequently-used platforms cover most of the mobile application users which can help our business establish a wide range of user groups.
