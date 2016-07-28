@@ -49,7 +49,7 @@ class ContributionDetailsUITableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cellIdentifier = "contributionTableCell"
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ContributionTableCell
-        cell.amountLabel.text = String(contributions[indexPath.row]["amount"]!) + " Dollar"
+        cell.amountLabel.text = "$ "+String(contributions[indexPath.row]["amount"]!)
         cell.contributorLabel.text = contributions[indexPath.row]["contributor_name"] as? String
         cell.timeLabel.text = contributions[indexPath.row]["time"] as? String
         return cell

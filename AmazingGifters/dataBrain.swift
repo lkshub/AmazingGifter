@@ -29,14 +29,8 @@ class dataBrain{
         self.user.createNewOrUpdate(self.ref)
     }
     
-    /*
-    func setTimeout(delay:NSTimeInterval, block:()->Void) -> NSTimer {
-        return NSTimer.scheduledTimerWithTimeInterval(delay, target: NSBlockOperation(block: block), selector: #selector(NSOperation.main), userInfo: nil, repeats: false)
-    }
-*/
-    func addNewGift(newGift: Gift){
-        //add gift to gift list
-        let giftRef = ref.child("gift")
+    func addNewGift(newGift: Gift){   //add gift to Firebase
+        let giftRef = ref.child("gift") // Firebase database reference
         let newGiftDic = ["item_id": newGift.itemID! as String,
                           "item_url":newGift.itemURL! as String,
                           "due_date": newGift.dueDate! as String,
@@ -49,62 +43,28 @@ class dataBrain{
                           "receiver_id":newGift.receiverID! as String,
                           "progress": 0.0,
                           "category" : newGift.category! as String]
-        let gift1Ref = giftRef.childByAutoId()
-        let autoId = gift1Ref.key
-        gift1Ref.setValue(newGiftDic)
+        let giftChild = giftRef.childByAutoId() // Add a new key-value pair to the "gift" map
+        let autoId = giftChild.key
+        giftChild.setValue(newGiftDic) // Write gift profile to the database
         newGift.auto_id = autoId
+        //Add gift-id to "user" map
         if self.user.uid == visitedUser.uid{
             ref.child("user").child(self.user.uid).child("my_gift").child("wish_list").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                
                 let giftListItem = [autoId: true]
                 self.ref.child("user").child(self.user.uid).child("my_gift").child("wish_list").updateChildValues(giftListItem)
-                
             })
         }else{
             ref.child("user").child(visitedUser.uid).child("my_gift").child("from_friends").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                
                 let giftListItem = [autoId: true]
                 self.ref.child("user").child(self.visitedUser.uid).child("my_gift").child("from_friends").updateChildValues(giftListItem)
-                
             })
             ref.child("user").child(self.user.uid).child("gift_for_friend").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                
                 let giftListItem = [autoId: true]
                 self.ref.child("user").child(self.user.uid).child("gift_for_friend").updateChildValues(giftListItem)
-                
             })
         }
-        
     }
-    /*
-    func getMyWishListDetail(wishList:[String]) ->[Gift]{
 
-        var gifts:[Gift] = []
-        for element in wishList{
-    
-            self.ref.child("gift").child(element).observeEventType(.Value, withBlock: { (snapshot) in
-                let gift : Gift = Gift(
-                    itemID: (snapshot.value!["itemID"] as? String)!,
-                    itemURL: (snapshot.value!["itemURL"] as? String)!,
-                    dueDate: (snapshot.value!["dueDate"] as? String)!,
-                    initiatorID: (snapshot.value!["initiatorID"] as? String)!,
-                    name: (snapshot.value!["name"] as? String)!,
-                    pictureURL: (snapshot.value!["pictureURL"] as? String)!,
-                    postTime: (snapshot.value!["postTime"] as? String)!,
-                    price: (snapshot.value!["price"] as? Double)!,
-                    reason: (snapshot.value!["reason"] as? String)!,
-                    receiverID: (snapshot.value!["receiverID"] as? String)!,
-                    progress: (snapshot.value!["progress"] as? Double)!
-                )
-                gifts.append(gift)
-                print("==first==")
-                print(gifts.count)
-            })
-        }
-    
-        return gifts
-    }
- */
  
     func setContacts(contactsList:[User]) {
         for friend in contactsList{
@@ -113,9 +73,5 @@ class dataBrain{
         }
     }
 
-    
-    //private func getGiftsAccordingToFBID()->[Gift]{
-    //    return
-    //}
  
 }
