@@ -36,7 +36,7 @@ The other distinction about our app is the social network integration. We integr
 
 Our project’s overall architecture can be explained explicitly according to the following figure. Speaking generally, the architecture consists of three technical parts.
 
-![](https://firebasestorage.googleapis.com/v0/b/amazinggifter-prealpha.appspot.com/o/Copy%20of%20Application%20architecture%20(1).png?alt=media&token=9c61e89c-1200-4085-87a6-483f89a7050f)
+![](https://firebasestorage.googleapis.com/v0/b/amazinggifter-prealpha.appspot.com/o/Application%20architecture.png?alt=media&token=29761283-82cd-4d06-be67-54e2cdb704bb)
 
 Figure 2 Project Architecture
 
