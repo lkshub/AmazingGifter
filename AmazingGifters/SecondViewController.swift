@@ -20,14 +20,14 @@ class SecondViewController: UIViewController,UISearchBarDelegate {
     @IBOutlet weak var progressView: UIView!
     
     
-    @IBAction func indexChanged(sender: UISegmentedControl) {
+    @IBAction func indexChanged(_ sender: UISegmentedControl) {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            contactsView.hidden = false
-            progressView.hidden = true
+            contactsView.isHidden = false
+            progressView.isHidden = true
         case 1:
-            contactsView.hidden = true
-            progressView.hidden = false
+            contactsView.isHidden = true
+            progressView.isHidden = false
         default:
             break
         }
@@ -37,7 +37,7 @@ class SecondViewController: UIViewController,UISearchBarDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        progressView.hidden = true
+        progressView.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {

@@ -17,11 +17,11 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     
     
     // Facebook Delegate Methods
-    private var facebookID: String?
+    fileprivate var facebookID: String?
     
-    private var coverURL: String?
-    private var pictureURL: String?
-    private var myName: String?
+    fileprivate var coverURL: String?
+    fileprivate var pictureURL: String?
+    fileprivate var myName: String?
     //private var jumped = false
     
     //private var ref : FIRDatabaseReference!
@@ -31,46 +31,46 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     @IBOutlet weak var btnFacebook: FBSDKLoginButton!
     override func viewDidLoad() {
         super.viewDidLoad()
-        if (FBSDKAccessToken.currentAccessToken() != nil)
+        if (FBSDKAccessToken.current() != nil)
         {
-            btnFacebook.hidden = true
+            btnFacebook.isHidden = true
             //loadingIcon.hidden = false
             loadingIcon.startAnimating()
         }else{
-            loadingIcon.hidden = true
+            loadingIcon.isHidden = true
             btnFacebook.readPermissions = ["public_profile", "email", "user_friends","user_birthday"]
             btnFacebook.delegate = self
 
         }
     }
-    override func viewDidAppear(animated:Bool) {
+    override func viewDidAppear(_ animated:Bool) {
         super.viewDidAppear(true)
         // Do any additional setup after loading the view, typically from a nib.
         
-        if (FBSDKAccessToken.currentAccessToken() != nil)
+        if (FBSDKAccessToken.current() != nil)
         {
-            let loginResult: FBSDKAccessToken = FBSDKAccessToken.currentAccessToken()
+            let loginResult: FBSDKAccessToken = FBSDKAccessToken.current()
             //print(loginResult)
             if !loginResult.permissions.contains("email"){
-                btnFacebook.hidden = false
-                loadingIcon.hidden = true
+                btnFacebook.isHidden = false
+                loadingIcon.isHidden = true
             }else{
-                loadingIcon.hidden = false
+                loadingIcon.isHidden = false
                 loadingIcon.startAnimating()
-                let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
-                FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
+                let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                FIRAuth.auth()?.signIn(with: credential) { (user, error) in
                     self.returnUserProfileAndJump()
                 }
             }
         }
         else{
-            btnFacebook.hidden = false
-            loadingIcon.hidden = true
+            btnFacebook.isHidden = false
+            loadingIcon.isHidden = true
         }
         
     }
     
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         if ((error) != nil)
         {
             // Process error
@@ -84,29 +84,32 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             // should check if specific permissions missing
             if result.grantedPermissions.contains("email")
             {
-                /*
-                let credential = FIRFacebookAuthProvider.credentialWithAccessToken(FBSDKAccessToken.currentAccessToken().tokenString)
-                FIRAuth.auth()?.signInWithCredential(credential) { (user, error) in
+                btnFacebook.isHidden = true
+                
+                let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                FIRAuth.auth()?.signIn(with: credential) { (user, error) in
                     self.returnUserProfileAndJump()
                 }
-                */
-                btnFacebook.hidden = true
- 
+                loadingIcon.isHidden = false
+                loadingIcon.startAnimating()
             }
         }
     }
 
         
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         try! FIRAuth.auth()!.signOut()
         print("User Logged Out")
     }
     
     
-    private func returnUserProfileAndJump()
+    fileprivate func returnUserProfileAndJump()
     {
+        
+        
         let graphRequest : FBSDKGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields":"name, email, picture.type(large), friends, birthday,cover"])
-        graphRequest.startWithCompletionHandler({ (connection, result, error) -> Void in
+        
+        graphRequest.start(completionHandler: { (connection, result, error) -> Void in
             
             if ((error) != nil)
             {
@@ -117,48 +120,50 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             {
                 var pictureURL:String?
                 var contactsList = [User]()
-                
-                if let picture = result.valueForKey("picture"){//get picture url
-                    if let data = picture.valueForKey("data"){
-                        pictureURL = data.valueForKey("url") as? String
-                    }
-                }
-                if let friends = result.valueForKey("friends"){ //get friends list
-                    if let data = friends.valueForKey("data") as? [NSDictionary]{
-                        for map in data{
-                            let user = User(id:map["id"] as! String)
-                            contactsList.append(user)
+                print(result)
+                if let data = result as? [String:Any]{
+                    if let picture = data["picture"] as? [String : Any]{//get picture url
+                        if let picData = picture["data"] as? [String : Any]{
+                            pictureURL = picData["url"] as? String
                         }
                     }
-                }
-                
-                let profile = [
-                    "address_first":"",
-                    "address_second":"",
-                    "birthday":result.valueForKey("birthday") as? String ?? "",
-                    "city":"",
-                    "country":"",
-                    "email":result.valueForKey("email") as? String ?? "",
-                    "gift_for_friend": "",
-                    "my_gift":["from_friends":"","wish_list":""],
-                    "name":result.valueForKey("name") as? String ?? "",
-                    "payment":"",
-                    "phone":"",
-                    "picture_url":pictureURL ?? "",
-                    "state":"",
-                    "zipcode":""
-                ]
-                
-                if let uid = result.valueForKey("id") as? String {
-                    let brain = dataBrain.sharedDataBrain
-                    print(uid)
-                    brain.login(uid,profile: profile)
-                    if let cover = result.valueForKey("cover"){
-                        brain.user.setCover(cover.valueForKey("source") as? String)
+                    if let friends = data["friends"]  as? [String : Any]{ //get friends list
+                        if let friendsList = friends["data"] as? [Any]{
+                            for info in friendsList {
+                                let user = User(id: (info as? [String : Any])!["id"] as! String)
+                                contactsList.append(user)
+                            }
+                        }
                     }
-                    brain.setContacts(contactsList)
+                
+                    let profile = [
+                        "address_first":"",
+                        "address_second":"",
+                        "birthday":data["birthday"] as? String ?? "",
+                        "city":"",
+                        "country":"",
+                        "email": data["email"] as? String ?? "",
+                        "gift_for_friend": "",
+                        "my_gift":["from_friends":"","wish_list":""],
+                        "name":data["name"] as? String ?? "",
+                        "payment":"",
+                        "phone":"",
+                        "picture_url":pictureURL ?? "",
+                        "state":"",
+                        "zipcode":""
+                    ] as [String : Any]
+                
+                    if let uid = data["id"] as? String {
+                        let brain = dataBrain.sharedDataBrain
+                        print(uid)
+                        brain.login(uid,profile: profile as NSDictionary!)
+                        if let cover = data["cover"] as? [String : Any]{
+                            brain.user.setCover(cover["source"] as? String)
+                        }
+                        brain.setContacts(contactsList)
+                    }
+                    self.jumpToContent()
                 }
-                self.jumpToContent()
             }
         })
     }
@@ -170,10 +175,10 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
     }
     
     
-    private func jumpToContent()  {
+    fileprivate func jumpToContent()  {
         //jumped = true
         print("jumping...")
-        self.performSegueWithIdentifier("showContent", sender: self)
+        self.performSegue(withIdentifier: "showContent", sender: self)
 
     }
     

@@ -18,18 +18,18 @@ class dataBrain{
     var visitedUser:User!
     
     
-    private init(){
+    fileprivate init(){
         self.ref = FIRDatabase.database().reference()
     }
     
-    func login(uid:String,profile:NSDictionary!){
+    func login(_ uid:String,profile:NSDictionary!){
         self.uid = uid
         self.user  = User(id: self.uid)
         self.user.profile = profile
         self.user.createNewOrUpdate(self.ref)
     }
     
-    func addNewGift(newGift: Gift){   //add gift to Firebase
+    func addNewGift(_ newGift: Gift){   //add gift to Firebase
         let giftRef = ref.child("gift") // Firebase database reference
         let newGiftDic = ["item_id": newGift.itemID! as String,
                           "item_url":newGift.itemURL! as String,
@@ -42,23 +42,23 @@ class dataBrain{
                           "reason":newGift.reason! as String,
                           "receiver_id":newGift.receiverID! as String,
                           "progress": 0.0,
-                          "category" : newGift.category! as String]
+                          "category" : newGift.category! as String] as [String : Any]
         let giftChild = giftRef.childByAutoId() // Add a new key-value pair to the "gift" map
         let autoId = giftChild.key
         giftChild.setValue(newGiftDic) // Write gift profile to the database
         newGift.auto_id = autoId
         //Add gift-id to "user" map
         if self.user.uid == visitedUser.uid{
-            ref.child("user").child(self.user.uid).child("my_gift").child("wish_list").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            ref.child("user").child(self.user.uid).child("my_gift").child("wish_list").observeSingleEvent(of: .value, with: { (snapshot) in
                 let giftListItem = [autoId: true]
                 self.ref.child("user").child(self.user.uid).child("my_gift").child("wish_list").updateChildValues(giftListItem)
             })
         }else{
-            ref.child("user").child(visitedUser.uid).child("my_gift").child("from_friends").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            ref.child("user").child(visitedUser.uid).child("my_gift").child("from_friends").observeSingleEvent(of: .value, with: { (snapshot) in
                 let giftListItem = [autoId: true]
                 self.ref.child("user").child(self.visitedUser.uid).child("my_gift").child("from_friends").updateChildValues(giftListItem)
             })
-            ref.child("user").child(self.user.uid).child("gift_for_friend").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            ref.child("user").child(self.user.uid).child("gift_for_friend").observeSingleEvent(of: .value, with: { (snapshot) in
                 let giftListItem = [autoId: true]
                 self.ref.child("user").child(self.user.uid).child("gift_for_friend").updateChildValues(giftListItem)
             })
@@ -66,7 +66,7 @@ class dataBrain{
     }
 
  
-    func setContacts(contactsList:[User]) {
+    func setContacts(_ contactsList:[User]) {
         for friend in contactsList{
             friend.getProfile(self.ref)
             self.user.contactsList.append(friend)

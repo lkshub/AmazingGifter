@@ -14,11 +14,11 @@ import Firebase
 
 class ThirdViewController: UIViewController,FBSDKLoginButtonDelegate{
     
-    private let brain = dataBrain.sharedDataBrain
+    fileprivate let brain = dataBrain.sharedDataBrain
     
     let btnFacebook = FBSDKLoginButton()
-    @IBOutlet private weak var userProfilePicture: UIImageView!
-    @IBOutlet private weak var coverPhoto: UIImageView!
+    @IBOutlet fileprivate weak var userProfilePicture: UIImageView!
+    @IBOutlet fileprivate weak var coverPhoto: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var logoutTableCell: UIView!
     @IBOutlet weak var container: UIView!
@@ -28,30 +28,32 @@ class ThirdViewController: UIViewController,FBSDKLoginButtonDelegate{
         
         if let url = brain.user.profile!["picture_url"] {
             print("get picture url!")
-            let thisURL = NSURL(string: url as! String)
-            let data = NSData(contentsOfURL: thisURL!)
-            userProfilePicture.image = UIImage(data:data!)
+            let thisURL = URL(string: url as! String)
+            if let data = try? Data(contentsOf: thisURL!){
+                userProfilePicture.image = UIImage(data:data)
+            }
         }
         userProfilePicture.layer.cornerRadius = 8.0
         userProfilePicture.clipsToBounds = true
         userProfilePicture.layer.zPosition = 1;
-        userProfilePicture.layer.borderColor = UIColor.whiteColor().CGColor
+        userProfilePicture.layer.borderColor = UIColor.white.cgColor
         userProfilePicture.layer.borderWidth = 2
         
         nameLabel.text  = (brain.user.profile!["name"] as! String)
 
         if let url = brain.user.coverUrl{
             print("get cover url!")
-            let thisURL = NSURL(string: url)
-            let data = NSData(contentsOfURL: thisURL!)
-            coverPhoto.image = UIImage(data:data!)
+            let thisURL = URL(string: url)
+            if let data = try? Data(contentsOf: thisURL!){
+                coverPhoto.image = UIImage(data:data)
+            }
         }
         
         btnFacebook.delegate = self
         container.layer.zPosition = 1
     }
     
-    func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
+    func loginButton(_ loginButton: FBSDKLoginButton!, didCompleteWith result: FBSDKLoginManagerLoginResult!, error: Error!) {
         print("User Logged In")
         if ((error) != nil)
         {
@@ -71,7 +73,7 @@ class ThirdViewController: UIViewController,FBSDKLoginButtonDelegate{
         // Dispose of any resources that can be recreated.
     }
     
-    func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
+    func loginButtonDidLogOut(_ loginButton: FBSDKLoginButton!) {
         try! FIRAuth.auth()!.signOut()
         print("User Logged Out")
         let loginManager: FBSDKLoginManager = FBSDKLoginManager()
@@ -79,9 +81,9 @@ class ThirdViewController: UIViewController,FBSDKLoginButtonDelegate{
         jumpToLogin()
         
     }
-    private func jumpToLogin()  {
+    fileprivate func jumpToLogin()  {
         print("back to login")
-        self.performSegueWithIdentifier("backToLogin", sender: self)
+        self.performSegue(withIdentifier: "backToLogin", sender: self)
     }
 
 

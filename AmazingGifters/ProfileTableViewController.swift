@@ -10,8 +10,8 @@ import UIKit
 
 class ProfileTableViewController: UITableViewController {
     
-    @IBAction func backBtn(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func backBtn(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!

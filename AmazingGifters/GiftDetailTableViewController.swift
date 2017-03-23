@@ -45,26 +45,26 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
     
     var payPalConfig = PayPalConfiguration()
     
-    func payPalPaymentDidCancel(paymentViewController: PayPalPaymentViewController) {
+    func payPalPaymentDidCancel(_ paymentViewController: PayPalPaymentViewController) {
      
        
     print("PayPal Payment Cancelled")
       //  resultText = ""
       //  successView.hidden = true
-        paymentViewController.dismissViewControllerAnimated(true, completion: nil)
+        paymentViewController.dismiss(animated: true, completion: nil)
     }
     
-    func payPalPaymentViewController(paymentViewController: PayPalPaymentViewController, didCompletePayment completedPayment: PayPalPayment) {
+    func payPalPaymentViewController(_ paymentViewController: PayPalPaymentViewController, didComplete completedPayment: PayPalPayment) {
         print("PayPal Payment Success !")
-        paymentViewController.dismissViewControllerAnimated(true, completion: { () -> Void in
+        paymentViewController.dismiss(animated: true, completion: { () -> Void in
             // send completed confirmaion to your server
             
-            let alertController = UIAlertController(title: "", message: "Thanks for your contribution", preferredStyle: .Alert)
-            self.presentViewController(alertController, animated: true, completion: nil)
+            let alertController = UIAlertController(title: "", message: "Thanks for your contribution", preferredStyle: .alert)
+            self.present(alertController, animated: true, completion: nil)
             let delay = 2.0 * Double(NSEC_PER_SEC)
-            let time = dispatch_time(DISPATCH_TIME_NOW, Int64(delay))
-            dispatch_after(time, dispatch_get_main_queue(), {
-                alertController.dismissViewControllerAnimated(true, completion: nil)
+            let time = DispatchTime.now() + Double(Int64(delay)) / Double(NSEC_PER_SEC)
+            DispatchQueue.main.asyncAfter(deadline: time, execute: {
+                alertController.dismiss(animated: true, completion: nil)
             })
             self.contribute()
             print("Here is your proof of payment:\n\n\(completedPayment.confirmation)\n\nSend this to your server for confirmation and fulfillment.")
@@ -78,22 +78,22 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
     
     // MARK: Future Payments
     
-    @IBAction func authorizeFuturePaymentsAction(sender: AnyObject) {
+    @IBAction func authorizeFuturePaymentsAction(_ sender: AnyObject) {
         let futurePaymentViewController = PayPalFuturePaymentViewController(configuration: payPalConfig, delegate: self)
-        presentViewController(futurePaymentViewController!, animated: true, completion: nil)
+        present(futurePaymentViewController!, animated: true, completion: nil)
     }
     
     
-    func payPalFuturePaymentDidCancel(futurePaymentViewController: PayPalFuturePaymentViewController) {
+    func payPalFuturePaymentDidCancel(_ futurePaymentViewController: PayPalFuturePaymentViewController) {
         print("PayPal Future Payment Authorization Canceled")
      //   successView.hidden = true
-        futurePaymentViewController.dismissViewControllerAnimated(true, completion: nil)
+        futurePaymentViewController.dismiss(animated: true, completion: nil)
     }
     
-    func payPalFuturePaymentViewController(futurePaymentViewController: PayPalFuturePaymentViewController, didAuthorizeFuturePayment futurePaymentAuthorization: [NSObject : AnyObject]) {
+    func payPalFuturePaymentViewController(_ futurePaymentViewController: PayPalFuturePaymentViewController, didAuthorizeFuturePayment futurePaymentAuthorization: [AnyHashable: Any]) {
         print("PayPal Future Payment Authorization Success!")
         // send authorization to your server to get refresh token.
-        futurePaymentViewController.dismissViewControllerAnimated(true, completion: { () -> Void in
+        futurePaymentViewController.dismiss(animated: true, completion: { () -> Void in
           //  self.resultText = futurePaymentAuthorization.description
            // self.showSuccess()
         })
@@ -101,26 +101,26 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
     
     // MARK: Profile Sharing
     
-    @IBAction func authorizeProfileSharingAction(sender: AnyObject) {
+    @IBAction func authorizeProfileSharingAction(_ sender: AnyObject) {
         let scopes = [kPayPalOAuth2ScopeOpenId, kPayPalOAuth2ScopeEmail, kPayPalOAuth2ScopeAddress, kPayPalOAuth2ScopePhone]
         let profileSharingViewController = PayPalProfileSharingViewController(scopeValues: NSSet(array: scopes) as Set<NSObject>, configuration: payPalConfig, delegate: self)
-        presentViewController(profileSharingViewController!, animated: true, completion: nil)
+        present(profileSharingViewController!, animated: true, completion: nil)
     }
     
     // PayPalProfileSharingDelegate
     
-    func userDidCancelPayPalProfileSharingViewController(profileSharingViewController: PayPalProfileSharingViewController) {
+    func userDidCancel(_ profileSharingViewController: PayPalProfileSharingViewController) {
         print("PayPal Profile Sharing Authorization Canceled")
         //successView.hidden = true
-        profileSharingViewController.dismissViewControllerAnimated(true, completion: nil)
+        profileSharingViewController.dismiss(animated: true, completion: nil)
     }
     
-    func payPalProfileSharingViewController(profileSharingViewController: PayPalProfileSharingViewController, userDidLogInWithAuthorization profileSharingAuthorization: [NSObject : AnyObject]) {
+    func payPalProfileSharingViewController(_ profileSharingViewController: PayPalProfileSharingViewController, userDidLogInWithAuthorization profileSharingAuthorization: [AnyHashable: Any]) {
         print("PayPal Profile Sharing Authorization Success!")
         
         // send authorization to your server
         
-        profileSharingViewController.dismissViewControllerAnimated(true, completion: { () -> Void in
+        profileSharingViewController.dismiss(animated: true, completion: { () -> Void in
        //     self.resultText = profileSharingAuthorization.description
         //    self.showSuccess()
         })
@@ -137,7 +137,7 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
     
     @IBOutlet weak var contributionDetailsOutlet: UIButton!
  
-    @IBAction func contributeAction(sender: UIButton) {
+    @IBAction func contributeAction(_ sender: UIButton) {
         
         //paypal testing
       if(self.contributrTextField.text != ""){
@@ -146,7 +146,7 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
         let item1 = PayPalItem(name: "demo", withQuantity: 1, withPrice:   NSDecimalNumber(string: self.contributrTextField.text), withCurrency: "USD", withSku: "Hip-0037")
 
         let items = [item1]
-        let subtotal = PayPalItem.totalPriceForItems(items)
+        let subtotal = PayPalItem.totalPrice(forItems: items)
         
         // Optional: include payment details
         
@@ -154,16 +154,16 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
         let tax = NSDecimalNumber(string: "0")
         let paymentDetails = PayPalPaymentDetails(subtotal: subtotal, withShipping: shipping, withTax: tax)
         
-        let total = subtotal.decimalNumberByAdding(shipping).decimalNumberByAdding(tax)
+        let total = subtotal.adding(shipping).adding(tax)
         
-        let payment = PayPalPayment(amount: total, currencyCode: "USD", shortDescription: "Demo Contribution", intent: .Sale)
+        let payment = PayPalPayment(amount: total, currencyCode: "USD", shortDescription: "Demo Contribution", intent: .sale)
         
         payment.items = items
         payment.paymentDetails = paymentDetails
         
         if (payment.processable) {
             let paymentViewController = PayPalPaymentViewController(payment: payment, configuration: payPalConfig, delegate: self)
-            presentViewController(paymentViewController!, animated: true, completion: nil)
+            present(paymentViewController!, animated: true, completion: nil)
         }
         else {
             // This particular payment will always be processable. If, for
@@ -179,8 +179,8 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
         
     }
     @IBOutlet weak var progressView: UIProgressView!
-    @IBAction func viewWebsiteAction(sender: UIButton) {
-                UIApplication.sharedApplication().openURL(NSURL(string: (gift?.itemURL!)!)!)
+    @IBAction func viewWebsiteAction(_ sender: UIButton) {
+                UIApplication.shared.openURL(URL(string: (gift?.itemURL!)!)!)
     }
     @IBOutlet weak var dueDateLabel: UILabel!
     @IBOutlet weak var reasonLabel: UILabel!
@@ -199,7 +199,7 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
     var environment:String = PayPalEnvironmentNoNetwork {
         willSet(newEnvironment) {
             if (newEnvironment != environment) {
-                PayPalMobile.preconnectWithEnvironment(newEnvironment)
+                PayPalMobile.preconnect(withEnvironment: newEnvironment)
             }
         }
     }
@@ -209,23 +209,23 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
         
         payPalConfig.acceptCreditCards = acceptCreditCards;
         payPalConfig.merchantName = "AmazingGifter Testing."
-        payPalConfig.merchantPrivacyPolicyURL = NSURL(string: "https://www.paypal.com/webapps/mpp/ua/privacy-full")
-        payPalConfig.merchantUserAgreementURL = NSURL(string: "https://www.paypal.com/webapps/mpp/ua/useragreement-full")
-        payPalConfig.payPalShippingAddressOption = .None;
+        payPalConfig.merchantPrivacyPolicyURL = URL(string: "https://www.paypal.com/webapps/mpp/ua/privacy-full")
+        payPalConfig.merchantUserAgreementURL = URL(string: "https://www.paypal.com/webapps/mpp/ua/useragreement-full")
+        payPalConfig.payPalShippingAddressOption = .none;
 //paypal testing
         
         
-        let url = NSURL(string: (gift?.pictureURL)!)
-        let data = NSData(contentsOfURL: url!)
-        giftImageView.contentMode = .ScaleAspectFit
+        let url = URL(string: (gift?.pictureURL)!)
+        let data = try? Data(contentsOf: url!)
+        giftImageView.contentMode = .scaleAspectFit
         giftImageView.image = UIImage(data: data!)
         itemNameLabel.text = gift?.name
         itemIDLabel.text = gift?.itemID
         PriceLabel.text = String(gift!.price!)
-              brain.ref.child("user").child(self.gift!.initiatorID!).child("name").observeSingleEventOfType(.Value, withBlock: { snapshot in
+              brain.ref.child("user").child(self.gift!.initiatorID!).child("name").observeSingleEvent(of: .value, with: { snapshot in
             self.initiatorLabel.text = snapshot.value! as? String
         })
-        brain.ref.child("user").child(self.gift!.receiverID!).child("name").observeSingleEventOfType(.Value, withBlock: { snapshot in
+        brain.ref.child("user").child(self.gift!.receiverID!).child("name").observeSingleEvent(of: .value, with: { snapshot in
             self.receiverLabel.text = snapshot.value! as? String
             self.gift?.receiverName = snapshot.value! as? String
             
@@ -235,28 +235,28 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
         postTimeLabel.text = gift?.postTime
         reasonLabel.text = gift?.reason
         dueDateLabel.text = gift?.dueDate
-        progressView.transform = CGAffineTransformMakeScale( 1, 3)
+        progressView.transform = CGAffineTransform( scaleX: 1, y: 3)
         progressView.setProgress(Float((gift?.progress)!/(gift?.price)!), animated: true)
     }
     
-    @IBAction func shareBtnClicked(sender: AnyObject) {
-        let loginResult: FBSDKAccessToken = FBSDKAccessToken.currentAccessToken()
+    @IBAction func shareBtnClicked(_ sender: AnyObject) {
+        let loginResult: FBSDKAccessToken = FBSDKAccessToken.current()
         //print(loginResult.permissions)
         if !loginResult.permissions.contains("publish_actions")
         {
             //print(loginResult.permissions)
             
             let manager : FBSDKLoginManager = FBSDKLoginManager()
-            manager.logInWithPublishPermissions(["publish_actions"], fromViewController: self, handler: { (result, error) in
+            manager.logIn(withPublishPermissions: ["publish_actions"], from: self, handler: { (result, error) in
                 //print(result.grantedPermissions)
                 if (error != nil) {
-                    print(error.localizedDescription)
+                    print(error?.localizedDescription as Any)
                 }
-                else if result.isCancelled {
+                else if (result?.isCancelled)! {
                     // Handle cancellations
                 }
                 else {
-                    if result.grantedPermissions.contains("publish_actions")  {
+                    if (result?.grantedPermissions.contains("publish_actions"))!  {
                         self.shareGift()
 
                     }
@@ -269,14 +269,14 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
         }
         
     }
-    @IBAction func deleteBtnClicked(sender: UIButton) {
+    @IBAction func deleteBtnClicked(_ sender: UIButton) {
         if (self.gift?.progress == 0 && self.gift?.initiatorID == brain.user.uid){
             deleteGift(self.gift!)
         }else{
             let alertController = UIAlertController(title: "", message:
-                "Gift cannot be deleted!", preferredStyle: UIAlertControllerStyle.Alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.Default,handler: nil))
-            self.presentViewController(alertController, animated: true, completion: nil)
+                "Gift cannot be deleted!", preferredStyle: UIAlertControllerStyle.alert)
+            alertController.addAction(UIAlertAction(title: "Dismiss", style: UIAlertActionStyle.default,handler: nil))
+            self.present(alertController, animated: true, completion: nil)
         }
     }
 
@@ -287,26 +287,26 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
         content.contentTitle = "An amazing gift for \(self.gift!.receiverName!)"
         content.contentDescription = self.gift?.name!
         //let photo : FBSDKSharePhoto = FBSDKSharePhoto()
-        content.imageURL = NSURL(string: (self.gift?.pictureURL)!)
-        let thisURL = NSURL(string: (self.gift?.pictureURL)!)
-        let data = NSData(contentsOfURL: thisURL!)
+        content.imageURL = URL(string: (self.gift?.pictureURL)!)
+        let thisURL = URL(string: (self.gift?.pictureURL)!)
+        let data = try? Data(contentsOf: thisURL!)
         let photo = FBSDKSharePhoto()
         photo.image = UIImage(data:data!)
         photoContent.photos = [photo]
         photo.caption = "Test"
         //facebookShare.enabled = true
-        FBSDKShareDialog.showFromViewController(self, withContent: photoContent, delegate: nil)
+        FBSDKShareDialog.show(from: self, with: photoContent, delegate: nil)
     }
  
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return CGFloat.min
+            return CGFloat.leastNormalMagnitude
         }
         return tableView.sectionHeaderHeight
     }
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == 0 {
-            return CGFloat.min
+            return CGFloat.leastNormalMagnitude
         }
         return tableView.sectionFooterHeight
     }
@@ -315,8 +315,10 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
         if(!(self.contributrTextField.text?.isEmpty)!){
             let contribution = Float(self.contributrTextField.text!)!
             if contribution > 0{
-                self.brain.ref.child("gift").child(autoId).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
-                    let progress = snapshot.value!["progress"] as! Float
+                self.brain.ref.child("gift").child(autoId).observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                    let value = snapshot.value as? [String : Any]
+                    let progress = value!["progress"] as! Float
                     let newProgress = Float(contribution + progress)
                     self.brain.ref.child("gift").child(autoId).child("progress").setValue(newProgress)
                     self.itemProgressLabel.text = String(newProgress) + "/" + String(self.gift!.price!)
@@ -335,16 +337,16 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
         let contributionRef = brain.ref.child("contribution").child((gift?.auto_id)!)
         let contri1Ref = contributionRef.childByAutoId()
         
-        let todaysDate:NSDate = NSDate()
-        let dateFormatter:NSDateFormatter = NSDateFormatter()
+        let todaysDate:Date = Date()
+        let dateFormatter:DateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
-        let DateInFormat:String = dateFormatter.stringFromDate(todaysDate)
+        let DateInFormat:String = dateFormatter.string(from: todaysDate)
 
         let contributionDic = ["amount" : Double(self.contributrTextField.text!)! as Double,
                                "contributor_id" : brain.user.uid as String,
                                "contributor_name" : brain.user.profile!["name"] as! String,
                                "time" : DateInFormat,
-                               ]
+                               ] as [String : Any]
         
  
 
@@ -352,7 +354,7 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
         contributrTextField.text = nil
     }
     
-    func deleteGift(gift:Gift)  {
+    func deleteGift(_ gift:Gift)  {
         brain.ref.child("gift").child(self.gift!.auto_id!).removeValue()
         if(self.gift!.receiverID! == self.gift!.initiatorID!){
             brain.ref.child("user").child(brain.visitedUser!.uid).child("my_gift").child("wish_list").child(self.gift!.auto_id!).removeValue()
@@ -373,11 +375,11 @@ class GiftDetailTableViewController: UITableViewController,PayPalPaymentDelegate
             
         }
     }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "contributionDetailsSegue"
         {
         
-            if let destinationVC = segue.destinationViewController as? ContributionDetailsUITableViewController {
+            if let destinationVC = segue.destination as? ContributionDetailsUITableViewController {
                
                     destinationVC.gift = self.gift
                     

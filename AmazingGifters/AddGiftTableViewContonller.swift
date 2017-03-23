@@ -19,7 +19,7 @@ class AddGiftTableViewContonller: UITableViewController {
     
     @IBOutlet weak var detailLabel: UILabel!
 
-    @IBAction func datePickerValue(sender: AnyObject) {
+    @IBAction func datePickerValue(_ sender: AnyObject) {
          datePickerChanged()
     }
     @IBOutlet weak var ReasonButtonOutlet: UIButton!
@@ -34,19 +34,19 @@ class AddGiftTableViewContonller: UITableViewController {
     
     
       
-    @IBAction func comfirmAction(sender: AnyObject) {
+    @IBAction func comfirmAction(_ sender: AnyObject) {
         confirm()
     }
     
  
-    override func viewDidAppear(Animated:Bool) {
+    override func viewDidAppear(_ Animated:Bool) {
         super.viewDidAppear(true)
         datePickerChanged()
         //reasonLabel.text = reasonText
         if(picked){
-            let url = NSURL(string: searchItem["galleryURL"] as? NSString as! String)
-            let data = NSData(contentsOfURL: url!)
-            self.giftImageView.contentMode = .ScaleAspectFit
+            let url = URL(string: searchItem["galleryURL"] as? NSString as! String)
+            let data = try? Data(contentsOf: url!)
+            self.giftImageView.contentMode = .scaleAspectFit
             self.giftImageView.image = UIImage(data: data!)
         }
         
@@ -60,24 +60,24 @@ class AddGiftTableViewContonller: UITableViewController {
     }
     func datePickerChanged () {
      
-        let dateFormatter = NSDateFormatter()
+        let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yy"
-        let dateString = dateFormatter.stringFromDate(datePicker.date)
+        let dateString = dateFormatter.string(from: datePicker.date)
         detailLabel.text = dateString
     }
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 0 && indexPath.row == 0 {
             toggleDatepicker()
         }
-        tableView.cellForRowAtIndexPath(indexPath)?.selected = false
+        tableView.cellForRow(at: indexPath)?.isSelected = false
 
     }
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if datePickerHidden && indexPath.section == 0 && indexPath.row == 1 {
             return 0
         }
         else {
-            return super.tableView(tableView, heightForRowAtIndexPath: indexPath)
+            return super.tableView(tableView, heightForRowAt: indexPath)
         }
         
         
@@ -93,25 +93,25 @@ class AddGiftTableViewContonller: UITableViewController {
         tableView.endUpdates()
         
     }
-    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return CGFloat.min
+            return CGFloat.leastNormalMagnitude
         }
         return tableView.sectionHeaderHeight
     }
-    override func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         if section == 0 {
-            return CGFloat.min
+            return CGFloat.leastNormalMagnitude
         }
         return tableView.sectionFooterHeight
     }
 
     func confirm(){
         if(picked){
-            let todaysDate:NSDate = NSDate()
-            let dateFormatter:NSDateFormatter = NSDateFormatter()
+            let todaysDate:Date = Date()
+            let dateFormatter:DateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MM-dd-yyyy HH:mm"
-            let DateInFormat:String = dateFormatter.stringFromDate(todaysDate)
+            let DateInFormat:String = dateFormatter.string(from: todaysDate)
             var reason :String = ""
 
             reason = self.ReasonButtonOutlet.titleLabel!.text!

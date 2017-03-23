@@ -10,8 +10,8 @@ import UIKit
 
 class AddressTableViewController: UITableViewController {
 
-    @IBAction func backBtnClicked(sender: UIBarButtonItem) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func backBtnClicked(_ sender: UIBarButtonItem) {
+        self.dismiss(animated: true, completion: nil)
     }
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var addressFirstLabel: UILabel!
@@ -27,19 +27,19 @@ class AddressTableViewController: UITableViewController {
     
     let brain = dataBrain.sharedDataBrain
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         let labels = [nameLabel,addressFirstLabel,addressSecondLabel,cityLabel,stateLabel,zipLabel,countryLabel,phoneLabel]
-        for (index,label) in labels.enumerate(){
-            label.text = brain.user.profile![keys[index]] as? String
+        for (index,label) in labels.enumerated(){
+            label?.text = brain.user.profile![keys[index]] as? String
         }
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let editAddressTVC = self.storyboard!.instantiateViewControllerWithIdentifier("EditAddressView") as? EditAddressTableViewController{
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let editAddressTVC = self.storyboard!.instantiateViewController(withIdentifier: "EditAddressView") as? EditAddressTableViewController{
         editAddressTVC.text = brain.user.profile![keys[indexPath.row]] as? String
         editAddressTVC.key = keys[indexPath.row] 
-        self.showViewController(editAddressTVC, sender: nil)
+        self.show(editAddressTVC, sender: nil)
         }
     }
     

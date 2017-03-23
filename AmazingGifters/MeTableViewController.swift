@@ -28,19 +28,17 @@ class MeTableViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func tableView(tableView: UITableView,
-                            didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView,
+                            didSelectRowAt indexPath: IndexPath) {
         
-        print(indexPath.section)
-        print(indexPath.row)
         
         if indexPath.section == 2 && indexPath.row == 0 {
-            if let parent = self.parentViewController as? ThirdViewController{
-                parent.btnFacebook.sendActionsForControlEvents(.TouchUpInside)
+            if let parent = self.parent as? ThirdViewController{
+                parent.btnFacebook.sendActions(for: .touchUpInside)
             }
         }
         if let row = tableView.indexPathForSelectedRow {
-            self.tableView.deselectRowAtIndexPath(row, animated: false)
+            self.tableView.deselectRow(at: row, animated: false)
         }
         
     }

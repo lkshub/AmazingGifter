@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		210136521D3BDE8C000A3813 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2101364E1D3BDE8C000A3813 /* Bolts.framework */; };
-		210136531D3BDE8C000A3813 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2101364F1D3BDE8C000A3813 /* FBSDKShareKit.framework */; };
-		210136541D3BDE8C000A3813 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 210136501D3BDE8C000A3813 /* FBSDKCoreKit.framework */; };
-		210136551D3BDE8C000A3813 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 210136511D3BDE8C000A3813 /* FBSDKLoginKit.framework */; };
 		210136571D3D42B5000A3813 /* ProfileTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210136561D3D42B5000A3813 /* ProfileTableViewController.swift */; };
 		210136591D3D4D68000A3813 /* AddressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 210136581D3D4D68000A3813 /* AddressTableViewController.swift */; };
 		2101365C1D3D76DC000A3813 /* EditAddressTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2101365B1D3D76DC000A3813 /* EditAddressTableViewController.swift */; };
@@ -28,6 +24,10 @@
 		215365401D3194D90066BFBF /* ProgressTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2153653F1D3194D90066BFBF /* ProgressTableView.swift */; };
 		215B24BE1D246C53002A7C84 /* GiftSearchUIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 215B24BD1D246C53002A7C84 /* GiftSearchUIViewController.swift */; };
 		216DEDE01D1EBB6F00DAD99F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 216DEDDF1D1EBB6F00DAD99F /* GoogleService-Info.plist */; };
+		21F65EF21E83424800F046D6 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F65EF11E83424800F046D6 /* Bolts.framework */; };
+		21F65EF41E83425200F046D6 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F65EF31E83425200F046D6 /* FBSDKCoreKit.framework */; };
+		21F65EF61E83425A00F046D6 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F65EF51E83425A00F046D6 /* FBSDKShareKit.framework */; };
+		21F65EF81E83425F00F046D6 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 21F65EF71E83425F00F046D6 /* FBSDKLoginKit.framework */; };
 		3C42E7E01D2AEADE00EC306B /* Gift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42E7DF1D2AEADE00EC306B /* Gift.swift */; };
 		3C42E7E21D2B6E3E00EC306B /* SearchItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42E7E11D2B6E3E00EC306B /* SearchItemDetailViewController.swift */; };
 		3C42E7E41D2B7FFD00EC306B /* SearchItemDetailTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C42E7E31D2B7FFD00EC306B /* SearchItemDetailTableCell.swift */; };
@@ -43,10 +43,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2101364E1D3BDE8C000A3813 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../Documents/FacebookSDKs-iOS-4.14.0/Bolts.framework"; sourceTree = "<group>"; };
-		2101364F1D3BDE8C000A3813 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKShareKit.framework; path = "../../../Documents/FacebookSDKs-iOS-4.14.0/FBSDKShareKit.framework"; sourceTree = "<group>"; };
-		210136501D3BDE8C000A3813 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = "../../../Documents/FacebookSDKs-iOS-4.14.0/FBSDKCoreKit.framework"; sourceTree = "<group>"; };
-		210136511D3BDE8C000A3813 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = "../../../Documents/FacebookSDKs-iOS-4.14.0/FBSDKLoginKit.framework"; sourceTree = "<group>"; };
 		210136561D3D42B5000A3813 /* ProfileTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileTableViewController.swift; sourceTree = "<group>"; };
 		210136581D3D4D68000A3813 /* AddressTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddressTableViewController.swift; sourceTree = "<group>"; };
 		2101365B1D3D76DC000A3813 /* EditAddressTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAddressTableViewController.swift; sourceTree = "<group>"; };
@@ -66,6 +62,10 @@
 		2153653F1D3194D90066BFBF /* ProgressTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressTableView.swift; sourceTree = "<group>"; };
 		215B24BD1D246C53002A7C84 /* GiftSearchUIViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GiftSearchUIViewController.swift; sourceTree = "<group>"; };
 		216DEDDF1D1EBB6F00DAD99F /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		21F65EF11E83424800F046D6 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		21F65EF31E83425200F046D6 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		21F65EF51E83425A00F046D6 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		21F65EF71E83425F00F046D6 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		3C42E7DF1D2AEADE00EC306B /* Gift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gift.swift; sourceTree = "<group>"; };
 		3C42E7E11D2B6E3E00EC306B /* SearchItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchItemDetailViewController.swift; sourceTree = "<group>"; };
 		3C42E7E31D2B7FFD00EC306B /* SearchItemDetailTableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchItemDetailTableCell.swift; sourceTree = "<group>"; };
@@ -88,11 +88,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				21F65EF61E83425A00F046D6 /* FBSDKShareKit.framework in Frameworks */,
 				DE34EF8E822E7EC48545EADA /* Pods_AmazingGifters.framework in Frameworks */,
-				210136541D3BDE8C000A3813 /* FBSDKCoreKit.framework in Frameworks */,
-				210136551D3BDE8C000A3813 /* FBSDKLoginKit.framework in Frameworks */,
-				210136521D3BDE8C000A3813 /* Bolts.framework in Frameworks */,
-				210136531D3BDE8C000A3813 /* FBSDKShareKit.framework in Frameworks */,
+				21F65EF81E83425F00F046D6 /* FBSDKLoginKit.framework in Frameworks */,
+				21F65EF41E83425200F046D6 /* FBSDKCoreKit.framework in Frameworks */,
+				21F65EF21E83424800F046D6 /* Bolts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,10 +136,10 @@
 		2141AD0F1D171C8200B6F5BF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2101364E1D3BDE8C000A3813 /* Bolts.framework */,
-				2101364F1D3BDE8C000A3813 /* FBSDKShareKit.framework */,
-				210136501D3BDE8C000A3813 /* FBSDKCoreKit.framework */,
-				210136511D3BDE8C000A3813 /* FBSDKLoginKit.framework */,
+				21F65EF71E83425F00F046D6 /* FBSDKLoginKit.framework */,
+				21F65EF51E83425A00F046D6 /* FBSDKShareKit.framework */,
+				21F65EF31E83425200F046D6 /* FBSDKCoreKit.framework */,
+				21F65EF11E83424800F046D6 /* Bolts.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -243,6 +243,7 @@
 					2141ACF01D15C09200B6F5BF = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = BT468JP7F5;
+						LastSwiftMigration = 0820;
 					};
 				};
 			};
@@ -290,7 +291,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		905D145F648080EA3CF4321A /* [CP] Copy Pods Resources */ = {
@@ -470,7 +471,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"~/Documents/FacebookSDKs-iOS-4.14.0",
+					"~/Documents/FacebookSDK",
+					"$(PROJECT_DIR)/AmazingGifters",
 				);
 				INFOPLIST_FILE = AmazingGifters/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -480,6 +482,7 @@
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "AmazingGifters/AmazingGifters-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -494,7 +497,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"~/Documents/FacebookSDKs-iOS-4.14.0",
+					"~/Documents/FacebookSDK",
+					"$(PROJECT_DIR)/AmazingGifters",
 				);
 				INFOPLIST_FILE = AmazingGifters/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -503,6 +507,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_INSTALL_OBJC_HEADER = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "AmazingGifters/AmazingGifters-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

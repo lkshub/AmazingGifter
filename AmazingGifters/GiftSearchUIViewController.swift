@@ -11,8 +11,8 @@
 import Foundation
 import UIKit
 
-class GiftSearchUIViewController: UIViewController,NSXMLParserDelegate,UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
-    var parser = NSXMLParser()
+class GiftSearchUIViewController: UIViewController,XMLParserDelegate,UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
+    var parser = XMLParser()
     var posts = NSMutableArray()
     var elements = NSMutableDictionary()
     var element = NSString()
@@ -46,16 +46,16 @@ class GiftSearchUIViewController: UIViewController,NSXMLParserDelegate,UITableVi
     func beginParsing()
     {
         posts = []
-        let xmldata = responseString.dataUsingEncoding(NSUTF8StringEncoding)
-        parser = NSXMLParser(data: xmldata!)
+        let xmldata = responseString.data(using: String.Encoding.utf8.rawValue)
+        parser = XMLParser(data: xmldata!)
         parser.delegate = self
         parser.parse()
      //   tbData!.reloadData()
     }
-    func parser(parser: NSXMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String])
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String])
     {
-        element = elementName
-        if (elementName as NSString).isEqualToString("item")
+        element = elementName as NSString
+        if (elementName as NSString).isEqual(to: "item")
         {
             elements = NSMutableDictionary()
             elements = [:]
@@ -73,50 +73,50 @@ class GiftSearchUIViewController: UIViewController,NSXMLParserDelegate,UITableVi
             category = ""
         }
     }
-    func parser(parser: NSXMLParser, foundCharacters string: String)
+    func parser(_ parser: XMLParser, foundCharacters string: String)
     {
-        if element.isEqualToString("title") {
-            title1.appendString(string)
-        } else if element.isEqualToString("galleryURL") {
-            galleryURL.appendString(string)
-        } else if element.isEqualToString("currentPrice") {
-            convertedCurrentPrice.appendString(string + " USD")
-        }else if element.isEqualToString("itemId") {
-            itemId.appendString(string)
-        }else if element.isEqualToString("viewItemURL") {
-            viewItemURL.appendString(string)
-        }else if element.isEqualToString("categoryName"){
-            category.appendString(string)
+        if element.isEqual(to: "title") {
+            title1.append(string)
+        } else if element.isEqual(to: "galleryURL") {
+            galleryURL.append(string)
+        } else if element.isEqual(to: "currentPrice") {
+            convertedCurrentPrice.append(string + " USD")
+        }else if element.isEqual(to: "itemId") {
+            itemId.append(string)
+        }else if element.isEqual(to: "viewItemURL") {
+            viewItemURL.append(string)
+        }else if element.isEqual(to: "categoryName"){
+            category.append(string)
         }
     }
-    func parser(parser: NSXMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
     {
-        if (elementName as NSString).isEqualToString("item") {
+        if (elementName as NSString).isEqual(to: "item") {
             if !title1.isEqual(nil) {
-                elements.setObject(title1, forKey: "title")
+                elements.setObject(title1, forKey: "title" as NSCopying)
             }
             if !galleryURL.isEqual(nil) {
-                elements.setObject(galleryURL, forKey: "galleryURL")
+                elements.setObject(galleryURL, forKey: "galleryURL" as NSCopying)
             }
             if !convertedCurrentPrice.isEqual(nil) {
-                elements.setObject(convertedCurrentPrice, forKey: "convertedCurrentPrice")
+                elements.setObject(convertedCurrentPrice, forKey: "convertedCurrentPrice" as NSCopying)
             }
             if !itemId.isEqual(nil) {
-                elements.setObject(itemId, forKey: "itemId")
+                elements.setObject(itemId, forKey: "itemId" as NSCopying)
             }
             if !viewItemURL.isEqual(nil) {
-                elements.setObject(viewItemURL, forKey: "viewItemURL")
+                elements.setObject(viewItemURL, forKey: "viewItemURL" as NSCopying)
             }
             if !category.isEqual(nil) {
-                elements.setObject(category, forKey: "category")
+                elements.setObject(category, forKey: "category" as NSCopying)
                 print(category)
             }
-            posts.addObject(elements)
+            posts.add(elements)
         }
     }
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
        
         return posts.count
@@ -140,37 +140,35 @@ class GiftSearchUIViewController: UIViewController,NSXMLParserDelegate,UITableVi
     }
  
 */
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "SearchTableViewCell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! SearchTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SearchTableViewCell
         
         // Fetches the appropriate meal for the data source layout.
-        cell.itemTitle?.text = posts.objectAtIndex(indexPath.row).valueForKey("title") as! NSString as String
-        cell.itemPrice?.text = posts.objectAtIndex(indexPath.row).valueForKey("convertedCurrentPrice") as! NSString as String
-        let url = NSURL(string: posts.objectAtIndex(indexPath.row).valueForKey("galleryURL") as! NSString as String)
-        let data = NSData(contentsOfURL: url!)
-        cell.itemImage.contentMode = .ScaleAspectFit
+        cell.itemTitle?.text = (posts.object(at: indexPath.row) as AnyObject).value(forKey: "title") as! NSString as String
+        cell.itemPrice?.text = (posts.object(at: indexPath.row) as AnyObject).value(forKey: "convertedCurrentPrice") as! NSString as String
+        let url = URL(string: (posts.object(at: indexPath.row) as AnyObject).value(forKey: "galleryURL") as! NSString as String)
+        let data = try? Data(contentsOf: url!)
+        cell.itemImage.contentMode = .scaleAspectFit
         cell.itemImage.image = UIImage(data: data!)
         return cell
     }
 
     
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        print(searchBar.text)
-        
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         let headers = [
             "cache-control": "no-cache",
             "postman-token": "99feddfb-2e37-22b4-2e0f-edfec3cffe6b"
         ]
         let requestString1 = "http://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&SECURITY-APPNAME=chongguo-AmazingG-PRD-199ea60ea-41dab7fe&RESPONSE-DATA-FORMAT=XML&REST-PAYLOAD=&keywords="
         let searchKeyword = searchBar.text
-        let requestString2:String = searchKeyword!.stringByAddingPercentEncodingWithAllowedCharacters( NSCharacterSet.URLQueryAllowedCharacterSet())!
+        let requestString2:String = searchKeyword!.addingPercentEncoding( withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         let requestString3 = "&paginationInput.entriesPerPage=50"
         
-        let request = NSMutableURLRequest(URL: NSURL(string: requestString1 + requestString2 + requestString3)!,
-                                          cachePolicy: .UseProtocolCachePolicy,
+        let request = NSMutableURLRequest(url: URL(string: requestString1 + requestString2 + requestString3)!,
+                                          cachePolicy: .useProtocolCachePolicy,
                                           timeoutInterval: 10.0)
 
         /*
@@ -178,20 +176,19 @@ class GiftSearchUIViewController: UIViewController,NSXMLParserDelegate,UITableVi
                                           cachePolicy: .UseProtocolCachePolicy,
                                           timeoutInterval: 10.0)
          */
-        request.HTTPMethod = "GET"
+        request.httpMethod = "GET"
         request.allHTTPHeaderFields = headers
         
-        let session = NSURLSession.sharedSession()
-        let dataTask = session.dataTaskWithRequest(request, completionHandler: { (data, response, error) -> Void in
+        let dataTask = URLSession.shared.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
             if (error != nil) {
-                print(error)
+                print(error!)
             } else {
-                _ = response as? NSHTTPURLResponse
-                self.responseString = NSString(data: data!, encoding: NSUTF8StringEncoding)!
+                _ = response as? HTTPURLResponse
+                self.responseString = NSString(data: data!, encoding: String.Encoding.utf8.rawValue)!
                 //print("responseString = \(self.responseString)")
                 self.beginParsing()
                 self.tableView.reloadData()
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                DispatchQueue.main.async(execute: { () -> Void in
                     self.tableView.reloadData()
                 })
             }
@@ -200,11 +197,11 @@ class GiftSearchUIViewController: UIViewController,NSXMLParserDelegate,UITableVi
         dataTask.resume()
         self.searchBar.endEditing(true)
     }
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowItemDetailSegue"
         {
-            if let destinationVC = segue.destinationViewController as? SearchItemDetailViewController {
-                if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPathForCell(cell) {
+            if let destinationVC = segue.destination as? SearchItemDetailViewController {
+                if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
                     destinationVC.itemDic = posts[indexPath.row] as! NSMutableDictionary
                   
                 }

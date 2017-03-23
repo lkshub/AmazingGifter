@@ -15,7 +15,7 @@ class EditAddressTableViewController: UITableViewController {
     
     var key:String!
     
-    @IBAction func saveBtnClicked(sender: UIBarButtonItem) {
+    @IBAction func saveBtnClicked(_ sender: UIBarButtonItem) {
         brain.user.profile!.setValue(addressText.text, forKeyPath: key)
         let n: Int! = self.navigationController?.viewControllers.count
         if let addressBookView = self.navigationController?.viewControllers[n-2] as? AddressTableViewController{

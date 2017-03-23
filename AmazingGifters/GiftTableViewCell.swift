@@ -16,7 +16,7 @@ class GiftTableViewCell: UITableViewCell {
     @IBOutlet weak var giftReasonCell: UILabel!
     @IBOutlet weak var giftImageView: UIImageView!
     
-       override func setSelected(selected: Bool, animated: Bool) {
+       override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
         // Configure the view for the selected state

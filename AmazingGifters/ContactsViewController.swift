@@ -13,15 +13,15 @@ class ContactsViewController: UIViewController,UITableViewDelegate,UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
-    private var tappedUser : User!
-    private let brain  = dataBrain.sharedDataBrain
-    private var contacts : [User] = []{
+    fileprivate var tappedUser : User!
+    fileprivate let brain  = dataBrain.sharedDataBrain
+    fileprivate var contacts : [User] = []{
         didSet{
             self.tableView.reloadData()
             
         }
     }
-    private var searchText:String?{
+    fileprivate var searchText:String?{
         didSet{
             //contacts.removeAll()
             searchForContacts()
@@ -29,8 +29,8 @@ class ContactsViewController: UIViewController,UITableViewDelegate,UITableViewDa
     }
     
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        let destinationVC = segue.destinationViewController
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destinationVC = segue.destination
         if let identifier =  segue.identifier{
             if let giftVC = destinationVC as? FirstViewController{
                 switch identifier {
@@ -44,13 +44,13 @@ class ContactsViewController: UIViewController,UITableViewDelegate,UITableViewDa
         }
     }
     
-    private func searchForContacts(){
+    fileprivate func searchForContacts(){
         var contacts : [User] = []
-        if let text = searchText where !text.isEmpty{
+        if let text = searchText, !text.isEmpty{
             for user in brain.user.contactsList{
                 if let profile = user.profile{
                     let name = profile["name"] as! String
-                    if name.rangeOfString(text) != nil{
+                    if name.range(of: text) != nil{
                         contacts.append(user)
                     }
                 }
@@ -70,12 +70,12 @@ class ContactsViewController: UIViewController,UITableViewDelegate,UITableViewDa
         //searchBar.showsCancelButton = true
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         self.contacts = allContacts()
 
     }
     
-    private func allContacts()->[User]{
+    fileprivate func allContacts()->[User]{
         var contacts : [User] = []
         for contact in brain.user.contactsList{
             if contact.profile != nil{
@@ -85,39 +85,39 @@ class ContactsViewController: UIViewController,UITableViewDelegate,UITableViewDa
         return contacts
     }
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
     }
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
         searchBar.showsCancelButton = false
     }
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchText = ""
         searchBar.endEditing(true)
         searchBar.showsCancelButton = false
     }
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
     }
     
     // MARK: - Table view data source
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return contacts.count
     }
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("contacts", forIndexPath: indexPath) as! ContactsTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "contacts", for: indexPath) as! ContactsTableViewCell
         
         let contact = contacts[indexPath.row]
         
@@ -125,20 +125,21 @@ class ContactsViewController: UIViewController,UITableViewDelegate,UITableViewDa
         cell.contactName?.text = contact.profile!["name"] as? String
         if let url = contact.profile!["picture_url"] {
             print("get picture url!")
-            let thisURL = NSURL(string: url as! String)
-            let data = NSData(contentsOfURL: thisURL!)
-            cell.contactPicture.image = UIImage(data:data!)
+            let thisURL = URL(string: url as! String)
+            if let data = try? Data(contentsOf: thisURL!){
+                cell.contactPicture.image = UIImage(data:data)
+            }
         }
-        cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
+        cell.accessoryType = UITableViewCellAccessoryType.disclosureIndicator
 
         return cell
         
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tappedUser = contacts[indexPath.row]
-        tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        performSegueWithIdentifier("showFriendGifts", sender: nil)
+        tableView.deselectRow(at: indexPath, animated: false)
+        performSegue(withIdentifier: "showFriendGifts", sender: nil)
 
     }
 

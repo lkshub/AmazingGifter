@@ -19,18 +19,18 @@ class User {
         uid = id
     }
     
-    func setCover(cover:String?)  {
+    func setCover(_ cover:String?)  {
         self.coverUrl = cover
     }
     
-    func getProgress(ref:FIRDatabaseReference!) -> [Gift]{
+    func getProgress(_ ref:FIRDatabaseReference!) -> [Gift]{
         let data:[Gift] = []
         
         return data
     }
     
-    func getProfile(ref:FIRDatabaseReference) {
-        ref.child("user").child(uid).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+    func getProfile(_ ref:FIRDatabaseReference) {
+        ref.child("user").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.value! is NSDictionary{
                 self.profile = (snapshot.value as! NSDictionary)
                 //print(self.profile!["name"])
@@ -41,8 +41,8 @@ class User {
         }
     }
     
-    func createNewOrUpdate(ref:FIRDatabaseReference!)  {
-        ref.child("user").child(uid).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+    func createNewOrUpdate(_ ref:FIRDatabaseReference!)  {
+        ref.child("user").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
             if snapshot.value! is NSDictionary{
                 ref.child("user").child(self.uid).child("name").setValue(self.profile!["name"])
                 ref.child("user").child(self.uid).child("email").setValue(self.profile!["email"])

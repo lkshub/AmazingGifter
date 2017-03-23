@@ -11,7 +11,7 @@ import UIKit
 class SearchItemDetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var itemImage: UIImageView!
 
-    @IBAction func pickThisAction(sender: AnyObject) {
+    @IBAction func pickThisAction(_ sender: AnyObject) {
         let n: Int! = self.navigationController?.viewControllers.count
         if let addGiftController = self.navigationController?.viewControllers[n-3] as? AddGiftTableViewContonller{
             addGiftController.searchItem = itemDic
@@ -19,8 +19,8 @@ class SearchItemDetailViewController: UIViewController, UITableViewDelegate, UIT
             self.navigationController?.popToViewController(addGiftController, animated: true)
         }
     }
-    @IBAction func openURLAction(sender: UIButton) {
-        UIApplication.sharedApplication().openURL(NSURL(string: itemDic["viewItemURL"] as! String)!)
+    @IBAction func openURLAction(_ sender: UIButton) {
+        UIApplication.shared.openURL(URL(string: itemDic["viewItemURL"] as! String)!)
     }
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var openURLButton: UIButton!
@@ -31,9 +31,9 @@ class SearchItemDetailViewController: UIViewController, UITableViewDelegate, UIT
     override func viewDidLoad() {
         super.viewDidLoad()
        
-        let url = NSURL(string: itemDic["galleryURL"] as! NSString as String)
-        let data = NSData(contentsOfURL: url!)
-        itemImage.contentMode = .ScaleAspectFit
+        let url = URL(string: itemDic["galleryURL"] as! NSString as String)
+        let data = try? Data(contentsOf: url!)
+        itemImage.contentMode = .scaleAspectFit
         itemImage.image = UIImage(data: data!)
         table.append(itemDic["itemId"] as! String)
         table.append(itemDic["title"] as! String)
@@ -45,17 +45,17 @@ class SearchItemDetailViewController: UIViewController, UITableViewDelegate, UIT
         // Do any additional setup after loading the view, typically from a nib.
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         print("testing333")
 
         print(table.count)
         return table.count
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "itemMenuCell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! SearchItemDetailTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! SearchItemDetailTableViewCell
         
         // Fetches the appropriate meal for the data source layout.
         cell.rightLabel?.text = table[indexPath.row]
@@ -89,11 +89,11 @@ class SearchItemDetailViewController: UIViewController, UITableViewDelegate, UIT
 //            return UITableViewAutomaticDimension
 //        }
 //    }
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     

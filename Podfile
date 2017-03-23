@@ -1,5 +1,5 @@
 # Uncomment this line to define a global platform for your project
-  platform :ios, '9.0'
+  platform :ios, '10.0'
 #pod 'Firebase'
 
 target 'AmazingGifters' do
@@ -11,5 +11,4 @@ target 'AmazingGifters' do
   pod 'Firebase/Auth'
   pod 'Firebase/Database'
   pod 'PayPal-iOS-SDK'
-  pod 'Stripe'
 end

@@ -1,70 +1,65 @@
 PODS:
-  - CardIO (5.3.2)
-  - Firebase (3.3.0):
-    - Firebase/Core (= 3.3.0)
-  - Firebase/Analytics (3.3.0):
-    - FirebaseAnalytics (= 3.2.1)
-  - Firebase/Auth (3.3.0):
-    - Firebase/Analytics (= 3.3.0)
-    - FirebaseAuth (= 3.0.3)
-  - Firebase/Core (3.3.0):
-    - Firebase/Analytics (= 3.3.0)
-  - Firebase/Database (3.3.0):
-    - Firebase/Analytics (= 3.3.0)
-    - FirebaseDatabase (= 3.0.2)
-  - FirebaseAnalytics (3.2.1):
+  - CardIO (5.4.1)
+  - Firebase (3.15.0):
+    - Firebase/Core (= 3.15.0)
+  - Firebase/Auth (3.15.0):
+    - Firebase/Core
+    - FirebaseAuth (= 3.1.1)
+  - Firebase/Core (3.15.0):
+    - FirebaseAnalytics (= 3.7.0)
+    - FirebaseCore (= 3.5.2)
+  - Firebase/Database (3.15.0):
+    - Firebase/Core
+    - FirebaseDatabase (= 3.1.2)
+  - FirebaseAnalytics (3.7.0):
+    - FirebaseCore (~> 3.5)
     - FirebaseInstanceID (~> 1.0)
-    - GoogleInterchangeUtilities (~> 1.2)
-    - GoogleSymbolUtilities (~> 1.1)
-    - GoogleUtilities (~> 1.3)
-  - FirebaseAuth (3.0.3):
-    - FirebaseAnalytics (~> 3.2)
-    - GoogleNetworkingUtilities (~> 1.2)
-    - GoogleParsingUtilities (~> 1.1)
-    - GoogleUtilities (~> 1.3)
-  - FirebaseDatabase (3.0.2):
-    - FirebaseAnalytics (~> 3.2)
-  - FirebaseInstanceID (1.0.7)
-  - GoogleInterchangeUtilities (1.2.1):
-    - GoogleSymbolUtilities (~> 1.0)
-  - GoogleNetworkingUtilities (1.2.1):
-    - GoogleSymbolUtilities (~> 1.0)
-  - GoogleParsingUtilities (1.1.1):
-    - GoogleNetworkingUtilities (~> 1.0)
-    - GoogleSymbolUtilities (~> 1.0)
-  - GoogleSymbolUtilities (1.1.1)
-  - GoogleUtilities (1.3.1):
-    - GoogleSymbolUtilities (~> 1.0)
-  - PayPal-iOS-SDK (2.14.3):
-    - PayPal-iOS-SDK/CardIO (= 2.14.3)
-    - PayPal-iOS-SDK/Core (= 2.14.3)
-  - PayPal-iOS-SDK/CardIO (2.14.3):
-    - CardIO (~> 5.3.2)
-  - PayPal-iOS-SDK/Core (2.14.3)
-  - Stripe (8.0.0)
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseAuth (3.1.1):
+    - FirebaseAnalytics (~> 3.7)
+    - GoogleToolboxForMac/NSDictionary+URLArguments (~> 2.1)
+    - GTMSessionFetcher/Core (~> 1.1)
+  - FirebaseCore (3.5.2):
+    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+  - FirebaseDatabase (3.1.2):
+    - FirebaseAnalytics (~> 3.7)
+  - FirebaseInstanceID (1.0.9)
+  - GoogleToolboxForMac/DebugUtils (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - GoogleToolboxForMac/Defines (2.1.1)
+  - GoogleToolboxForMac/NSData+zlib (2.1.1):
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - GoogleToolboxForMac/NSDictionary+URLArguments (2.1.1):
+    - GoogleToolboxForMac/DebugUtils (= 2.1.1)
+    - GoogleToolboxForMac/Defines (= 2.1.1)
+    - GoogleToolboxForMac/NSString+URLArguments (= 2.1.1)
+  - GoogleToolboxForMac/NSString+URLArguments (2.1.1)
+  - GTMSessionFetcher/Core (1.1.9)
+  - PayPal-iOS-SDK (2.16.3):
+    - PayPal-iOS-SDK/CardIO (= 2.16.3)
+    - PayPal-iOS-SDK/Core (= 2.16.3)
+  - PayPal-iOS-SDK/CardIO (2.16.3):
+    - CardIO (~> 5.4.1)
+  - PayPal-iOS-SDK/Core (2.16.3)
 
 DEPENDENCIES:
   - Firebase
   - Firebase/Auth
   - Firebase/Database
   - PayPal-iOS-SDK
-  - Stripe
 
 SPEC CHECKSUMS:
-  CardIO: 92c45caef0d986c4a303a7afba0c9b76ff2b1f6e
-  Firebase: 6250071f0e2440a5c4c67b8cb6b868f868237ac3
-  FirebaseAnalytics: 0fd6532cb2c3d03cd5cf26ad295ccb091efd3104
-  FirebaseAuth: 5efddc3fae47042b73585f083f956462be4f5b8e
-  FirebaseDatabase: 59bea2e7dfd81b3b8b2f8e396caf1a52c2ced6f7
-  FirebaseInstanceID: a9d923f3d0b6fbf9fac89310860357aaadc34be5
-  GoogleInterchangeUtilities: def8415a862effc67d549d5b5b0b9c7a2f97d4de
-  GoogleNetworkingUtilities: 3e83269048cfb498dc7ec83ab36813360965c74f
-  GoogleParsingUtilities: 30b3896f9ee167dc78747f013d3de157ced1cadf
-  GoogleSymbolUtilities: 33117db1b5f290c6fbf259585e4885b4c84b98d7
-  GoogleUtilities: 56c5ac05b7aa5dc417a1bb85221a9516e04d7032
-  PayPal-iOS-SDK: 3acc0c606383e1b2afdbad113bf2060748e98679
-  Stripe: 1e20396b4dad7b9a08312bf914c233154fb8fcfd
+  CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
+  Firebase: 2b1cdfba1cda8589f32904a697cc753322bff9d8
+  FirebaseAnalytics: 0d1b7d81d5021155be37702a94ba1ec16d45365d
+  FirebaseAuth: cc8a1824170adbd351edb7f994490a3fb5c18be6
+  FirebaseCore: a024587e43778508700af8c6b1209f7c4516ba02
+  FirebaseDatabase: 05c96d7b43a7368dc91c07791adb49683e1738d1
+  FirebaseInstanceID: 2d0518b1378fe9d685ef40cbdd63d2fdc1125339
+  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
+  GTMSessionFetcher: 5c046c76a1f859bc9c187e918f18e4fc7bb57b5e
+  PayPal-iOS-SDK: db237a752c0b388b93a0b9915b30e26878732bdb
 
-PODFILE CHECKSUM: 256e393d6148922f9e8b757b656d32a7463a2793
+PODFILE CHECKSUM: 546028a093a9ec73ae0e5fb25d8eb9e8a5d8fcd7
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.0

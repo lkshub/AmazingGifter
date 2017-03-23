@@ -61,7 +61,7 @@ class Gift{
         self.name = name
         self.pictureURL = pictureURL
         self.postTime = postTime
-        self.price = Double(price.substringToIndex((price.rangeOfString(" ")?.startIndex)!))
+        self.price = Double(price.substring(to: (price.range(of: " ")?.lowerBound)!))
         self.reason = reason
         self.receiverID = receiverID
         self.progress = 0.0

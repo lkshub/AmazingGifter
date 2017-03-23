@@ -25,20 +25,20 @@ class ProgressTableView: UIViewController,UITableViewDelegate,UITableViewDataSou
     }
     var allGifts:[Gift]=[]
     var user:User!
-    private var searchText:String?{
+    fileprivate var searchText:String?{
         didSet{
             //contacts.removeAll()
             searchForGifts()
         }
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showProgressDetailTableSegue"
         {
-            if let destinationVC = segue.destinationViewController as? GiftDetailTableViewController {
-                if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPathForCell(cell) {
+            if let destinationVC = segue.destination as? GiftDetailTableViewController {
+                if let cell = sender as? UITableViewCell, let indexPath = tableView.indexPath(for: cell) {
                     destinationVC.gift = gifts[indexPath.row]
-                    cell.selected = false
+                    cell.isSelected = false
                     
                 }
             }
@@ -52,16 +52,16 @@ class ProgressTableView: UIViewController,UITableViewDelegate,UITableViewDataSou
         
         // Do any additional setup after loading the view, typically from a nib.
     }
-    private func searchForGifts(){
+    fileprivate func searchForGifts(){
         var filtered = [Gift]()
-        if let text = searchText where !text.isEmpty{
+        if let text = searchText, !text.isEmpty{
             for gift in self.allGifts{
                 if let name = gift.name{
-                    if name.rangeOfString(text) != nil{
+                    if name.range(of: text) != nil{
                         filtered.append(gift)
                     }else{
                         if let receiverName = gift.receiverName{
-                            if receiverName.rangeOfString(text) != nil{
+                            if receiverName.range(of: text) != nil{
                                 filtered.append(gift)
                             }
                         }
@@ -75,21 +75,21 @@ class ProgressTableView: UIViewController,UITableViewDelegate,UITableViewDataSou
     }
     
     func fetchGiftsOnce(){
-            brain.ref.child("user").child(self.user.uid).child("gift_for_friend").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            brain.ref.child("user").child(self.user.uid).child("gift_for_friend").observeSingleEvent(of: .value, with: { (snapshot) in
                 let enumerator = snapshot.children
                 
                 while let rest = enumerator.nextObject() as? FIRDataSnapshot {
                     self.gifts = []
                     self.allGifts = []
                     let element = rest.key
-                    self.brain.ref.child("gift").child(element).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                    self.brain.ref.child("gift").child(element).observeSingleEvent(of: .value, with: { (snapshot) in
                         if !(snapshot.value is NSNull) {
                             let gift = self.getGiftFromSnapshot(element,snapshot:snapshot)
-                            self.brain.ref.child("user").child(gift.receiverID!).child("name").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                            self.brain.ref.child("user").child(gift.receiverID!).child("name").observeSingleEvent(of: .value, with: { (snapshot) in
                                 let name = snapshot.value as? String
                                 gift.receiverName = name
-                                self.gifts.insert(gift, atIndex: 0)
-                                self.allGifts.insert(gift, atIndex: 0)
+                                self.gifts.insert(gift, at: 0)
+                                self.allGifts.insert(gift, at: 0)
                             })
                         }
                     })
@@ -97,63 +97,64 @@ class ProgressTableView: UIViewController,UITableViewDelegate,UITableViewDataSou
             })
     }
     func fetchGifts(){
-        brain.ref.child("user").child(self.user.uid).child("gift_for_friend").observeEventType(.ChildAdded, withBlock: { (snapshot) in
+        brain.ref.child("user").child(self.user.uid).child("gift_for_friend").observe(.childAdded, with: { (snapshot) in
             
             let element = snapshot.key
-            self.brain.ref.child("gift").child(element).observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+            self.brain.ref.child("gift").child(element).observeSingleEvent(of: .value, with: { (snapshot) in
                 //print(snapshot)
                 if !(snapshot.value is NSNull) {
                     let gift = self.getGiftFromSnapshot(element,snapshot:snapshot)
-                    self.brain.ref.child("user").child(gift.receiverID!).child("name").observeSingleEventOfType(.Value, withBlock: { (snapshot) in
+                    self.brain.ref.child("user").child(gift.receiverID!).child("name").observeSingleEvent(of: .value, with: { (snapshot) in
                         let name = snapshot.value as? String
                         gift.receiverName = name
-                        self.gifts.insert(gift, atIndex: 0)
-                        self.allGifts.insert(gift, atIndex: 0)
+                        self.gifts.insert(gift, at: 0)
+                        self.allGifts.insert(gift, at: 0)
                     })
                 }
             })
-            self.brain.ref.child("gift").child(element).observeEventType(.ChildChanged, withBlock: { (snapshot) in
+            self.brain.ref.child("gift").child(element).observe(.childChanged, with: { (snapshot) in
                 self.fetchGiftsOnce()
             })
             
         })
-        brain.ref.child("user").child(self.user.uid).child("gift_for_friend").observeEventType(.ChildRemoved, withBlock: { (snapshot) in
+        brain.ref.child("user").child(self.user.uid).child("gift_for_friend").observe(.childRemoved, with: { (snapshot) in
             self.fetchGiftsOnce()
         })
     }
 
-    func getGiftFromSnapshot(auto_id:String,snapshot:FIRDataSnapshot) -> Gift{
+    func getGiftFromSnapshot(_ auto_id:String, snapshot:FIRDataSnapshot) -> Gift{
+        let value = snapshot.value as? [String : Any]
         let gift : Gift = Gift(
-            itemID: (snapshot.value!["item_id"] as? String)!,
-            itemURL: (snapshot.value!["item_url"] as? String)!,
-            dueDate: (snapshot.value!["due_date"] as? String)!,
-            initiatorID: (snapshot.value!["initiator_id"] as? String)!,
-            name: (snapshot.value!["name"] as? String)!,
-            pictureURL: (snapshot.value!["picture_url"] as? String)!,
-            postTime: (snapshot.value!["post_time"] as? String)!,
-            price: (snapshot.value!["price"] as? Double)!,
-            reason: (snapshot.value!["reason"] as? String)!,
-            receiverID: (snapshot.value!["receiver_id"] as? String)!,
-            progress: (snapshot.value!["progress"] as? Double)!,
-            category: (snapshot.value!["category"] as? String)!,
+            itemID: (value!["item_id"] as? String)!,
+            itemURL: (value!["item_url"] as? String)!,
+            dueDate: (value!["due_date"] as? String)!,
+            initiatorID: (value!["initiator_id"] as? String)!,
+            name: (value!["name"] as? String)!,
+            pictureURL: (value!["picture_url"] as? String)!,
+            postTime: (value!["post_time"] as? String)!,
+            price: (value!["price"] as? Double)!,
+            reason: (value!["reason"] as? String)!,
+            receiverID: (value!["receiver_id"] as? String)!,
+            progress: (value!["progress"] as? Double)!,
+            category: (value!["category"] as? String)!,
             hidden: false
         )
         gift.auto_id = auto_id
         return gift
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "ProgressTableViewCell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! GiftTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! GiftTableViewCell
         cell.giftNameLabel?.text = self.gifts[indexPath.row].name
         cell.giftDueDateLabel?.text = self.gifts[indexPath.row].dueDate
         cell.giftReasonCell?.text = "For "+self.gifts[indexPath.row].receiverName!+"'s "+self.gifts[indexPath.row].reason!
-        let url = NSURL(string: self.gifts[indexPath.row].pictureURL! as NSString as String)
-        let data = NSData(contentsOfURL: url!)
-        cell.giftImageView.contentMode = .ScaleAspectFit
+        let url = URL(string: self.gifts[indexPath.row].pictureURL! as NSString as String)
+        let data = try? Data(contentsOf: url!)
+        cell.giftImageView.contentMode = .scaleAspectFit
         cell.giftImageView.image = UIImage(data: data!)
-        cell.giftProgressView.transform = CGAffineTransformMakeScale( 1, 3)
+        cell.giftProgressView.transform = CGAffineTransform( scaleX: 1, y: 3)
         cell.giftProgressView.setProgress(Float(self.gifts[indexPath.row].progress!/self.gifts[indexPath.row].price!), animated: false)
         
         let f = Float(self.gifts[indexPath.row].progress!/self.gifts[indexPath.row].price!) * 100
@@ -165,34 +166,34 @@ class ProgressTableView: UIViewController,UITableViewDelegate,UITableViewDataSou
         return cell
     }
 
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
     }
     
     
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
         return gifts.count
     }
     
-    func searchBarTextDidBeginEditing(searchBar: UISearchBar) {
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         searchBar.showsCancelButton = true
     }
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.endEditing(true)
         searchBar.showsCancelButton = false
     }
     
-    func searchBarCancelButtonClicked(searchBar: UISearchBar) {
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchBar.text = ""
         searchText = ""
         searchBar.endEditing(true)
         searchBar.showsCancelButton = false
     }
     
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         self.searchText = searchText
     }
 }

@@ -17,7 +17,7 @@ class GiftReasonChooserViewController: UITableViewController, UITextFieldDelegat
         otherTextField.delegate = self
     
     }
-    func textFieldShouldReturn(textField: UITextField) -> Bool {   //delegate method
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {   //delegate method
         textField.resignFirstResponder()
         let n: Int! = self.navigationController?.viewControllers.count
         if let addGiftController = self.navigationController?.viewControllers[n-2] as? AddGiftTableViewContonller{
@@ -25,17 +25,17 @@ class GiftReasonChooserViewController: UITableViewController, UITextFieldDelegat
             if(otherTextField.text!.characters.count != 0){
                 reason = otherTextField!.text!
             }
-            addGiftController.ReasonButtonOutlet.setTitle(reason, forState: .Normal);
+            addGiftController.ReasonButtonOutlet.setTitle(reason, for: UIControlState());
             self.navigationController?.popToViewController(addGiftController, animated: true)
         }
 
         return true
     }
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if(indexPath.row != 6){
             let n: Int! = self.navigationController?.viewControllers.count
             if let addGiftController = self.navigationController?.viewControllers[n-2] as? AddGiftTableViewContonller{
-            addGiftController.ReasonButtonOutlet.setTitle(tableView.cellForRowAtIndexPath(indexPath)!.textLabel!.text!, forState: .Normal);
+            addGiftController.ReasonButtonOutlet.setTitle(tableView.cellForRow(at: indexPath)!.textLabel!.text!, for: UIControlState());
                 self.navigationController?.popToViewController(addGiftController, animated: true)
             }
         }
@@ -46,7 +46,7 @@ class GiftReasonChooserViewController: UITableViewController, UITextFieldDelegat
                 if(otherTextField.text!.characters.count != 0){
                     reason = otherTextField!.text!
                 }
-                addGiftController.ReasonButtonOutlet.setTitle(reason, forState: .Normal);
+                addGiftController.ReasonButtonOutlet.setTitle(reason, for: UIControlState());
                 self.navigationController?.popToViewController(addGiftController, animated: true)
             }
         

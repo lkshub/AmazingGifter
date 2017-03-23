@@ -25,31 +25,32 @@ class ContributionDetailsUITableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let ref = brain.ref.child("contribution").child(gift!.auto_id!)
-        ref.observeSingleEventOfType(.Value, withBlock: { snapshot in
+        ref.observeSingleEvent(of: .value, with: { snapshot in
             let emu = snapshot.children
-            while let rest = emu.nextObject() as? FIRDataSnapshot {
+            while let data = emu.nextObject() as? FIRDataSnapshot {
+                let rest = data.value as? [String : Any]
                 
-                
-                let contribution = ["amount": rest.value!["amount"] as! Double,
-                    "contributor_id": rest.value!["contributor_id"] as! String,
-                    "contributor_name": rest.value!["contributor_name"] as! String,
-                    "time" : rest.value!["time"] as! String
-                ]
+                let contribution = [
+                    "amount": rest!["amount"] as! Double,
+                    "contributor_id": rest!["contributor_id"] as! String,
+                    "contributor_name": rest!["contributor_name"] as! String,
+                    "time" : rest!["time"] as! String
+                ] as [String : Any]
 
-                self.contributions.append(contribution as! [String : AnyObject])
+                self.contributions.append(contribution as [String : AnyObject])
             }
         })
         
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return contributions.count
     }
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellIdentifier = "contributionTableCell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! ContributionTableCell
-        cell.amountLabel.text = "$ "+String(contributions[indexPath.row]["amount"]!)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! ContributionTableCell
+        cell.amountLabel.text = "$ "+String(describing: contributions[indexPath.row]["amount"]!)
         cell.contributorLabel.text = contributions[indexPath.row]["contributor_name"] as? String
         cell.timeLabel.text = contributions[indexPath.row]["time"] as? String
         return cell
