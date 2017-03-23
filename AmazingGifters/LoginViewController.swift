@@ -120,7 +120,6 @@ class LoginViewController: UIViewController,FBSDKLoginButtonDelegate{
             {
                 var pictureURL:String?
                 var contactsList = [User]()
-                print(result)
                 if let data = result as? [String:Any]{
                     if let picture = data["picture"] as? [String : Any]{//get picture url
                         if let picData = picture["data"] as? [String : Any]{
